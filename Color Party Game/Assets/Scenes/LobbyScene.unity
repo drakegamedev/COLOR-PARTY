@@ -123,60 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &553331309
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 553331310}
-  - component: {fileID: 553331311}
-  m_Layer: 0
-  m_Name: NetworkManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &553331310
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553331309}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1035.7333, y: 501.01837, z: 2.6020825}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &553331311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553331309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efa1eb39af95ea4b86bfd81d354e2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerNameInput: {fileID: 7411720584133236371}
-  RoomNameInputField: {fileID: 7411720584982479195}
-  RoomListItemPrefab: {fileID: 8619161809515430086, guid: 86167ac65fedb7c44916b8374bd120ef, type: 3}
-  RoomListParent: {fileID: 1305871028}
-  RoomNameText: {fileID: 7411720585307409513}
-  PlayerCountText: {fileID: 7411720583550867978}
-  PlayerListPrefab: {fileID: 3709355493953629508, guid: 46f749e614f847a47940ad1dde964668, type: 3}
-  PlayerListParent: {fileID: 7411720583910698546}
-  StartGameButton: {fileID: 7411720584112230487}
---- !u!1001 &895215933
+--- !u!1001 &418807840
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -233,6 +180,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9503961473fe0fc4185c71e96317ddea, type: 3}
+--- !u!1 &553331309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 553331310}
+  - component: {fileID: 553331311}
+  m_Layer: 0
+  m_Name: NetworkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &553331310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553331309}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1035.7333, y: 501.01837, z: 2.6020825}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &553331311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553331309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efa1eb39af95ea4b86bfd81d354e2d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerNameInput: {fileID: 7411720584133236371}
+  RoomNameInputField: {fileID: 7411720584982479195}
+  RoomListItemPrefab: {fileID: 8619161809515430086, guid: 86167ac65fedb7c44916b8374bd120ef, type: 3}
+  RoomListParent: {fileID: 1305871028}
+  RoomNameText: {fileID: 7411720585307409513}
+  PlayerCountText: {fileID: 7411720583550867978}
+  PlayerListPrefab: {fileID: 3709355493953629508, guid: 46f749e614f847a47940ad1dde964668, type: 3}
+  PlayerListParent: {fileID: 7411720583910698546}
+  StartGameButton: {fileID: 7411720584112230487}
 --- !u!1 &950886821
 GameObject:
   m_ObjectHideFlags: 0
