@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
             }
 
-            PhotonNetwork.Instantiate(PlayerPrefabs[0].name, PlayerSpawnManager.Instance.SpawnPoints[number].position, Quaternion.identity);
+            PhotonNetwork.Instantiate(PlayerPrefabs[number].name, PlayerSpawnManager.Instance.SpawnPoints[number].position, Quaternion.identity);
         }
     }
 }
