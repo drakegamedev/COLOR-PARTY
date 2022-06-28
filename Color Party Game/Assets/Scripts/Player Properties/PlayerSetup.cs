@@ -10,6 +10,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
 {
     public Camera PlayerCamera;
     public Color PlayerColor;
+    public int PlayerNumber;
 
     private PlayerMovement playerMovement;
     private PlayerUIController playerUIController;

@@ -12,6 +12,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1769413209929449379, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
+      propertyPath: PlayerNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769413209929449379, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
       propertyPath: PlayerColor.b
       value: 1
       objectReference: {fileID: 0}
