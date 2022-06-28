@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1769413209929449379, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
+      propertyPath: PlayerColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1769413209929449387, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab Variant 1
@@ -21,15 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1769413209929449388, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.0450535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1769413209929449388, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.214298
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1769413209929449388, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.7335173
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1769413209929449388, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
       propertyPath: m_LocalRotation.w

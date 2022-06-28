@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerSpawnManager : MonoBehaviour
 {
     public static PlayerSpawnManager Instance;
-    public Transform[] SpawnPoints { get { return spawnPoints; } set { spawnPoints = value; } }
+    public List<Transform> SpawnPoints { get { return spawnPoints; } set { spawnPoints = value; } }
 
-    private Transform[] spawnPoints;
+    private List<Transform> spawnPoints;
 
     #region Singleton
     void Awake()
@@ -23,11 +23,11 @@ public class PlayerSpawnManager : MonoBehaviour
         }
 
         // Get All Spawn Point Child Objects
-        spawnPoints = new Transform[transform.childCount];
+        spawnPoints = new();
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            spawnPoints[i] = transform.GetChild(i);
+            spawnPoints.Add(transform.GetChild(i));
         }
     }
     #endregion

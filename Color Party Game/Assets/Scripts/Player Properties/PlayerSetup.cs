@@ -9,6 +9,7 @@ using TMPro;
 public class PlayerSetup : MonoBehaviourPunCallbacks
 {
     public Camera PlayerCamera;
+    public Color PlayerColor;
 
     private PlayerMovement playerMovement;
     private PlayerUIController playerUIController;
