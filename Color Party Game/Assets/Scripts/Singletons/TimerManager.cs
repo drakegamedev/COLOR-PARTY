@@ -9,17 +9,22 @@ using Photon.Realtime;
 using ExitGames.Client.Photon;
 
 public class TimerManager : PunRaiseEvents
-{
-    public static TimerManager Instance;
-    
-    [Range(0, 59)] public int Minutes;
-    [Range(0, 59)] public int Seconds;
-    public TextMeshProUGUI TimerText;
-    public TextMeshProUGUI CountdownText;
-    public ParticleSystem ArenaAesthetic;
-    public float CountdownTimer;
-    public float SetLastMinute;
+{    
+    // Public Variables
+    [Header("Set Timer")]
+    [Range(0, 59)] public int Minutes;      // Set Number of Minutes
+    [Range(0, 59)] public int Seconds;      // Set Number of Seconds
 
+    [Header("References")]
+    public TextMeshProUGUI TimerText;       // UI Timer Text
+    public TextMeshProUGUI CountdownText;   // UI Countdown Text
+    public ParticleSystem ArenaAesthetic;   // Arena Particle System (Aesthetic)
+
+    [Header("Set Countdown and Last Minute Mechanic")]
+    public float CountdownTimer;            // Set Timer for Initial Countdown
+    public float SetLastMinute;             // Set Time Portion where Last Minute will be announced
+
+    // Private Variables
     private float currentCountdownTime;
     private float currentTime;
     private bool isActive;
@@ -47,11 +52,12 @@ public class TimerManager : PunRaiseEvents
         {
             object[] data = (object[])photonEvent.CustomData;
             StartCoroutine(Timer());
-        }
-        else if (photonEvent.Code == (byte)RaiseEventsCode.LastMinuteEventCode)
-        {
-            object[] data = (object[])photonEvent.CustomData;
-            StartCoroutine(LastMinute());
+
+            // Last Minute
+            if (currentTime <= SetLastMinute && !isLastMinute)
+            {
+                StartCoroutine(LastMinute());
+            }
         }
         else if (photonEvent.Code == (byte)RaiseEventsCode.TimeOverEventCode)
         {
@@ -77,48 +83,50 @@ public class TimerManager : PunRaiseEvents
         };
 
         // Call RaiseEvents
+        // Initial Countdown RaiseEvent
         if (currentCountdownTime >= 0 && !isActive)
         {
             PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.InitCountdownEventCode, data, raiseEventOptions, sendOption);
         }
+        // Timer RaiseEvent
         else if (currentTime > 0 && isActive)
         {
             PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.TimerEventCode, data, raiseEventOptions, sendOption);
         }
+        // Time Over RaiseEvent
         else
         {
             PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.TimeOverEventCode, data, raiseEventOptions, sendOption);
-        }
-
-        // Last Minute
-        if (currentTime <= SetLastMinute && !isLastMinute)
-        {
-            PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.LastMinuteEventCode, data, raiseEventOptions, sendOption);
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        currentCountdownTime = CountdownTimer;
-        currentTime = (Minutes * 60) + Seconds;
-        
-        isActive = false;
-        isLastMinute = false;
+        // Initialize variables
+        currentCountdownTime = CountdownTimer + 1;      // Add 1 for a 1 second Delay before initiating
+        currentTime = (Minutes * 60) + Seconds;         // Add all timer inputs for Minutes and Seconds
+        isActive = false;                               // Timer Deactivated
+        isLastMinute = false;                           // Last Minute Phase Deactivated
 
+        // Call Initiate Countdown Function
         CallRaiseEvent();
     }
 
     // Start Countdown
     IEnumerator InitiateCountdown()
     {
+        // Decrement currentCountdownTime variable
         currentCountdownTime--;
         
         yield return new WaitForSeconds(1f);
 
+        // Visual indication of Countdown
         CountdownText.text = currentCountdownTime.ToString("0");
 
-        // Go!
+        // Game Officially Starts
+        // Announce "GO!!!"
+        // Proceed to Timer Function
         if (currentCountdownTime <= 0f)
         {
             Debug.Log("Go!!!");
@@ -129,51 +137,67 @@ public class TimerManager : PunRaiseEvents
             isActive = true;
 
             CallRaiseEvent();
+
+            // Terminate Cycle
             yield break;
         }
 
+        // Continue Decrement Cycle
         CallRaiseEvent();
     }
 
     // Timer
+    // Decrement currentTime every 1 second
     IEnumerator Timer()
     {
         currentTime--;
-        timer = TimeSpan.FromSeconds(currentTime);
-        TimerText.text = currentTime.ToString("0");
 
+        // Convert currentTime float to Minutes/Seconds Form
+        timer = TimeSpan.FromSeconds(currentTime);
+
+        // Final Countdown of 10 Seconds
         if (currentTime > 0f && currentTime <= 10f)
         {
             CountdownText.text = timer.Seconds.ToString("0");
         }
         
+        // Print Timer in Minutes/Seconds Form
         TimerText.text = timer.Minutes.ToString("00") + ":" + timer.Seconds.ToString("00");
 
-        // Time is up
+        // Time Up
+        // Call TimeOver Function
         if (currentTime <= 0)
         {
             CallRaiseEvent();
+
+            // Terminate Cycle
             yield break;
         }
 
         yield return new WaitForSeconds(1f);
 
+        // Continue Decrement Cycle
         CallRaiseEvent();
     }
 
+    // Announces Last Minute
+    // Intensify Game Atmosphere
     IEnumerator LastMinute()
     {
+        // Announcement Text
         CountdownText.text = "LAST 2 MINUTES!";
+        isLastMinute = true;
 
         yield return new WaitForSeconds(2f);
-
-        var main = ArenaAesthetic.main;
-
+        
         CountdownText.text = "";
-        main.simulationSpeed = 3f;
-        isLastMinute = true;
+
+        // Faster Movement Speed of Arena Aesthetic Particles
+        var main = ArenaAesthetic.main;
+        main.simulationSpeed = 4f;
     }
 
+    // Called when Timer reaches 0
     IEnumerator TimeOver()
     {
         Debug.Log("Time's Up!");
@@ -188,8 +212,9 @@ public class TimerManager : PunRaiseEvents
         Debug.Log("Declare Winner!");
     }
 
+    // Call Raise Event only once
     void CallRaiseEvent()
-    {
+    { 
         if (photonView.IsMine)
         {
             SetRaiseEvent();

@@ -833,13 +833,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8050a711d9cda594c8ad469921a22b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Minutes: 2
-  Seconds: 10
+  Minutes: 5
+  Seconds: 0
   TimerText: {fileID: 1596173883}
   CountdownText: {fileID: 1986171651}
   ArenaAesthetic: {fileID: 74245260}
-  CountdownTimer: 6
-  SetLastMinute: 121
+  CountdownTimer: 3
+  SetLastMinute: 120
 --- !u!114 &1003165263
 MonoBehaviour:
   m_ObjectHideFlags: 0

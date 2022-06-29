@@ -13,8 +13,7 @@ public class PunRaiseEvents : MonoBehaviourPunCallbacks
     {
         InitCountdownEventCode = 0,
         TimerEventCode = 1,
-        LastMinuteEventCode = 2,
-        TimeOverEventCode = 3
+        TimeOverEventCode = 2
     }
 
     public virtual void OnEnable()
