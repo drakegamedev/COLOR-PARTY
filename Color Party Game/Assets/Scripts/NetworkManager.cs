@@ -271,6 +271,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         Destroy(playerListGameObjects[otherPlayer.ActorNumber].gameObject);
         playerListGameObjects.Remove(otherPlayer.ActorNumber);
+
+        StartGameButton.SetActive(CheckAllPlayerReady());
     }
 
     public override void OnLeftRoom()
