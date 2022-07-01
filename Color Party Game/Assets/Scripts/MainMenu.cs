@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         PanelManager.Instance.ActivatePanel("MainMenuPanel");
+        AudioManager.Instance.Play("MainMenuMusic");
         tutorialPageNumber = 0;
         creditsPageNumber = 0;
     }
