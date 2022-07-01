@@ -25,11 +25,23 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         playerUIController = GetComponent<PlayerUIController>();
         rb = GetComponent<Rigidbody2D>();
 
+        // Set Camera
         PlayerCamera.GetComponent<Camera>().enabled = photonView.IsMine;
         PlayerCamera.GetComponent<AudioListener>().enabled = photonView.IsMine;
 
         animator.SetBool("isLocalPlayer", photonView.IsMine);
 
+        // Disable Movement and Animation
+        animator.enabled = true;
+        playerMovement.enabled = false;
+
+        // Set player name
+        playerUIController.PlayerNameText.text = photonView.Owner.NickName;
+    }
+
+    // Activate Scripts based on Photon View
+    public void SetPlayerViews()
+    {
         if (photonView.IsMine)
         {
             playerMovement.enabled = true;
@@ -40,7 +52,6 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             Destroy(rb);
         }
 
-        // Set player name
-        playerUIController.PlayerNameText.text = photonView.Owner.NickName;
+        animator.enabled = true;
     }
 }

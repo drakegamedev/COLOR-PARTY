@@ -6,7 +6,7 @@ using Photon.Pun;
 public class Tile : MonoBehaviourPunCallbacks
 {
     public GameObject PlayerStep { get { return playerStep; } set { playerStep = value; } }
-    
+
     private SpriteRenderer spriteRenderer;
     private GameObject playerStep;
     
@@ -31,7 +31,12 @@ public class Tile : MonoBehaviourPunCallbacks
                 if (spriteRenderer.color != Color.white)
                 {
                     Debug.Log("Replace Color!");
-                    playerStep.GetComponent<PhotonView>().RPC("DecreaseScore", RpcTarget.AllBuffered);
+                    
+                    // If player is Null
+                    if (playerStep != null)
+                    {
+                        playerStep.GetComponent<PhotonView>().RPC("DecreaseScore", RpcTarget.AllBuffered);
+                    }
                 }
 
                 Debug.Log("New Color!");

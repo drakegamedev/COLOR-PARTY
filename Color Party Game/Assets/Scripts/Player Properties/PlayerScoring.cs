@@ -26,7 +26,8 @@ public class PlayerScoring : MonoBehaviourPunCallbacks
     public void IncreaseScore()
     {
         playerScore++;
-        UpdateToScoreItem();
+        //UpdateToScoreItem();
+        photonView.RPC("UpdateToScoreItem", RpcTarget.AllBuffered);
     }
 
     // Decrease Player Score
@@ -40,9 +41,12 @@ public class PlayerScoring : MonoBehaviourPunCallbacks
             playerScore = 0;
         }
 
-        UpdateToScoreItem();
+        //UpdateToScoreItem();
+        photonView.RPC("UpdateToScoreItem", RpcTarget.AllBuffered);
     }
 
+    // Update player score to Score UI
+    [PunRPC]
     public void UpdateToScoreItem()
     {
         playerUIController.PlayerScoreItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerScore.ToString();

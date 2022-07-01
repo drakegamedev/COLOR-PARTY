@@ -131,7 +131,14 @@ public class TimerManager : PunRaiseEvents
         {
             Debug.Log("Go!!!");
             CountdownText.text = "GO!";
+
+            // Find All Player Game Object Prefabs
+            GameManager.Instance.PlayerGameObjects = GameObject.FindGameObjectsWithTag("Player");
+
             yield return new WaitForSeconds(1f);
+
+            // Initiate Player Setup
+            GameManager.Instance.SetUpPlayers();
             
             CountdownText.text = "";
             isActive = true;
@@ -205,6 +212,9 @@ public class TimerManager : PunRaiseEvents
         // Declare Time Over
         CountdownText.text = "Time's Up!";
         isActive = false;
+
+        // Disable All Player Movements
+        GameManager.Instance.DisablePlayerMovements();
 
         yield return new WaitForSeconds(2.0f);
 
