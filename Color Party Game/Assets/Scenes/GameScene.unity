@@ -620,6 +620,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddc9e4967795ff4d987f89ee450e3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LightColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  DarkColors:
+  - {r: 0.74509805, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0.74509805, a: 1}
+  - {r: 0.74509805, g: 0, b: 0.74509805, a: 1}
+  - {r: 0.74509805, g: 0.74509805, b: 0, a: 1}
+  LightLerpWalls: []
+  DarkLerpWalls: []
+  LerpTime: 2
+  ArenaAesthetic: {fileID: 74245260}
   PlayerPrefabs:
   - {fileID: 7243523787050623196, guid: aa652049481cea740a41f241d219d052, type: 3}
   - {fileID: 7652157707442554513, guid: 038e8c3c663bcd945a98a81f6a42b18f, type: 3}
@@ -911,10 +925,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Minutes: 2
-  Seconds: 10
+  Seconds: 2
   TimerText: {fileID: 1596173883}
   CountdownText: {fileID: 1986171651}
-  ArenaAesthetic: {fileID: 74245260}
   CountdownTimer: 3
   SetLastMinute: 120
 --- !u!114 &1003165263
@@ -1674,7 +1687,7 @@ GameObject:
   - component: {fileID: 4516989338465172450}
   m_Layer: 0
   m_Name: RightWall(Top)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1852,7 +1865,7 @@ GameObject:
   - component: {fileID: 4516989339343651046}
   m_Layer: 0
   m_Name: TopWall(Top)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1963,7 +1976,7 @@ GameObject:
   - component: {fileID: 4516989339363572453}
   m_Layer: 0
   m_Name: LeftWall(Top)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2147,7 +2160,7 @@ GameObject:
   - component: {fileID: 8980478493666875670}
   m_Layer: 0
   m_Name: BottomWall2(Bottom)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2550,7 +2563,7 @@ GameObject:
   - component: {fileID: 8980478493854775347}
   m_Layer: 0
   m_Name: BottomWall4(Top)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2568,7 +2581,7 @@ GameObject:
   - component: {fileID: 8980478493859684229}
   m_Layer: 0
   m_Name: BottomWall1(Top)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2679,7 +2692,7 @@ GameObject:
   - component: {fileID: 8980478493891880346}
   m_Layer: 0
   m_Name: RightCorner(Bottom)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2790,7 +2803,7 @@ GameObject:
   - component: {fileID: 8980478494003062172}
   m_Layer: 0
   m_Name: BottomWall3(Bottom)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3067,7 +3080,7 @@ GameObject:
   - component: {fileID: 8980478494266945041}
   m_Layer: 0
   m_Name: LeftCorner(Bottom)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3137,7 +3150,7 @@ GameObject:
   - component: {fileID: 8980478494318758622}
   m_Layer: 0
   m_Name: DarkBottom3(Bottom)
-  m_TagString: Untagged
+  m_TagString: DarkLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3314,7 +3327,7 @@ GameObject:
   - component: {fileID: 8980478494567583685}
   m_Layer: 0
   m_Name: DarkBottomWall3(Top)
-  m_TagString: Untagged
+  m_TagString: DarkLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3588,7 +3601,7 @@ GameObject:
   - component: {fileID: 8980478494568170272}
   m_Layer: 0
   m_Name: BottomWall1(Bottom)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3852,7 +3865,7 @@ GameObject:
   - component: {fileID: 8980478494635965954}
   m_Layer: 0
   m_Name: DarkBottomWall(Bottom)
-  m_TagString: Untagged
+  m_TagString: DarkLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4099,7 +4112,7 @@ GameObject:
   - component: {fileID: 8980478494681341943}
   m_Layer: 0
   m_Name: RightWall(Bottom)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4158,7 +4171,7 @@ GameObject:
   - component: {fileID: 8980478494714438778}
   m_Layer: 0
   m_Name: BottomWall2(Top)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4406,7 +4419,7 @@ GameObject:
   - component: {fileID: 8980478495003142367}
   m_Layer: 0
   m_Name: DarkBottomWall4(Top)
-  m_TagString: Untagged
+  m_TagString: DarkLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4558,7 +4571,7 @@ GameObject:
   - component: {fileID: 8980478495004792193}
   m_Layer: 0
   m_Name: DarkBottomWall1(Top)
-  m_TagString: Untagged
+  m_TagString: DarkLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4952,7 +4965,7 @@ GameObject:
   - component: {fileID: 8980478495084388539}
   m_Layer: 0
   m_Name: LeftWall(Bottom)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5215,7 +5228,7 @@ GameObject:
   - component: {fileID: 8980478495185261817}
   m_Layer: 0
   m_Name: DarkBottom2(Bottom)
-  m_TagString: Untagged
+  m_TagString: DarkLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5357,7 +5370,7 @@ GameObject:
   - component: {fileID: 8980478495253738726}
   m_Layer: 0
   m_Name: BottomWall(Bottom)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5468,7 +5481,7 @@ GameObject:
   - component: {fileID: 8980478495320712029}
   m_Layer: 0
   m_Name: BottomWall3(Top)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5980,7 +5993,7 @@ GameObject:
   - component: {fileID: 8980478495511605733}
   m_Layer: 0
   m_Name: DarkBottomWall2(Top)
-  m_TagString: Untagged
+  m_TagString: DarkLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6091,7 +6104,7 @@ GameObject:
   - component: {fileID: 8980478495555041170}
   m_Layer: 0
   m_Name: BottomWall4(Bottom)
-  m_TagString: Untagged
+  m_TagString: LightLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6365,7 +6378,7 @@ GameObject:
   - component: {fileID: 8980478495628455022}
   m_Layer: 0
   m_Name: DarkBottom1(Bottom)
-  m_TagString: Untagged
+  m_TagString: DarkLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6619,7 +6632,7 @@ GameObject:
   - component: {fileID: 8980478495738757154}
   m_Layer: 0
   m_Name: DarkBottom4(Bottom)
-  m_TagString: Untagged
+  m_TagString: DarkLerpColor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

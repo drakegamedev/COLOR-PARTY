@@ -18,8 +18,7 @@ public class TimerManager : PunRaiseEvents
     [Header("References")]
     public TextMeshProUGUI TimerText;       // UI Timer Text
     public TextMeshProUGUI CountdownText;   // UI Countdown Text
-    public ParticleSystem ArenaAesthetic;   // Arena Particle System (Aesthetic)
-
+    
     [Header("Set Countdown and Last Minute Mechanic")]
     public float CountdownTimer;            // Set Timer for Initial Countdown
     public float SetLastMinute;             // Set Time Portion where Last Minute will be announced
@@ -209,9 +208,8 @@ public class TimerManager : PunRaiseEvents
 
         CountdownText.text = "";
 
-        // Faster Movement Speed of Arena Aesthetic Particles
-        var main = ArenaAesthetic.main;
-        main.simulationSpeed = 4f;
+        // Intensity Atmosphere at Last Minute
+        GameManager.Instance.IntensifyAtmosphere();
     }
 
     // Called when Timer reaches 0
