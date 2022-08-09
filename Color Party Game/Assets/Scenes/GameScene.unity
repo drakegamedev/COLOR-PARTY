@@ -924,8 +924,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8050a711d9cda594c8ad469921a22b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Minutes: 2
-  Seconds: 2
+  Minutes: 5
+  Seconds: 0
   TimerText: {fileID: 1596173883}
   CountdownText: {fileID: 1986171651}
   CountdownTimer: 3

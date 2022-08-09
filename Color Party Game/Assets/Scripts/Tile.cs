@@ -25,24 +25,23 @@ public class Tile : MonoBehaviourPunCallbacks
                 Debug.Log("Color is the same");
                 return;
             }
-            else
-            {
-                // Decrease Score of player designated in the color
-                if (spriteRenderer.color != Color.white)
-                {
-                    Debug.Log("Replace Color!");
-                    
-                    // If player is Null
-                    if (playerStep != null)
-                    {
-                        playerStep.GetComponent<PhotonView>().RPC("DecreaseScore", RpcTarget.AllBuffered);
-                    }
-                }
 
-                Debug.Log("New Color!");
-                collider.GetComponent<PhotonView>().RPC("IncreaseScore", RpcTarget.AllBuffered);
-                collider.GetComponent<PhotonView>().RPC("ColorTile", RpcTarget.AllBuffered, gameObject.name);
+            // Decrease Score of player designated in the color
+            if (spriteRenderer.color != Color.white)
+            {
+                Debug.Log("Replace Color!");
+
+                // If player is Null
+                if (playerStep != null)
+                {
+                    playerStep.GetComponent<PhotonView>().RPC("DecreaseScore", RpcTarget.AllBuffered);
+                }
             }
+
+            Debug.Log("New Color!");
+            collider.GetComponent<PhotonView>().RPC("IncreaseScore", RpcTarget.AllBuffered);
+            collider.GetComponent<PhotonView>().RPC("ColorTile", RpcTarget.AllBuffered, gameObject.name);
+
         }
     }
 }

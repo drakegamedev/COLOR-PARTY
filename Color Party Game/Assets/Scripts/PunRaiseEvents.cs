@@ -11,9 +11,9 @@ public class PunRaiseEvents : MonoBehaviourPunCallbacks
 {
     public enum RaiseEventsCode
     {
-        InitCountdownEventCode = 0,
-        TimerEventCode = 1,
-        TimeOverEventCode = 2
+        INITIAL_COUNTDOWN = 0,
+        TIMER = 1,
+        TIME_OVER = 2
     }
 
     public virtual void OnEnable()

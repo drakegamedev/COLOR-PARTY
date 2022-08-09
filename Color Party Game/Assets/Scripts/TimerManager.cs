@@ -42,12 +42,12 @@ public class TimerManager : PunRaiseEvents
 
     public override void OnEvent(EventData photonEvent)
     {
-        if (photonEvent.Code == (byte)RaiseEventsCode.InitCountdownEventCode)
+        if (photonEvent.Code == (byte)RaiseEventsCode.INITIAL_COUNTDOWN)
         {
             object[] data = (object[])photonEvent.CustomData;
             StartCoroutine(InitiateCountdown());
         }
-        else if (photonEvent.Code == (byte)RaiseEventsCode.TimerEventCode)
+        else if (photonEvent.Code == (byte)RaiseEventsCode.TIMER)
         {
             object[] data = (object[])photonEvent.CustomData;
             StartCoroutine(Timer());
@@ -58,7 +58,7 @@ public class TimerManager : PunRaiseEvents
                 StartCoroutine(LastMinute());
             }
         }
-        else if (photonEvent.Code == (byte)RaiseEventsCode.TimeOverEventCode)
+        else if (photonEvent.Code == (byte)RaiseEventsCode.TIME_OVER)
         {
             object[] data = (object[])photonEvent.CustomData;
             StartCoroutine(TimeOver());
@@ -85,17 +85,17 @@ public class TimerManager : PunRaiseEvents
         // Initial Countdown RaiseEvent
         if (currentCountdownTime >= 0 && !isActive)
         {
-            PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.InitCountdownEventCode, data, raiseEventOptions, sendOption);
+            PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.INITIAL_COUNTDOWN, data, raiseEventOptions, sendOption);
         }
         // Timer RaiseEvent
         else if (currentTime > 0 && isActive)
         {
-            PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.TimerEventCode, data, raiseEventOptions, sendOption);
+            PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.TIMER, data, raiseEventOptions, sendOption);
         }
         // Time Over RaiseEvent
         else
         {
-            PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.TimeOverEventCode, data, raiseEventOptions, sendOption);
+            PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.TIME_OVER, data, raiseEventOptions, sendOption);
         }
     }
 
