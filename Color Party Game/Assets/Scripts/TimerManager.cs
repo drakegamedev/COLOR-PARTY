@@ -9,7 +9,14 @@ using Photon.Realtime;
 using ExitGames.Client.Photon;
 
 public class TimerManager : PunRaiseEvents
-{    
+{
+    enum RaiseEventsCode
+    {
+        INITIAL_COUNTDOWN,
+        TIMER,
+        TIME_UP
+    }
+
     // Public Variables
     [Header("Set Timer")]
     [Range(0, 59)] public int Minutes;      // Set Number of Minutes
@@ -24,9 +31,9 @@ public class TimerManager : PunRaiseEvents
     public float SetLastMinute;             // Set Time Portion where Last Minute will be announced
 
     // Private Variables
+    private float gameTime;
     private float currentCountdownTime;
     private float currentTime;
-    private bool isActive;
     private bool isLastMinute;
     private TimeSpan timer;
 
@@ -40,7 +47,7 @@ public class TimerManager : PunRaiseEvents
         PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
     }
 
-    public override void OnEvent(EventData photonEvent)
+    /*public override void OnEvent(EventData photonEvent)
     {
         if (photonEvent.Code == (byte)RaiseEventsCode.INITIAL_COUNTDOWN)
         {
@@ -209,7 +216,9 @@ public class TimerManager : PunRaiseEvents
         CountdownText.text = "";
 
         // Intensity Atmosphere at Last Minute
-        GameManager.Instance.IntensifyAtmosphere();
+        //GameManager.Instance.InitializeWalls();
+        //GameManager.Instance.IntensifyAtmosphere();
+        EventManager.Instance.Intensify.Invoke();
     }
 
     // Called when Timer reaches 0
@@ -233,6 +242,193 @@ public class TimerManager : PunRaiseEvents
     // Call Raise Event only once
     void CallRaiseEvent()
     { 
+        if (photonView.IsMine)
+        {
+            SetRaiseEvent();
+        }
+    }*/
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Initialize variables
+        currentCountdownTime = CountdownTimer;      // Add 1 for a 1 second Delay before initiating
+        
+        gameTime = (Minutes * 60) + Seconds;
+        currentTime = gameTime;                      // Add all timer inputs for Minutes and Seconds
+        isLastMinute = false;                           // Last Minute Phase Deactivated
+
+        // Call Initiate Countdown Function
+        CallRaiseEvent();
+    }
+
+    public override void OnEvent(EventData photonEvent)
+    {
+        switch (photonEvent.Code)
+        {
+            case (byte)RaiseEventsCode.INITIAL_COUNTDOWN:
+                object[] data = (object[])photonEvent.CustomData;
+                StartCoroutine(InitiateCountdown());
+                break;
+
+            case (byte)RaiseEventsCode.TIMER:
+                StartCoroutine(Timer());
+                break;
+
+            case (byte)RaiseEventsCode.TIME_UP:
+                StartCoroutine(TimeOver());
+                break;
+        }
+    }
+    public override void SetRaiseEvent()
+    {
+        // event data
+        object[] data = new object[] { };
+
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+        {
+            Receivers = ReceiverGroup.All,
+            CachingOption = EventCaching.AddToRoomCache
+        };
+
+        SendOptions sendOption = new SendOptions
+        {
+            Reliability = false
+        };
+
+        // Call RaiseEvents
+        // Initial Countdown RaiseEvent
+
+        switch (GameManager.Instance.GameState)
+        {
+            case GameManager.GameStates.INITIAL:
+                PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.INITIAL_COUNTDOWN, data, raiseEventOptions, sendOption);
+                break;
+
+            case GameManager.GameStates.PLAYING:
+                PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.TIMER, data, raiseEventOptions, sendOption);
+                break;
+
+            case GameManager.GameStates.GAME_OVER:
+                PhotonNetwork.RaiseEvent((byte)RaiseEventsCode.TIME_UP, data, raiseEventOptions, sendOption);
+                break;
+        }
+    }
+
+    // Start Countdown
+    IEnumerator InitiateCountdown()
+    {
+        yield return new WaitForSeconds(1f);
+
+        while (currentCountdownTime > 0f)
+        {
+            // Visual indication of Countdown
+            CountdownText.text = currentCountdownTime.ToString("0");
+            yield return new WaitForSeconds(1f);
+
+            // Decrement currentCountdownTime variable
+            currentCountdownTime--;
+        }
+
+        // Game Officially Starts
+        // Proceed to Timer Function
+        CountdownText.text = "GO!";
+
+        // Find All Player Game Object Prefabs
+        GameManager.Instance.PlayerGameObjects = GameObject.FindGameObjectsWithTag("Player");
+
+        yield return new WaitForSeconds(1f);
+
+        GameManager.Instance.GameState = GameManager.GameStates.PLAYING;
+        EventManager.Instance.InitiateGame.Invoke();
+
+        // Play BGM
+        AudioManager.Instance.Play("GameMusic");
+
+        CountdownText.text = "";
+
+        CallRaiseEvent();
+    }
+
+    // Timer
+    // Decrement currentTime every 1 second
+    IEnumerator Timer()
+    {
+        while (currentTime > 0f)
+        {
+            currentTime--;
+
+            // Convert currentTime float to Minutes/Seconds Form
+            timer = TimeSpan.FromSeconds(currentTime);
+
+            // Final Countdown of 10 Seconds
+            if (currentTime > 0f && currentTime <= 10f)
+            {
+                CountdownText.text = timer.Seconds.ToString("0");
+            }
+
+            // Print Timer in Minutes/Seconds Form
+            TimerText.text = timer.Minutes.ToString("00") + ":" + timer.Seconds.ToString("00");
+
+            if (currentTime <= 120 && !isLastMinute)
+            {
+                StartCoroutine(LastMinute());
+                Debug.Log("LAST 2 MINUTES");
+            }
+            else if (currentTime <= 0f)
+            {
+                // Time's Up
+                // Call TimeOver Function
+                GameManager.Instance.GameState = GameManager.GameStates.GAME_OVER;
+                CallRaiseEvent();
+                yield break;
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    // Announces Last Minute
+    // Intensify Game Atmosphere
+    IEnumerator LastMinute()
+    {
+        // Announcement Text
+        CountdownText.text = "LAST 2 MINUTES!";
+        isLastMinute = true;
+
+        // Stop BGM and Change the Pitch
+        AudioManager.Instance.Stop("GameMusic");
+        AudioManager.Instance.ModifyPitch("GameMusic", 1.25f);
+
+        yield return new WaitForSeconds(2f);
+
+        // Play BGM with Higher Pitch
+        AudioManager.Instance.Play("GameMusic");
+
+        CountdownText.text = "";
+
+        // Intensity Atmosphere at Last Minute
+        EventManager.Instance.Intensify.Invoke();
+    }
+
+    // Called when Timer reaches 0
+    IEnumerator TimeOver()
+    {
+        Debug.Log("Time's Up!");
+
+        // Declare Time Over
+        CountdownText.text = "Time's Up!";
+
+        EventManager.Instance.EndGame.Invoke();
+
+        yield return new WaitForSeconds(2.0f);
+
+        CountdownText.text = "";
+        Debug.Log("Declare Winner!");
+    }
+
+    // Call Raise Event only once
+    void CallRaiseEvent()
+    {
         if (photonView.IsMine)
         {
             SetRaiseEvent();

@@ -10,7 +10,16 @@ using TMPro;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    public enum GameStates
+    {
+        INITIAL,
+        PLAYING,
+        GAME_OVER
+    };
+    
     public static GameManager Instance;
+
+    public GameStates GameState { get { return gameState; } set { gameState = value; } }
 
     [Header("Aesthetic References")]
     public Color[] LightColors;
@@ -24,12 +33,18 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [Header("Player References")]
     public GameObject[] PlayerPrefabs;
-    
+
+    private GameStates gameState;
     private GameObject[] playerGameObjects;
     private List<LerpColor> lerpColorList = new();
 
     // Player's number beased on player list
     private int number;
+
+    private void OnDisable()
+    {
+        EventManager.Instance.Intensify -= IntensifyAtmosphere;
+    }
 
     #region Singleton
     void Awake()
@@ -64,6 +79,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             // Spawn Player Prefab
             PhotonNetwork.Instantiate(PlayerPrefabs[number].name, PlayerSpawnManager.Instance.SpawnPoints[number].position, Quaternion.identity);
         }
+
+        EventManager.Instance.Intensify += IntensifyAtmosphere;
+
+        InitializeWalls();
     }
 
     void Update()
@@ -88,7 +107,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             LerpColor lerpColor = go.AddComponent<LerpColor>();
             lerpColor.MyColors = LightColors;
             lerpColor.LerpTime = LerpTime;
-            lerpColor.enabled = false;
 
             // Add to List
             lerpColorList.Add(lerpColor);
@@ -100,19 +118,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             LerpColor lerpColor = go.AddComponent<LerpColor>();
             lerpColor.MyColors = DarkColors;
             lerpColor.LerpTime = LerpTime;
-            lerpColor.enabled = false;
 
             // Add to List
             lerpColorList.Add(lerpColor);
-        }
-    }
-
-    // Activates Player Setup
-    public void SetUpPlayers()
-    {
-        for (int i = 0; i < playerGameObjects.Length; i++)
-        {
-            playerGameObjects[i].GetComponent<PlayerSetup>().SetPlayerViews();
         }
     }
 
@@ -122,23 +130,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         // Faster Movement Speed of Arena Aesthetic Particles
         var main = ArenaAesthetic.main;
         main.simulationSpeed = 4f;
-
-        // Enable Lerping of Colors
-        // For the Walls
-        foreach(LerpColor lcl in lerpColorList)
-        {
-            lcl.enabled = true;
-        }
     }
 
-    // Disables All Player Movements
+    /*// Disables All Player Movements
     public void DisablePlayerMovements()
     {
         for (int i = 0; i < playerGameObjects.Length; i++)
         {
             playerGameObjects[i].GetComponent<PlayerMovement>().enabled = false;
         }
-    }
+    }*/
 
     // Leave the Room
     public void LeaveRoom()

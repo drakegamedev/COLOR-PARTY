@@ -17,6 +17,12 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     private Rigidbody2D rb;
     private Animator animator;
 
+    void OnDisable()
+    {
+        EventManager.Instance.InitiateGame -= SetPlayerViews;
+        EventManager.Instance.EndGame -= DisableMovement;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +43,9 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
 
         // Set player name
         playerUIController.PlayerNameText.text = photonView.Owner.NickName;
+
+        EventManager.Instance.InitiateGame += SetPlayerViews;
+        EventManager.Instance.EndGame += DisableMovement;
     }
 
     // Activate Scripts based on Photon View
@@ -53,5 +62,11 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         }
 
         animator.enabled = true;
+    }
+
+    // Disable Player Movement
+    public void DisableMovement()
+    {
+        playerMovement.enabled = false;
     }
 }

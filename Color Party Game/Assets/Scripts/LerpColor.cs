@@ -11,11 +11,24 @@ public class LerpColor : MonoBehaviour
     private int colorIndex = 0;
     private float lerpTime;
 
+    private void OnEnable()
+    {
+        EventManager.Instance.Intensify += StartLerping;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.Intensify -= StartLerping;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
+    public void StartLerping()
+    {
         StartCoroutine(LerpFunction(MyColors[colorIndex], lerpTime));
     }
 
