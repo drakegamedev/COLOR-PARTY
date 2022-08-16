@@ -57,12 +57,24 @@ public class PlayerScoring : MonoBehaviourPunCallbacks
     // Input player gameobject data to tile
     public void ColorTile(string tileName)
     {
-        for (int i = 0; i < tiles.Length; i++)
+        /*for (int i = 0; i < tiles.Length; i++)
         {
             if (tileName == tiles[i].name)
             {
                 SpriteRenderer tileSprite = tiles[i].GetComponent<SpriteRenderer>();
                 Tile tileScript = tiles[i].GetComponent<Tile>();
+                tileSprite.color = playerSetup.PlayerColor;
+                tileScript.PlayerStep = gameObject;
+                break;
+            }
+        }*/
+
+        foreach (GameObject tile in tiles)
+        {
+            if (tile.name == tileName)
+            {
+                SpriteRenderer tileSprite = tile.GetComponent<SpriteRenderer>();
+                Tile tileScript = tile.GetComponent<Tile>();
                 tileSprite.color = playerSetup.PlayerColor;
                 tileScript.PlayerStep = gameObject;
                 break;

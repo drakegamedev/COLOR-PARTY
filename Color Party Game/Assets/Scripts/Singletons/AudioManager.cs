@@ -1,52 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     
     [System.Serializable]
-    public struct AudioData
+    // Collects AudioData
+    public struct AudioDataCollection
     {
         public string Id;
-        public AudioClip Clip;
-
-        [Range(0, 256)] public int Priority;
-        [Range(0f, 1f)] public float Volume;
-        [Range(0f, 3f)] public float Pitch;
-        public bool Loop;
-        [Range(0f, 3f)] public float SpatialBlend;
-
-        [HideInInspector]
-        public AudioSource Source;
+        public AudioData[] Audios;
     }
 
     [Header("References")]
-    public AudioData[] Audio;
+    public AudioDataCollection[] AudioCollections;
+
+    [Space]
+    public GameObject MusicHolder;
+    public GameObject SoundHolder;
 
     #region Singleton
     void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(this.gameObject);
-        }
-        else
+        if (Instance == null)
         {
             Instance = this;
         }
-
-        for (int i = 0; i < Audio.Length; i++)
+        else
         {
-            Audio[i].Source = gameObject.AddComponent<AudioSource>();
-            Audio[i].Source.clip = Audio[i].Clip;
-            
-            Audio[i].Source.priority = Audio[i].Priority;
-            Audio[i].Source.volume = Audio[i].Volume;
-            Audio[i].Source.pitch = Audio[i].Pitch;
-            Audio[i].Source.loop = Audio[i].Loop;
-            Audio[i].Source.spatialBlend = Audio[i].SpatialBlend;
+            Destroy(this.gameObject);
+        }
+
+        // Initialize Audio Collections
+        for (int i = 0; i < AudioCollections.Length; i++)
+        {
+            AudioData audioData = AudioCollections[i].Audios[i];
+
+            // Set Audio Data ID
+            audioData.Id = AudioCollections[i].Id;
+
+            // Check if Audio is BGM or SFX,
+            // then put audio source in designated container
+            switch (audioData.Type)
+            {
+                case AudioData.AudioType.BGM:
+                    audioData.Initialize(MusicHolder);
+                    break;
+
+                case AudioData.AudioType.SFX:
+                    audioData.Initialize(SoundHolder);
+                    break;
+            };
         }
     }
     #endregion
@@ -54,12 +61,24 @@ public class AudioManager : MonoBehaviour
     // Play Audio
     public void Play(string id)
     {
-        for (int i = 0; i < Audio.Length; i++)
+        // Find Audio in Audio Collections
+        foreach (AudioDataCollection collectionData in AudioCollections)
         {
-            if (id == Audio[i].Id)
+            // Check within AudioData Types
+            foreach (AudioData audioData in collectionData.Audios)
             {
-                Audio[i].Source.Play();
-                break;
+                // Audio Found
+                if (id == audioData.Id)
+                {
+                    audioData.Source.Play();
+                    break;
+                }
+                // Audio Not Found
+                else
+                {
+                    Debug.LogWarning("Audio " + id + " cannot be found!");
+                    return;
+                }
             }
         }
     }
@@ -67,12 +86,24 @@ public class AudioManager : MonoBehaviour
     // Stop Audio
     public void Stop(string id)
     {
-        for (int i = 0; i < Audio.Length; i++)
+        // Find Audio in Audio Collections
+        foreach (AudioDataCollection collectionData in AudioCollections)
         {
-            if (id == Audio[i].Id)
+            // Check within AudioData Types
+            foreach (AudioData audioData in collectionData.Audios)
             {
-                Audio[i].Source.Stop();
-                break;
+                // Audio Found
+                if (id == audioData.Id)
+                {
+                    audioData.Source.Stop();
+                    break;
+                }
+                // Audio Not Found
+                else
+                {
+                    Debug.LogWarning("Audio " + id + " cannot be found!");
+                    return;
+                }
             }
         }
     }
@@ -80,13 +111,25 @@ public class AudioManager : MonoBehaviour
     // Modify Audio Pitch
     public void ModifyPitch(string id, float amount)
     {
-        for (int i = 0; i < Audio.Length; i++)
+        // Find Audio in Audio Collections
+        foreach (AudioDataCollection collectionData in AudioCollections)
         {
-            if (id == Audio[i].Id)
+            // Check within AudioData Types
+            foreach (AudioData audioData in collectionData.Audios)
             {
-                Audio[i].Pitch = amount;
-                Audio[i].Source.pitch = Audio[i].Pitch;
-                break;
+                // Audio Found
+                if (id == audioData.Id)
+                {
+                    audioData.Pitch = amount;
+                    audioData.Source.pitch = audioData.Pitch;
+                    break;
+                }
+                // Audio Not Found
+                else
+                {
+                    Debug.LogWarning("Audio " + id + " cannot be found!");
+                    return;
+                }
             }
         }
     }

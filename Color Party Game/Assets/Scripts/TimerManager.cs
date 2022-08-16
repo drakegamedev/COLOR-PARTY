@@ -295,9 +295,7 @@ public class TimerManager : PunRaiseEvents
             Reliability = false
         };
 
-        // Call RaiseEvents
-        // Initial Countdown RaiseEvent
-
+        // Call Raise Event based on Game State
         switch (GameManager.Instance.GameState)
         {
             case GameManager.GameStates.INITIAL:
@@ -342,7 +340,7 @@ public class TimerManager : PunRaiseEvents
         EventManager.Instance.InitiateGame.Invoke();
 
         // Play BGM
-        AudioManager.Instance.Play("GameMusic");
+        AudioManager.Instance.Play("game-bgm");
 
         CountdownText.text = "";
 
@@ -396,13 +394,13 @@ public class TimerManager : PunRaiseEvents
         isLastMinute = true;
 
         // Stop BGM and Change the Pitch
-        AudioManager.Instance.Stop("GameMusic");
-        AudioManager.Instance.ModifyPitch("GameMusic", 1.25f);
+        AudioManager.Instance.Stop("game-bgm");
+        AudioManager.Instance.ModifyPitch("game-bgm", 1.25f);
 
         yield return new WaitForSeconds(2f);
 
         // Play BGM with Higher Pitch
-        AudioManager.Instance.Play("GameMusic");
+        AudioManager.Instance.Play("game-bgm");
 
         CountdownText.text = "";
 

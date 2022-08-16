@@ -17,7 +17,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     private Rigidbody2D rb;
     private Animator animator;
 
-    void OnDisable()
+    public override void OnDisable()
     {
         EventManager.Instance.InitiateGame -= SetPlayerViews;
         EventManager.Instance.EndGame -= DisableMovement;

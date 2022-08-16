@@ -9,16 +9,6 @@ using ExitGames.Client.Photon;
 
 public class PunRaiseEvents : MonoBehaviourPunCallbacks
 {
-    public virtual void OnEnable()
-    {
-    
-    }
-
-    public virtual void OnDisable()
-    {
-
-    }
-
     public virtual void OnEvent(EventData photonEvent)
     {
 

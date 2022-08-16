@@ -14,13 +14,13 @@ public class EventManager : MonoBehaviour
     #region Singleton
     void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
-            Destroy(this.gameObject);
+            Instance = this;
         }
         else
         {
-            Instance = this;
+            Destroy(this.gameObject);
         }
     }
     #endregion

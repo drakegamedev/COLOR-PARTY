@@ -36,7 +36,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Start()
     {
         PanelManager.Instance.ActivatePanel("LoginPanel");
-        AudioManager.Instance.Play("LobbyMusic");
+        AudioManager.Instance.Play("lobby-bgm");
         PhotonNetwork.AutomaticallySyncScene = true;
         PlayerNameInput.characterLimit = 10;
         RoomNameInputField.characterLimit = 20;

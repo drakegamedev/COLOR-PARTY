@@ -6,22 +6,32 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    private int tutorialPageNumber;
-    private int creditsPageNumber;
-
     // Start is called before the first frame update
     void Start()
     {
         PanelManager.Instance.ActivatePanel("MainMenuPanel");
-        AudioManager.Instance.Play("MainMenuMusic");
-        tutorialPageNumber = 0;
-        creditsPageNumber = 0;
+        AudioManager.Instance.Play("main-menu-bgm");
     }
 
     public void OnPlayButtonClicked()
     {
         Debug.Log("Play");
         StartCoroutine(AsyncLoadScene("LobbyScene"));
+    }
+
+    public void OnTutorialButtonClicked()
+    {
+        
+    }
+
+    public void OnCreditsButtonClicked()
+    {
+
+    }
+
+    public void OnQuitGameButtonClicked()
+    {
+
     }
 
     IEnumerator AsyncLoadScene(string name)

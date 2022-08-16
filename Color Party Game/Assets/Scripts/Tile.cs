@@ -31,7 +31,7 @@ public class Tile : MonoBehaviourPunCallbacks
             {
                 Debug.Log("Replace Color!");
 
-                // If player is Null
+                // If player is not Null
                 if (playerStep != null)
                 {
                     playerStep.GetComponent<PhotonView>().RPC("DecreaseScore", RpcTarget.AllBuffered);

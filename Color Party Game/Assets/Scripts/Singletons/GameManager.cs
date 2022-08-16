@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Player's number beased on player list
     private int number;
 
-    private void OnDisable()
+    public override void OnDisable()
     {
         EventManager.Instance.Intensify -= IntensifyAtmosphere;
     }
@@ -49,13 +49,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     #region Singleton
     void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
-            Destroy(this.gameObject);
+            Instance = this;
         }
         else
         {
-            Instance = this;
+            Destroy(this.gameObject);
         }
     }
     #endregion
