@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [Header("Aesthetic References")]
     public Color[] LightColors;
     public Color[] DarkColors;
-    public GameObject[] LightLerpWalls;
-    public GameObject[] DarkLerpWalls;
+    public GameObject[] LightLerpWalls { get; private set; }
+    public GameObject[] DarkLerpWalls { get; private set; }
     public float LerpTime;
     public ParticleSystem ArenaAesthetic;   // Arena Particle System (Aesthetic)
 
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private GameObject[] playerGameObjects;
     private List<LerpColor> lerpColorList = new();
 
-    // Player's number beased on player list
+    // Player's number based on player list
     private int number;
 
     public override void OnDisable()
@@ -131,15 +131,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         var main = ArenaAesthetic.main;
         main.simulationSpeed = 4f;
     }
-
-    /*// Disables All Player Movements
-    public void DisablePlayerMovements()
-    {
-        for (int i = 0; i < playerGameObjects.Length; i++)
-        {
-            playerGameObjects[i].GetComponent<PlayerMovement>().enabled = false;
-        }
-    }*/
 
     // Leave the Room
     public void LeaveRoom()

@@ -35,7 +35,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        PanelManager.Instance.ActivatePanel("LoginPanel");
+        PanelManager.Instance.ActivatePanel("login-panel");
         AudioManager.Instance.Play("lobby-bgm");
         PhotonNetwork.AutomaticallySyncScene = true;
         PlayerNameInput.characterLimit = 10;
@@ -52,7 +52,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         if (!string.IsNullOrEmpty(playerName))
         {
-            PanelManager.Instance.ActivatePanel("ConnectingPanel");
+            PanelManager.Instance.ActivatePanel("connecting-panel");
 
             if (!PhotonNetwork.IsConnected)
             {
@@ -73,19 +73,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void OnCreateRoomButtonClicked()
     {
-        PanelManager.Instance.ActivatePanel("CreateRoomPanel");
+        PanelManager.Instance.ActivatePanel("create-room-panel");
     }
 
     public void OnCancelButtonClicked()
     {
-        PanelManager.Instance.ActivatePanel("GameOptionsPanel");
+        PanelManager.Instance.ActivatePanel("game-options-panel");
     }
 
     public void OnCreateButtonClicked()
     {
         if (maxPlayers != 0)
         {
-            PanelManager.Instance.ActivatePanel("CreatingPanel");
+            PanelManager.Instance.ActivatePanel("creating-panel");
 
             string roomName = RoomNameInputField.text;
 
@@ -118,7 +118,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             PhotonNetwork.JoinLobby();
         }
 
-        PanelManager.Instance.ActivatePanel("ShowRoomListPanel");
+        PanelManager.Instance.ActivatePanel("show-room-list-panel");
     }
 
     public void OnBackButtonClicked()
@@ -128,13 +128,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             PhotonNetwork.LeaveLobby();
         }
 
-        PanelManager.Instance.ActivatePanel("GameOptionsPanel");
+        PanelManager.Instance.ActivatePanel("game-options-panel");
     }
 
     public void OnLogoutButtonClicked()
     {
         PhotonNetwork.Disconnect();
-        PanelManager.Instance.ActivatePanel("LoginPanel");
+        PanelManager.Instance.ActivatePanel("login-panel");
     }
 
     public void OnStartGameButtonClicked()
@@ -154,7 +154,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + " is connected to Photon");
-        PanelManager.Instance.ActivatePanel("GameOptionsPanel");
+        PanelManager.Instance.ActivatePanel("game-options-panel");
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -171,7 +171,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + " has joined " + PhotonNetwork.CurrentRoom.Name);
         Debug.Log("Player count: " + PhotonNetwork.CurrentRoom.PlayerCount);
-        PanelManager.Instance.ActivatePanel("InsideRoomPanel");
+        PanelManager.Instance.ActivatePanel("inside-room-panel");
 
         RoomNameText.text = PhotonNetwork.CurrentRoom.Name;
         PlayerCountText.text = "Players: " + PhotonNetwork.CurrentRoom.PlayerCount + " / " + PhotonNetwork.CurrentRoom.MaxPlayers;
@@ -288,7 +288,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         playerListGameObjects.Clear();
         playerListGameObjects = null;
 
-        PanelManager.Instance.ActivatePanel("GameOptionsPanel");
+        PanelManager.Instance.ActivatePanel("game-options-panel");
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
@@ -384,7 +384,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         AsyncOperation asyncLoadScene = SceneManager.LoadSceneAsync(name);
 
         // Activate Loading Panel
-        PanelManager.Instance.ActivatePanel("LoadingPanel");
+        PanelManager.Instance.ActivatePanel("loading-panel");
 
         while (!asyncLoadScene.isDone)
         {

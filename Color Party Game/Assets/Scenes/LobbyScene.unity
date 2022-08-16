@@ -550,21 +550,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panels:
-  - Id: LoginPanel
+  - Id: login-panel
     PanelObject: {fileID: 7411720583757852403}
-  - Id: ConnectingPanel
+  - Id: connecting-panel
     PanelObject: {fileID: 7411720584176907220}
-  - Id: GameOptionsPanel
+  - Id: game-options-panel
     PanelObject: {fileID: 7411720585446866964}
-  - Id: CreateRoomPanel
+  - Id: create-room-panel
     PanelObject: {fileID: 7411720584085511291}
-  - Id: CreatingPanel
+  - Id: creating-panel
     PanelObject: {fileID: 7411720584804972164}
-  - Id: ShowRoomListPanel
+  - Id: show-room-list-panel
     PanelObject: {fileID: 7411720584481762961}
-  - Id: InsideRoomPanel
+  - Id: inside-room-panel
     PanelObject: {fileID: 7411720584064738807}
-  - Id: LoadingPanel
+  - Id: loading-panel
     PanelObject: {fileID: 1522675663}
 --- !u!4 &1430146467
 Transform:
@@ -1072,9 +1072,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LOGIN
-
-'
+  m_text: LOGIN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1935,7 +1933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &7411720583784249568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3400,7 +3398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &7411720584085511288
 CanvasRenderer:
   m_ObjectHideFlags: 0

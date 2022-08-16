@@ -577,9 +577,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panels:
-  - Id: ScorePanel
+  - Id: score-panel
     PanelObject: {fileID: 1990214156}
-  - Id: ResultsPanel
+  - Id: results-panel
     PanelObject: {fileID: 413775702}
 --- !u!4 &720416097
 Transform:

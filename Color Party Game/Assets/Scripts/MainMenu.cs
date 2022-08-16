@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PanelManager.Instance.ActivatePanel("MainMenuPanel");
+        PanelManager.Instance.ActivatePanel("main-menu-panel");
         AudioManager.Instance.Play("main-menu-bgm");
     }
 
@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnTutorialButtonClicked()
     {
-        
+        PanelManager.Instance.ActivatePanel("tutorial-panel");
     }
 
     public void OnCreditsButtonClicked()
@@ -39,7 +39,7 @@ public class MainMenu : MonoBehaviour
         AsyncOperation asyncLoadScene = SceneManager.LoadSceneAsync(name);
 
         // Activate Loading Panel
-        PanelManager.Instance.ActivatePanel("LoadingPanel");
+        PanelManager.Instance.ActivatePanel("loading-panel");
 
         while (!asyncLoadScene.isDone)
         {
