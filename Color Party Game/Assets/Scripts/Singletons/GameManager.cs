@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public GameStates GameState { get { return gameState; } set { gameState = value; } }
 
+    public TextMeshProUGUI CountdownText;
+    public TextMeshProUGUI TimerText;
+
     [Header("Aesthetic References")]
     public Color[] LightColors;
     public Color[] DarkColors;

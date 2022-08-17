@@ -120,8 +120,7 @@ public class AudioManager : MonoBehaviour
                 // Audio Found
                 if (id == audioData.Id)
                 {
-                    audioData.Pitch = amount;
-                    audioData.Source.pitch = audioData.Pitch;
+                    audioData.Source.pitch = amount;
                     break;
                 }
                 // Audio Not Found

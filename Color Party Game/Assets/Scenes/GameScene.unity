@@ -670,6 +670,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddc9e4967795ff4d987f89ee450e3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CountdownText: {fileID: 1986171651}
+  TimerText: {fileID: 1596173883}
   LightColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
@@ -680,8 +682,6 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0.74509805, a: 1}
   - {r: 0.74509805, g: 0, b: 0.74509805, a: 1}
   - {r: 0.74509805, g: 0.74509805, b: 0, a: 1}
-  LightLerpWalls: []
-  DarkLerpWalls: []
   LerpTime: 2
   ArenaAesthetic: {fileID: 74245260}
   PlayerPrefabs:

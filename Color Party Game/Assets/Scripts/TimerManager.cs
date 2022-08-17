@@ -251,13 +251,12 @@ public class TimerManager : PunRaiseEvents
     void Start()
     {
         // Initialize variables
-        currentCountdownTime = CountdownTimer;      // Add 1 for a 1 second Delay before initiating
+        currentCountdownTime = CountdownTimer;
         
         gameTime = (Minutes * 60) + Seconds;
         currentTime = gameTime;                      // Add all timer inputs for Minutes and Seconds
-        isLastMinute = false;                           // Last Minute Phase Deactivated
+        isLastMinute = false;                        // Last Minute Phase Deactivated
 
-        // Call Initiate Countdown Function
         CallRaiseEvent();
     }
 
@@ -315,17 +314,29 @@ public class TimerManager : PunRaiseEvents
     // Start Countdown
     IEnumerator InitiateCountdown()
     {
-        yield return new WaitForSeconds(1f);
-
-        while (currentCountdownTime > 0f)
+        // 1-second delay at Startup
+        if (currentCountdownTime == CountdownTimer)
         {
+            yield return new WaitForSeconds(1f);
+        }
+        
+
+        //while (currentCountdownTime > 0f)
+        //{
             // Visual indication of Countdown
             CountdownText.text = currentCountdownTime.ToString("0");
             yield return new WaitForSeconds(1f);
 
             // Decrement currentCountdownTime variable
             currentCountdownTime--;
+        //}
+
+        if (currentCountdownTime > 0f)
+        {
+            CallRaiseEvent();
+            yield break;
         }
+        
 
         // Game Officially Starts
         // Proceed to Timer Function
@@ -351,38 +362,37 @@ public class TimerManager : PunRaiseEvents
     // Decrement currentTime every 1 second
     IEnumerator Timer()
     {
-        while (currentTime > 0f)
+        currentTime--;
+
+        // Convert currentTime float to Minutes/Seconds Form
+        timer = TimeSpan.FromSeconds(currentTime);
+
+        // Final Countdown of 10 Seconds
+        if (currentTime > 0f && currentTime <= 10f)
         {
-            currentTime--;
-
-            // Convert currentTime float to Minutes/Seconds Form
-            timer = TimeSpan.FromSeconds(currentTime);
-
-            // Final Countdown of 10 Seconds
-            if (currentTime > 0f && currentTime <= 10f)
-            {
-                CountdownText.text = timer.Seconds.ToString("0");
-            }
-
-            // Print Timer in Minutes/Seconds Form
-            TimerText.text = timer.Minutes.ToString("00") + ":" + timer.Seconds.ToString("00");
-
-            if (currentTime <= 120 && !isLastMinute)
-            {
-                StartCoroutine(LastMinute());
-                Debug.Log("LAST 2 MINUTES");
-            }
-            else if (currentTime <= 0f)
-            {
-                // Time's Up
-                // Call TimeOver Function
-                GameManager.Instance.GameState = GameManager.GameStates.GAME_OVER;
-                CallRaiseEvent();
-                yield break;
-            }
-
-            yield return new WaitForSeconds(1f);
+            CountdownText.text = timer.Seconds.ToString("0");
         }
+
+        // Print Timer in Minutes/Seconds Form
+        TimerText.text = timer.Minutes.ToString("00") + ":" + timer.Seconds.ToString("00");
+
+        if (currentTime <= 120 && !isLastMinute)
+        {
+            StartCoroutine(LastMinute());
+            Debug.Log("LAST 2 MINUTES");
+        }
+        else if (currentTime <= 0f)
+        {
+            // Time's Up
+            // Call TimeOver Function
+            GameManager.Instance.GameState = GameManager.GameStates.GAME_OVER;
+            CallRaiseEvent();
+            yield break;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        CallRaiseEvent();
     }
 
     // Announces Last Minute

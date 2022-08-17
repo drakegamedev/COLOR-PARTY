@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNameInput: {fileID: 7411720584133236371}
+  EnterInputs: 0d0000000f010000
   RoomNameInputField: {fileID: 7411720584982479195}
   RoomListItemPrefab: {fileID: 8619161809515430086, guid: 86167ac65fedb7c44916b8374bd120ef, type: 3}
   RoomListParent: {fileID: 1305871028}

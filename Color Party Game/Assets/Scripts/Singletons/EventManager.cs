@@ -7,6 +7,7 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager Instance;
 
+    public Action DisableCountdown;
     public Action InitiateGame;
     public Action EndGame;
     public Action Intensify;

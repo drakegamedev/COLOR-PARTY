@@ -11,6 +11,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 {
     [Header("Login UI")]
     public TMP_InputField PlayerNameInput;
+    public KeyCode[] EnterInputs;
 
     [Header("Create Room Panel")]
     public TMP_InputField RoomNameInputField;
@@ -42,6 +43,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         RoomNameInputField.characterLimit = 20;
         cachedRoomList = new Dictionary<string, RoomInfo>();
         roomListGameObjects = new Dictionary<string, GameObject>();
+    }
+
+    void Update()
+    {
+        foreach(KeyCode keyCodes in EnterInputs)
+        {
+            if (Input.GetKeyUp(keyCodes) && !PhotonNetwork.IsConnected)
+            {
+                OnLoginButtonClicked();
+                break;
+            }
+        }
     }
     #endregion
 

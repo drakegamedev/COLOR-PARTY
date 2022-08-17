@@ -19,6 +19,7 @@ public class AudioData : ScriptableObject
     [Range(0, 256)] public int Priority;
     [Range(0f, 1f)] public float Volume;
     [Range(0f, 3f)] public float Pitch;
+    public bool PlayOnAwake;
     public bool Loop;
     [Range(0f, 3f)] public float SpatialBlend;
 
@@ -35,6 +36,7 @@ public class AudioData : ScriptableObject
         Source.priority = Priority;
         Source.volume = Volume;
         Source.pitch = Pitch;
+        Source.playOnAwake = PlayOnAwake;
         Source.loop = Loop;
         Source.spatialBlend = SpatialBlend;
     }
