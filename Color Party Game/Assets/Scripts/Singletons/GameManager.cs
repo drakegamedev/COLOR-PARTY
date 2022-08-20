@@ -19,16 +19,19 @@ public class GameManager : MonoBehaviourPunCallbacks
     
     public static GameManager Instance;
 
-    public GameStates GameState { get { return gameState; } set { gameState = value; } }
+    public GameStates GameState { get; set; }
 
+    public GameObject TimePanel;
     public TextMeshProUGUI CountdownText;
     public TextMeshProUGUI TimerText;
 
-    [Header("Aesthetic References")]
+    [Header("Color References")]
     public Color[] LightColors;
     public Color[] DarkColors;
     public GameObject[] LightLerpWalls { get; private set; }
     public GameObject[] DarkLerpWalls { get; private set; }
+
+    [Header("Aesthetic References")]
     public float LerpTime;
     public ParticleSystem ArenaAesthetic;   // Arena Particle System (Aesthetic)
 
@@ -37,7 +40,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     [Header("Player References")]
     public GameObject[] PlayerPrefabs;
 
-    private GameStates gameState;
     private GameObject[] playerGameObjects;
     private List<LerpColor> lerpColorList = new();
 
@@ -83,6 +85,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             PhotonNetwork.Instantiate(PlayerPrefabs[number].name, PlayerSpawnManager.Instance.SpawnPoints[number].position, Quaternion.identity);
         }
 
+        PanelManager.Instance.ActivatePanel("time-panel");
         EventManager.Instance.Intensify += IntensifyAtmosphere;
 
         InitializeWalls();

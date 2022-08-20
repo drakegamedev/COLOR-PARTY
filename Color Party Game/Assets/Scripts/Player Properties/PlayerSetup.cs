@@ -16,6 +16,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     private PlayerUIController playerUIController;
     private Rigidbody2D rb;
     private Animator animator;
+    private TimerManager timerManager;
 
     public override void OnDisable()
     {
@@ -30,6 +31,8 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         playerMovement = GetComponent<PlayerMovement>();
         playerUIController = GetComponent<PlayerUIController>();
         rb = GetComponent<Rigidbody2D>();
+
+        timerManager = GetComponent<TimerManager>();
 
         // Set Camera
         PlayerCamera.GetComponent<Camera>().enabled = photonView.IsMine;

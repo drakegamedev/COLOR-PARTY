@@ -5,16 +5,15 @@ using TMPro;
 
 public class PlayerUIController : MonoBehaviour
 {
-    public GameObject PlayerScoreItem { get { return playerScoreItem; } set { playerScoreItem = value; } }
+    public GameObject PlayerScoreItem { get; private set; }
     public TextMeshProUGUI PlayerNameText;
     
-    private GameObject playerScoreItem;
     private PlayerSetup playerSetup;
 
     // Start is called before the first frame update
     void Start()
     {
         playerSetup = GetComponent<PlayerSetup>();
-        playerScoreItem = ScoreManager.Instance.ScoreItems[playerSetup.PlayerNumber - 1];
+        PlayerScoreItem = ScoreManager.Instance.ScoreItems[playerSetup.PlayerNumber - 1];
     }
 }
