@@ -14,9 +14,9 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
 
     private PlayerMovement playerMovement;
     private PlayerUIController playerUIController;
+    private WinLoseIndicator winLoseIndicator;
     private Rigidbody2D rb;
     private Animator animator;
-    private TimerManager timerManager;
 
     public override void OnDisable()
     {
@@ -30,9 +30,8 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         playerUIController = GetComponent<PlayerUIController>();
+        winLoseIndicator = GetComponent<WinLoseIndicator>();
         rb = GetComponent<Rigidbody2D>();
-
-        timerManager = GetComponent<TimerManager>();
 
         // Set Camera
         PlayerCamera.GetComponent<Camera>().enabled = photonView.IsMine;
@@ -57,10 +56,12 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         if (photonView.IsMine)
         {
             playerMovement.enabled = true;
+            winLoseIndicator.enabled = true;
         }
         else
         {
             playerMovement.enabled = false;
+            winLoseIndicator.enabled = false;
             Destroy(rb);
         }
 

@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject TimePanel;
     public TextMeshProUGUI CountdownText;
     public TextMeshProUGUI TimerText;
+    public TextMeshProUGUI GameResult;
+    public TextMeshProUGUI PlayerStanding;
 
     [Header("Color References")]
     public Color[] LightColors;
@@ -35,12 +37,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public float LerpTime;
     public ParticleSystem ArenaAesthetic;   // Arena Particle System (Aesthetic)
 
-    public GameObject[] PlayerGameObjects { get { return playerGameObjects; } set { playerGameObjects = value; } }
+    public GameObject[] PlayerGameObjects { get; set; }
 
     [Header("Player References")]
     public GameObject[] PlayerPrefabs;
 
-    private GameObject[] playerGameObjects;
     private List<LerpColor> lerpColorList = new();
 
     // Player's number based on player list

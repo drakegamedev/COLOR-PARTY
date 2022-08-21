@@ -6,7 +6,7 @@ using TMPro;
 
 public class PlayerScoring : MonoBehaviourPunCallbacks
 {
-    private int playerScore;
+    public int PlayerScore { get; private set; }
     private PlayerSetup playerSetup;
     private PlayerUIController playerUIController;
     private GameObject[] tiles;
@@ -17,7 +17,7 @@ public class PlayerScoring : MonoBehaviourPunCallbacks
         tiles = GameObject.FindGameObjectsWithTag("Tile");
         playerSetup = GetComponent<PlayerSetup>();
         playerUIController = GetComponent<PlayerUIController>();
-        playerScore = 0;
+        PlayerScore = 0;
     }
 
 
@@ -25,7 +25,7 @@ public class PlayerScoring : MonoBehaviourPunCallbacks
     [PunRPC]
     public void IncreaseScore()
     {
-        playerScore++;
+        PlayerScore++;
         photonView.RPC("UpdateToScoreItem", RpcTarget.AllBuffered);
     }
 
@@ -33,11 +33,12 @@ public class PlayerScoring : MonoBehaviourPunCallbacks
     [PunRPC]
     public void DecreaseScore()
     {
-        playerScore--;
+        PlayerScore--;
 
-        if (playerScore < 0)
+        // Clamp Player Score
+        if (PlayerScore < 0)
         {
-            playerScore = 0;
+            PlayerScore = 0;
         }
 
         photonView.RPC("UpdateToScoreItem", RpcTarget.AllBuffered);
@@ -47,7 +48,7 @@ public class PlayerScoring : MonoBehaviourPunCallbacks
     [PunRPC]
     public void UpdateToScoreItem()
     {
-        playerUIController.PlayerScoreItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = playerScore.ToString();
+        playerUIController.PlayerScoreItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = PlayerScore.ToString();
     }
 
     [PunRPC]

@@ -10,10 +10,13 @@ public class ScoreManager : MonoBehaviourPunCallbacks
 {
     public static ScoreManager Instance;
 
+    public TextMeshProUGUI[] PlayerRankTexts;
+    public List<GameObject> Players { get; private set; } = new();
     public Transform[] Containers;
     public GameObject PlayerScoreItem;
     public List<GameObject> ScoreItems { get; private set; } = new();
     public GameObject ScorePanel;
+
 
     private Dictionary<Photon.Realtime.Player, GameObject> scoreBoardItems = new();
     private int playerIndex;
@@ -42,11 +45,6 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         {
             AddScoreBoardItem(player);
         }
-
-        /*for (int i = 0; i < ScorePanel.transform.childCount; i++)
-        {
-            ScoreItems.Add(ScorePanel.transform.GetChild(i).gameObject);
-        }*/
     }
 
     // Adds the player to the scoreboard
@@ -67,20 +65,65 @@ public class ScoreManager : MonoBehaviourPunCallbacks
     // Sort Score in Descending Order
     public void SortScore()
     {
-        /*for (int lastSortedIndex = players.Count - 1; lastSortedIndex > 0; lastSortedIndex--)
+        for (int lastSortedIndex = Players.Count - 1; lastSortedIndex > 0; lastSortedIndex--)
         {
             for (int i = 0; i < lastSortedIndex; i++)
             {
-                if (players[i].GetComponent<PlayerStatus>().playerScore < players[i + 1].GetComponent<PlayerStatus>().playerScore)
+                int playerScore1 = Players[i].GetComponent<PlayerScoring>().PlayerScore;
+                int playerScore2 = Players[i + 1].GetComponent<PlayerScoring>().PlayerScore;
+
+                if (playerScore1 < playerScore2)
                 {
-                    GameObject temp = players[i];
-                    players[i] = players[i + 1];
-                    players[i + 1] = temp;
+                    GameObject temp = Players[i];
+                    Players[i] = Players[i + 1];
+                    Players[i + 1] = temp;
                 }
             }
         }
 
-        PresentResults();*/
+        PresentResults();
+    }
+
+     // Present the Results of the Game
+    void PresentResults()
+    {
+        int order = 0;
+        int place = 1;
+
+        foreach (GameObject go in Players)
+        {
+            PlayerSetup playerSetup = go.GetComponent<PlayerSetup>();
+
+            // RGB Floats
+            float red = playerSetup.PlayerColor.r;
+            float green = playerSetup.PlayerColor.g;
+            float blue = playerSetup.PlayerColor.b;
+
+            string playerName = go.GetComponent<PhotonView>().Owner.NickName;
+            int playerScore = go.GetComponent<PlayerScoring>().PlayerScore;
+
+            Debug.Log(playerName + " | " + playerScore);
+
+            // Print place, name of player, then score
+            PlayerRankTexts[order].text = "#" + place + " | " + playerName + " | Score: " + playerScore;
+
+            // Modify text color to indicate player color
+            PlayerRankTexts[order].color = new Color(red, green, blue);
+
+            PlayerStatus playerStatus = go.GetComponent<PlayerStatus>();
+
+            playerStatus.Place = place;
+            playerStatus.Ordinalize(place);
+            playerStatus.ShowPlayerRank();
+
+            place++;
+            order++;
+        }
+
+        Debug.Log("Winner: " + Players[0].GetComponent<PhotonView>().Owner.NickName);
+
+        // Get Player RaiseEvent of the winner
+        Players[0].GetComponent<WinLoseIndicator>().SetRaiseEvent();
     }
 
     // Add Score Board Item of the Player that entered the Room

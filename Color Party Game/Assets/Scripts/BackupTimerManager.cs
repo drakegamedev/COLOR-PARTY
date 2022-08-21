@@ -8,7 +8,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 
-public class TimerManager : PunRaiseEvents
+// Serves as Back up Manager for timer
+public class BackupTimerManager : PunRaiseEvents
 {
     // Public Variables
     [Header("Set Timer")]
@@ -18,7 +19,7 @@ public class TimerManager : PunRaiseEvents
     [Header("References")]
     public TextMeshProUGUI TimerText;       // UI Timer Text
     public TextMeshProUGUI CountdownText;   // UI Countdown Text
-    
+
     [Header("Set Countdown and Last Minute Mechanic")]
     public float CountdownTimer;            // Set Timer for Initial Countdown
     public float SetLastMinute;             // Set Time Portion where Last Minute will be announced
@@ -40,7 +41,7 @@ public class TimerManager : PunRaiseEvents
         PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
         EventManager.Instance.EndGame -= TimeUp;
     }
-  
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,41 +57,57 @@ public class TimerManager : PunRaiseEvents
         currentTime = gameTime;                      // Set Current Time
         isLastMinute = false;                        // Last Minute Phase Deactivated
 
-        StartCoroutine(InitiateCountdown());
+        CallRaiseEvent();
     }
 
-    private void Update()
+    public override void OnEvent(EventData photonEvent)
     {
-        // Start Timer when countdown is finished
-        if (GameManager.Instance.GameState == GameManager.GameStates.PLAYING)
+        switch (photonEvent.Code)
         {
-            currentTime -= Time.deltaTime;
+            case (byte)RaiseEvents.INITIAL_COUNTDOWN:
+                object[] data = (object[])photonEvent.CustomData;
+                StartCoroutine(InitiateCountdown());
+                break;
 
-            // Convert currentTime float to Minutes/Seconds Form
-            timer = TimeSpan.FromSeconds(currentTime);
+            case (byte)RaiseEvents.TIMER:
+                StartCoroutine(Timer());
+                break;
 
-            // Print Timer in Minutes/Seconds Form
-            TimerText.text = timer.Minutes.ToString("00") + ":" + timer.Seconds.ToString("00");
-
-            // Final Countdown of 10 Seconds
-            if (Mathf.Floor(currentTime) <= 10f)
-            {
-                CountdownText.text = timer.Seconds.ToString("0");
-            }
-
-            // Call Last Minute, then intensify atmosphere
-            if (Mathf.Floor(currentTime) <= 120 && !isLastMinute)
-            {
-                StartCoroutine(LastMinute());
-                Debug.Log("LAST 2 MINUTES");
-            }
-            // Time's Up
-            // Call TimeOver Function
-            else if (Mathf.Floor(currentTime) <= 0f)
-            {
-                GameManager.Instance.GameState = GameManager.GameStates.GAME_OVER;
+            case (byte)RaiseEvents.TIME_UP:
                 StartCoroutine(TimeOver());
-            }
+                break;
+        }
+    }
+    public override void SetRaiseEvent()
+    {
+        // event data
+        object[] data = new object[] { };
+
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions
+        {
+            Receivers = ReceiverGroup.All,
+            CachingOption = EventCaching.AddToRoomCache
+        };
+
+        SendOptions sendOption = new SendOptions
+        {
+            Reliability = false
+        };
+
+        // Call Raise Event based on Game State
+        switch (GameManager.Instance.GameState)
+        {
+            case GameManager.GameStates.INITIAL:
+                PhotonNetwork.RaiseEvent((byte)RaiseEvents.INITIAL_COUNTDOWN, data, raiseEventOptions, sendOption);
+                break;
+
+            case GameManager.GameStates.PLAYING:
+                PhotonNetwork.RaiseEvent((byte)RaiseEvents.TIMER, data, raiseEventOptions, sendOption);
+                break;
+
+            case GameManager.GameStates.GAME_OVER:
+                PhotonNetwork.RaiseEvent((byte)RaiseEvents.TIME_UP, data, raiseEventOptions, sendOption);
+                break;
         }
     }
 
@@ -132,7 +149,49 @@ public class TimerManager : PunRaiseEvents
         // Play BGM
         AudioManager.Instance.Play("game-bgm");
 
-        CountdownText.text = "";;
+        CountdownText.text = "";
+
+        CallRaiseEvent();
+    }
+
+    // Timer
+    // Decrement currentTime every 1 second
+    IEnumerator Timer()
+    {
+        while (currentTime > 0f)
+        {
+            currentTime--;
+
+            // Convert currentTime float to Minutes/Seconds Form
+            timer = TimeSpan.FromSeconds(currentTime);
+
+            // Final Countdown of 10 Seconds
+            if (currentTime > 0f && currentTime <= 10f)
+            {
+                CountdownText.text = timer.Seconds.ToString("0");
+            }
+
+            // Print Timer in Minutes/Seconds Form
+            TimerText.text = timer.Minutes.ToString("00") + ":" + timer.Seconds.ToString("00");
+
+            if (currentTime <= 120 && !isLastMinute)
+            {
+                StartCoroutine(LastMinute());
+                Debug.Log("LAST 2 MINUTES");
+            }
+            else if (currentTime <= 0f)
+            {
+                // Time's Up
+                // Call TimeOver Function
+                GameManager.Instance.GameState = GameManager.GameStates.GAME_OVER;
+                CallRaiseEvent();
+                yield break;
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        CallRaiseEvent();
     }
 
     // Announces Last Minute
@@ -175,6 +234,15 @@ public class TimerManager : PunRaiseEvents
         PanelManager.Instance.ActivatePanel("results-panel");
         ScoreManager.Instance.SortScore();
         Debug.Log("Declare Winner!");
+    }
+
+    // Call Raise Event only once
+    void CallRaiseEvent()
+    {
+        if (photonView.IsMine)
+        {
+            SetRaiseEvent();
+        }
     }
 
     void TimeUp()
