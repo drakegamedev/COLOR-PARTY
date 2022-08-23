@@ -11,9 +11,16 @@ public class PunRaiseEvents : MonoBehaviourPunCallbacks
 {
     public enum RaiseEvents
     {
+        // Time Ststes
         INITIAL_COUNTDOWN,
         TIMER,
         TIME_UP,
+
+        // Spawning & Despawning
+        SPAWN_POWER_UP,
+        DESPAWN_POWER_UP,
+
+        // Results
         PLAYER_WINNER
     }
     

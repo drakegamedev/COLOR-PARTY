@@ -7,7 +7,7 @@ public class ObjectPooler : MonoBehaviour
     public static ObjectPooler Instance;
     
     [System.Serializable]
-    public class Pool
+    public struct Pool
     {
         public string Id;
         public GameObject Prefab;
@@ -29,14 +29,14 @@ public class ObjectPooler : MonoBehaviour
     #endregion
 
     public List<Pool> Pools;
-    public Dictionary<string, Queue<GameObject>> PoolDictionary { get; } = new();
+    public Dictionary<string, List<GameObject>> PoolDictionary { get; } = new();
 
     // Start is called before the first frame update
     void Start()
     {
         foreach (Pool pool in Pools)
         {
-            Queue<GameObject> objectPool = new Queue<GameObject>();
+            List<GameObject> objectPool = new();
 
             for (int i = 0; i < pool.Size; i++)
             {
@@ -44,7 +44,7 @@ public class ObjectPooler : MonoBehaviour
                 obj.transform.parent = transform;
                 obj.transform.name = obj.transform.name + i.ToString();
                 obj.SetActive(false);
-                objectPool.Enqueue(obj);
+                objectPool.Add(obj);
             }
 
             PoolDictionary.Add(pool.Id, objectPool);
@@ -59,14 +59,51 @@ public class ObjectPooler : MonoBehaviour
             return null;
         }
 
-        GameObject objectToSpawn = PoolDictionary[id].Dequeue();
+        // Recycle Object
+        for (int i = 0; i < PoolDictionary[id].Count; i++)
+        {
+            if (!PoolDictionary[id][i].activeInHierarchy)
+            {
+                GameObject spawnObject = PoolDictionary[id][i];
+                spawnObject.SetActive(true);
 
-        objectToSpawn.SetActive(true);
-        objectToSpawn.transform.position = position;
-        objectToSpawn.transform.rotation = rotation;
+                spawnObject.transform.SetParent(null);
+                spawnObject.transform.position = position;
+                spawnObject.transform.rotation = rotation;
 
-        PoolDictionary[id].Enqueue(objectToSpawn);
+                Debug.Log("Recycle");
+                return spawnObject;
+            }
+        }
 
-        return objectToSpawn;
+        // Spawn New Object
+        foreach (Pool objPool in Pools)
+        {
+            if (objPool.Id == id)
+            {
+                // Spawn object and add poolable component
+                GameObject objectToSpawn = Instantiate(objPool.Prefab);
+                objectToSpawn.GetComponent<PowerUps>().Id = id;
+                objectToSpawn.AddComponent<Poolable>();
+
+                // Set Position and Rotation
+                objectToSpawn.transform.position = position;
+                objectToSpawn.transform.rotation = rotation;
+
+                // Add gameobject to list
+                PoolDictionary[id].Add(objectToSpawn);
+
+                objectToSpawn.transform.parent = null;
+
+                // Initialize Name
+                objectToSpawn.transform.name = objectToSpawn.transform.name + PoolDictionary[id].Count.ToString();
+
+                Debug.Log("New Object");
+                return objectToSpawn;
+            }
+        }
+
+        Debug.Log("NOTHING");
+        return null;
     }
 }

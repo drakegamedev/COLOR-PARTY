@@ -10,12 +10,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     private Rigidbody2D rb;
     private Animator animator;
+    private float currentMoveSpeed;
     private Vector2 moveVelocity;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+        currentMoveSpeed = Speed;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -38,7 +40,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
         Vector2 move = new Vector2(xMovement, yMovement);
 
-        moveVelocity = move.normalized * Speed;
+        moveVelocity = move.normalized * currentMoveSpeed;
 
         // Player Animation
         if (xMovement == 0 && yMovement == 0)
