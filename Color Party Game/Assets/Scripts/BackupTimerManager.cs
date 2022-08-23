@@ -135,7 +135,7 @@ public class BackupTimerManager : PunRaiseEvents
         CountdownText.text = "GO!";
 
         // Find All Player Game Object Prefabs
-        GameManager.Instance.PlayerGameObjects = GameObject.FindGameObjectsWithTag("Player");
+        //GameManager.Instance.PlayerGameObjects = GameObject.FindGameObjectsWithTag("Player");
 
         yield return new WaitForSeconds(1f);
 

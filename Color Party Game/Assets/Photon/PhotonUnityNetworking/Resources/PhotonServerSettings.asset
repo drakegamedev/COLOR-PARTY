@@ -51,6 +51,8 @@ MonoBehaviour:
   - StartTimer
   - Countdown
   - TimerStart
+  - SpeedUp
+  - SlowDown
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

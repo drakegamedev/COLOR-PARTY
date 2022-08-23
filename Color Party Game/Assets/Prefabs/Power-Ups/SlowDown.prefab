@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1152279477930992316}
   - component: {fileID: 1152279477930992319}
   - component: {fileID: -6549033001027220152}
-  - component: {fileID: -7185348456015732370}
+  - component: {fileID: -717193251750243937}
   m_Layer: 0
-  m_Name: SpeedUp
+  m_Name: SlowDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.8903059, b: 0, a: 1}
+  m_Color: {r: 0.72840923, g: 0.27410105, b: 0.8207547, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-7185348456015732370
+--- !u!114 &-717193251750243937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1152279477930992318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e9cac10ef23c349bdec4f9199faecd, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cd12506a4b12164eaf1ffa34614c0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DestructorTime: 10

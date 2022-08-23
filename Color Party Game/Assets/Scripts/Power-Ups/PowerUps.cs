@@ -35,6 +35,11 @@ public class PowerUps : MonoBehaviourPunCallbacks
         
     }
 
+    public virtual void TakeEffect(Collider2D collider)
+    {
+
+    }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Player"))
@@ -42,6 +47,8 @@ public class PowerUps : MonoBehaviourPunCallbacks
             Despawner despawner = collider.GetComponent<Despawner>();
 
             Debug.Log("DESPAWNED");
+
+            TakeEffect(collider);
 
             despawner.ObjectName = gameObject.name;
             despawner.ObjectID = Id;

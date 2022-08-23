@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public float LerpTime;
     public ParticleSystem ArenaAesthetic;   // Arena Particle System (Aesthetic)
 
-    public GameObject[] PlayerGameObjects { get; set; }
+    public List<GameObject> PlayerGameObjects { get; set; } = new();
 
     [Header("Player References")]
     public GameObject[] PlayerPrefabs;
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Update()
     {
         // Press Esc Key to leave room
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && GameState == GameStates.PLAYING)
         {
             LeaveRoom();
         }

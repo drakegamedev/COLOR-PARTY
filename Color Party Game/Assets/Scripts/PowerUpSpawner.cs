@@ -56,6 +56,11 @@ public class PowerUpSpawner : PunRaiseEvents
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.GameState != GameManager.GameStates.PLAYING)
+        {
+            return;
+        }
+        
         currentTime -= Time.deltaTime;
 
         if (currentTime <= 0 && photonView.IsMine)

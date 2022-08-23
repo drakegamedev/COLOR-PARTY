@@ -7,17 +7,17 @@ using Photon.Realtime;
 public class PlayerMovement : MonoBehaviourPunCallbacks
 {
     public float Speed;
+    public float CurrentMoveSpeed { get; set; }
 
     private Rigidbody2D rb;
     private Animator animator;
-    private float currentMoveSpeed;
     private Vector2 moveVelocity;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
-        currentMoveSpeed = Speed;
+        CurrentMoveSpeed = Speed;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
         Vector2 move = new Vector2(xMovement, yMovement);
 
-        moveVelocity = move.normalized * currentMoveSpeed;
+        moveVelocity = move.normalized * CurrentMoveSpeed;
 
         // Player Animation
         if (xMovement == 0 && yMovement == 0)

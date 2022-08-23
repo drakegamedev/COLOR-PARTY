@@ -1565,6 +1565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PowerUpNames:
   - speed-up
+  - slow-down
   MinX: -0.4
   MaxX: 19.65
   MinY: -19.65
@@ -1819,6 +1820,9 @@ MonoBehaviour:
   Pools:
   - Id: speed-up
     Prefab: {fileID: 1152279477930992318, guid: b479d98164f000b479e175dc8af81ce6, type: 3}
+    Size: 0
+  - Id: slow-down
+    Prefab: {fileID: 1152279477930992318, guid: 679c7461fa01e774fb96bbc77785e555, type: 3}
     Size: 0
 --- !u!4 &1293264358
 Transform:

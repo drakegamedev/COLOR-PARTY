@@ -117,9 +117,6 @@ public class TimerManager : PunRaiseEvents
         // Proceed to Timer Function
         CountdownText.text = "GO!";
 
-        // Find All Player Game Object Prefabs
-        GameManager.Instance.PlayerGameObjects = GameObject.FindGameObjectsWithTag("Player");
-
         yield return new WaitForSeconds(1f);
 
         GameManager.Instance.GameState = GameManager.GameStates.PLAYING;

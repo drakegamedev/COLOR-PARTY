@@ -14,6 +14,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
 
     private PlayerMovement playerMovement;
     private PlayerUIController playerUIController;
+    private Despawner despawner;
     private WinLoseIndicator winLoseIndicator;
     private Rigidbody2D rb;
     private Animator animator;
@@ -22,6 +23,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     {
         EventManager.Instance.InitiateGame -= SetPlayerViews;
         EventManager.Instance.EndGame -= DisableMovement;
+        GameManager.Instance.PlayerGameObjects.Remove(gameObject);
     }
 
     // Start is called before the first frame update
@@ -30,13 +32,17 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         playerUIController = GetComponent<PlayerUIController>();
+        despawner = GetComponent<Despawner>();
         winLoseIndicator = GetComponent<WinLoseIndicator>();
         rb = GetComponent<Rigidbody2D>();
+
+        GameManager.Instance.PlayerGameObjects.Add(gameObject);
 
         // Set Camera
         PlayerCamera.GetComponent<Camera>().enabled = photonView.IsMine;
         PlayerCamera.GetComponent<AudioListener>().enabled = photonView.IsMine;
 
+        // Set Animator Controller
         animator.SetBool("isLocalPlayer", photonView.IsMine);
 
         // Disable Movement and Animation
@@ -57,14 +63,17 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         {
             playerMovement.enabled = true;
             winLoseIndicator.enabled = true;
+            despawner.enabled = true;
         }
         else
         {
             playerMovement.enabled = false;
             winLoseIndicator.enabled = false;
+            despawner.enabled = false;
             Destroy(rb);
         }
 
+        // Enable animations for all players
         animator.enabled = true;
     }
 

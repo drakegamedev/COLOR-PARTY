@@ -103,7 +103,6 @@ public class ObjectPooler : MonoBehaviour
             }
         }
 
-        Debug.Log("NOTHING");
         return null;
     }
 }
