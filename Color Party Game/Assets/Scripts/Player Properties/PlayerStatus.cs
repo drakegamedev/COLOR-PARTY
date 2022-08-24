@@ -21,6 +21,15 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     private bool isSlowing;
     private float currentSlowDownTime;
 
+    // Knock Out Variables
+    private bool canKill;
+    private float currentKnockOutTime;
+
+    // Freeze 'Em Variables
+    private bool isFrozen;
+    private float currentFreezeTime;
+    private float freezeTime;
+
     public override void OnDisable()
     {
         EventManager.Instance.EndGame -= AddToScoreList;
@@ -33,21 +42,22 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         playerMovement = GetComponent<PlayerMovement>();
         isSpeeding = false;
         isSlowing = false;
+        canKill = false;
+        isFrozen = false;
         currentSpeedUpTime = Timer;
+        currentSlowDownTime = Timer;
+        currentKnockOutTime = Timer;
+        freezeTime = Timer - 7f;
+        currentFreezeTime = freezeTime;
     }
 
-    /*
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }*/
-
     #region StatusEffects
+    #region SpeedUp
     [PunRPC]
+    // Speed Up Functions
     public void SpeedUp()
     {
-        if (!isSpeeding)
+        if (!isSpeeding && !isFrozen)
         {
             currentSpeedUpTime = Timer;
             StartCoroutine(Speeding());
@@ -74,11 +84,14 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         SpeedClamp();
         isSpeeding = false;
     }
+    #endregion
 
+    #region SlowDown
+    // Slow Down Functions
     [PunRPC]
     public void SlowDown()
     {
-        if (!isSlowing)
+        if (!isSlowing && !isFrozen)
         {
             currentSlowDownTime = Timer;
             StartCoroutine(Slowing());
@@ -105,7 +118,82 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         SpeedClamp();
         isSlowing = false;
     }
+    #endregion
 
+    #region KnockOut
+    // Knock Out Functions
+    [PunRPC]
+    public void KnockOut()
+    {
+        if (!canKill)
+        {
+            currentKnockOutTime = Timer;
+            StartCoroutine(Knocking());
+        }
+        else
+        {
+            currentKnockOutTime = Timer;
+        }
+    }
+
+    IEnumerator Knocking()
+    {
+        canKill = true;
+        
+        while (currentKnockOutTime > 0f)
+        {
+            yield return new WaitForSeconds(1f);
+            currentKnockOutTime--;
+        }
+
+        canKill = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Player") && canKill && collider.GetComponent<Health>().IsAlive)
+        {
+            Debug.Log("EXECUTE");
+            collider.GetComponent<PhotonView>().RPC("OnDeath", RpcTarget.AllBuffered);
+            currentKnockOutTime = 0;
+            canKill = false;
+        }
+    }
+    #endregion
+
+    #region FreezeEm
+    [PunRPC]
+    public void FreezeEm()
+    {
+        if (!isFrozen)
+        {
+            currentFreezeTime = freezeTime;
+            StartCoroutine(Frozen());
+        }
+        else
+        {
+            currentFreezeTime = freezeTime;
+        }
+    }
+
+    IEnumerator Frozen()
+    {
+        playerMovement.CurrentMoveSpeed = 0;
+        isFrozen = true;
+
+        while (currentFreezeTime > 0f)
+        {
+            yield return new WaitForSeconds(1f);
+            currentFreezeTime--;
+        }
+
+        playerMovement.CurrentMoveSpeed = playerMovement.Speed;
+        isFrozen = false;
+    }
+    #endregion
+
+
+    // Player Movement Speed Clamp
     void SpeedClamp()
     {
         // Minimum

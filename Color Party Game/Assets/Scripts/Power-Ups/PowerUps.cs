@@ -46,8 +46,6 @@ public class PowerUps : MonoBehaviourPunCallbacks
         {
             Despawner despawner = collider.GetComponent<Despawner>();
 
-            Debug.Log("DESPAWNED");
-
             TakeEffect(collider);
 
             despawner.ObjectName = gameObject.name;

@@ -22,14 +22,14 @@ public class Tile : MonoBehaviourPunCallbacks
         {
             if (spriteRenderer.color == collider.GetComponent<PlayerSetup>().PlayerColor)
             {
-                Debug.Log("Color is the same");
+                //Debug.Log("Color is the same");
                 return;
             }
 
             // Decrease Score of player designated in the color
             if (spriteRenderer.color != Color.white)
             {
-                Debug.Log("Replace Color!");
+                //Debug.Log("Replace Color!");
 
                 // If player is not Null
                 if (playerStep != null)
@@ -38,7 +38,7 @@ public class Tile : MonoBehaviourPunCallbacks
                 }
             }
 
-            Debug.Log("New Color!");
+            //Debug.Log("New Color!");
             collider.GetComponent<PhotonView>().RPC("IncreaseScore", RpcTarget.AllBuffered);
             collider.GetComponent<PhotonView>().RPC("ColorTile", RpcTarget.AllBuffered, gameObject.name);
 

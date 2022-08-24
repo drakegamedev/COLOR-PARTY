@@ -11,12 +11,6 @@ public class Despawner : PunRaiseEvents
     public string ObjectName { get; set; }             // Object Name
     public string ObjectID { get; set; }               // Object ID
 
-    void Update()
-    {
-        // Find Active Ammo objects within the game
-        //AmmoObject = GameObject.FindGameObjectsWithTag("Ammo");
-    }
-
     public override void OnEnable()
     {
         PhotonNetwork.NetworkingClient.EventReceived += OnEvent;

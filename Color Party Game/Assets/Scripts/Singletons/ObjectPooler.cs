@@ -71,7 +71,6 @@ public class ObjectPooler : MonoBehaviour
                 spawnObject.transform.position = position;
                 spawnObject.transform.rotation = rotation;
 
-                Debug.Log("Recycle");
                 return spawnObject;
             }
         }
@@ -98,7 +97,6 @@ public class ObjectPooler : MonoBehaviour
                 // Initialize Name
                 objectToSpawn.transform.name = objectToSpawn.transform.name + PoolDictionary[id].Count.ToString();
 
-                Debug.Log("New Object");
                 return objectToSpawn;
             }
         }

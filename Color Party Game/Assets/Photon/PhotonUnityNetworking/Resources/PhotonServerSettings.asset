@@ -53,6 +53,10 @@ MonoBehaviour:
   - TimerStart
   - SpeedUp
   - SlowDown
+  - KnockOut
+  - OnDeath
+  - StopKnockOut
+  - FreezeEm
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -1566,6 +1566,8 @@ MonoBehaviour:
   PowerUpNames:
   - speed-up
   - slow-down
+  - knock-out
+  - freeze-em
   MinX: -0.4
   MaxX: 19.65
   MinY: -19.65
@@ -1819,10 +1821,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pools:
   - Id: speed-up
-    Prefab: {fileID: 1152279477930992318, guid: b479d98164f000b479e175dc8af81ce6, type: 3}
+    Prefab: {fileID: 8734300649615677156, guid: 6745f9b1a81b8b7488ee339448ff0aa5, type: 3}
     Size: 0
   - Id: slow-down
-    Prefab: {fileID: 1152279477930992318, guid: 679c7461fa01e774fb96bbc77785e555, type: 3}
+    Prefab: {fileID: 8734300649615677156, guid: 1d69de39a7dc6f14b90733b340d6a38c, type: 3}
+    Size: 0
+  - Id: knock-out
+    Prefab: {fileID: 9103970555313243543, guid: ae26e6a946294ab4d8398b2833bdb8cc, type: 3}
+    Size: 0
+  - Id: freeze-em
+    Prefab: {fileID: 3986365857629719478, guid: b5be72bfee254ab4d959371388d497f8, type: 3}
     Size: 0
 --- !u!4 &1293264358
 Transform:
