@@ -1567,7 +1567,6 @@ MonoBehaviour:
   - speed-up
   - slow-down
   - knock-out
-  - freeze-em
   MinX: -0.4
   MaxX: 19.65
   MinY: -19.65
@@ -1826,8 +1825,6 @@ MonoBehaviour:
     Prefab: {fileID: 8734300649615677156, guid: 1d69de39a7dc6f14b90733b340d6a38c, type: 3}
   - Id: knock-out
     Prefab: {fileID: 9103970555313243543, guid: ae26e6a946294ab4d8398b2833bdb8cc, type: 3}
-  - Id: freeze-em
-    Prefab: {fileID: 3986365857629719478, guid: b5be72bfee254ab4d959371388d497f8, type: 3}
   - Id: explosion
     Prefab: {fileID: 8424258976193525490, guid: 4b01a1cc8c6ca5246a14a31b0d2993e6, type: 3}
 --- !u!4 &1293264358

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 103
+  controlID: 17
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -243,15 +243,15 @@ MonoBehaviour:
     y: 432.8
     width: 1176
     height: 298
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 16}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 16}
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -401,23 +401,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 507cfcff
-      m_LastClickedID: -230320
-      m_ExpandedIDs: c48dfcfff68ffcff4090fcfffa92fcff4a93fcff6e93fcff08a8fcff30aafcff76aafcff34adfcff88adfcffb0adfcff7caefcffd2b3fcff1ab4fcffc2b6fcff28b7fcff4cb7fcff1ac7fcfff2dbfcff3cdcfcffe0defcff30dffcff54dffcff60fbfcffa6fbfcff60fefcffb0fefcffd4fefcffc800fdff7605fdff3c17fdff6219fdffa819fdff661cfdffba1cfdffe21cfdffae1dfdff3e22fdff4267fdfff2d1fdff66d2fdffbcd2fdffa07cfeff4af1feffbef1feff14f2feff925fffff6261ffff2c63ffff8263ffff3c77ffff8277ffff407affff947affffbc7affff887bffffb07effff8a93ffffd093ffff8a96ffffda96ffff0097ffff16eaffffc2ecffff20fbffffce6a00006ace000086ce000054d4000008930100fea20100
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 2a2dfdff702dfdff2830fdff7830fdff9c30fdffac46fdfff246fdff9449fdffe449fdff084afdff5052fdff9652fdff4e55fdff9e55fdffc255fdff9056fdffa65afdff1672fdff5c72fdff0075fdff5075fdff7475fdff7497feffba97feff5e9afeffae9afeffd29afeff50b7feff96b7feff3abafeff8abafeffaebafefff4d6feff3cd7fefff6d9feff46dafeff6adafeff9c24ffffe624ffffa027fffff027ffff1428ffff023dffff6a3fffffb43fffff6e42ffffbe42ffffe242ffffdc57ffff085affff4e5affff085dffff585dffff7c5dffff9073ffffd673ffff9476ffffe876ffff1277ffff0879ffffea79ffff20fbffffe0a10000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: PanelManager
-        m_OriginalName: PanelManager
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 78698
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -515,7 +515,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 24.8}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -658,7 +658,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
@@ -674,9 +674,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 6.8295794, y: -24.605635, z: -0.47919184}
+    m_Target: {x: 8.48282, y: -11.675444, z: -0.59474516}
     speed: 2
-    m_Value: {x: 6.8295794, y: -24.605635, z: -0.47919184}
+    m_Value: {x: 8.48282, y: -11.675444, z: -0.59474516}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -727,9 +727,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 3.5242212
+    m_Target: 15.740442
     speed: 2
-    m_Value: 3.5242212
+    m_Value: 15.740442
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -876,37 +876,37 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Drake Axel Mayo\Desktop\Drake Gamedev Respositories\Color
     Party Repository\Color Party Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 67}
-    m_SelectedIDs: 78660000
-    m_LastClickedID: 26232
-    m_ExpandedIDs: 0000000060660000687d0000fe810000cc860000688700006e8d000000ca9a3b
+    scrollPos: {x: 0, y: 179}
+    m_SelectedIDs: 88660000
+    m_LastClickedID: 26248
+    m_ExpandedIDs: 0000000060660000626600006466000066660000686600006a660000846600008c66000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Scenes
-      m_OriginalName: Scenes
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 26236
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -920,7 +920,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000060660000
+    m_ExpandedIDs: 0000000060660000626600006466000066660000686600006a660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1034,7 +1034,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 84710
+  m_LastSelectedObjectID: -62406
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52

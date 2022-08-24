@@ -28,11 +28,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     private float currentKnockOutTime;
     public GameObject KnockOutEffect;
 
-    // Freeze 'Em Variables
-    private bool isFrozen;
-    private float currentFreezeTime;
-    private float freezeTime;
-
     public override void OnDisable()
     {
         EventManager.Instance.EndGame -= AddToScoreList;
@@ -46,12 +41,9 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         isSpeeding = false;
         isSlowing = false;
         canKill = false;
-        isFrozen = false;
         currentSpeedUpTime = Timer;
         currentSlowDownTime = Timer;
         currentKnockOutTime = Timer;
-        freezeTime = Timer - 7f;
-        currentFreezeTime = freezeTime;
     }
 
     #region StatusEffects
@@ -60,7 +52,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     // Speed Up Functions
     public void SpeedUp()
     {
-        if (!isSpeeding && !isFrozen)
+        if (!isSpeeding)
         {
             currentSpeedUpTime = Timer;
             StartCoroutine(Speeding());
@@ -96,7 +88,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     [PunRPC]
     public void SlowDown()
     {
-        if (!isSlowing && !isFrozen)
+        if (!isSlowing)
         {
             currentSlowDownTime = Timer;
             StartCoroutine(Slowing());
@@ -170,38 +162,6 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         }
     }
     #endregion
-
-    #region FreezeEm
-    [PunRPC]
-    public void FreezeEm()
-    {
-        if (!isFrozen)
-        {
-            currentFreezeTime = freezeTime;
-            StartCoroutine(Frozen());
-        }
-        else
-        {
-            currentFreezeTime = freezeTime;
-        }
-    }
-
-    IEnumerator Frozen()
-    {
-        playerMovement.CurrentMoveSpeed = 0;
-        isFrozen = true;
-
-        while (currentFreezeTime > 0f)
-        {
-            yield return new WaitForSeconds(1f);
-            currentFreezeTime--;
-        }
-
-        playerMovement.CurrentMoveSpeed = playerMovement.Speed;
-        isFrozen = false;
-    }
-    #endregion
-
 
     // Player Movement Speed Clamp
     void SpeedClamp()

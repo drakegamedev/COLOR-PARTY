@@ -43,6 +43,7 @@ public class PowerUpSpawner : PunRaiseEvents
                 string randomPowerUp = (string)data[2];
 
                 ObjectPooler.Instance.SpawnFromPool(randomPowerUp, new Vector2(randomX, randomY), Quaternion.identity);
+
                 break;
         }
     }
@@ -63,7 +64,7 @@ public class PowerUpSpawner : PunRaiseEvents
         
         currentTime -= Time.deltaTime;
 
-        if (currentTime <= 0 && photonView.IsMine)
+        if (currentTime <= 0)
         {
             SetRaiseEvent();
 
