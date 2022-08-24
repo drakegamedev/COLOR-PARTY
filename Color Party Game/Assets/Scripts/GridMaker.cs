@@ -22,7 +22,7 @@ public class GridMaker : MonoBehaviour
         {
             for (int j = 0; j < Columns; j++)
             {
-                // Spawn Tile and Set Parent to this Object
+                // Spawn Tile, Set Layer to 'Tile', and Set Parent to this Object
                 GameObject tile = Instantiate(TilePrefab, this.transform);
                 tile.name += i + "." + j;
 

@@ -32,7 +32,6 @@ public class PowerUps : MonoBehaviourPunCallbacks
             currentDestructorTime = DestructorTime;
             poolable.ReturnToPool();
         }
-        
     }
 
     public virtual void TakeEffect(Collider2D collider)

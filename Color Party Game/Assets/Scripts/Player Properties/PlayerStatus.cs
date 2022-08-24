@@ -16,14 +16,17 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     // Speed Up Variables
     private bool isSpeeding;
     private float currentSpeedUpTime;
+    public GameObject SpeedUpEffect;
 
     // Slow Down Variables
     private bool isSlowing;
     private float currentSlowDownTime;
+    public GameObject SlowDownEffect;
 
     // Knock Out Variables
     private bool canKill;
     private float currentKnockOutTime;
+    public GameObject KnockOutEffect;
 
     // Freeze 'Em Variables
     private bool isFrozen;
@@ -73,6 +76,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         playerMovement.CurrentMoveSpeed = playerMovement.Speed * 2;
         SpeedClamp();
         isSpeeding = true;
+        SpeedUpEffect.SetActive(true);
 
         while (currentSpeedUpTime > 0f)
         {
@@ -83,6 +87,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         playerMovement.CurrentMoveSpeed /= 2;
         SpeedClamp();
         isSpeeding = false;
+        SpeedUpEffect.SetActive(false);
     }
     #endregion
 
@@ -107,6 +112,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         playerMovement.CurrentMoveSpeed = playerMovement.Speed / 2;
         SpeedClamp();
         isSlowing = true;
+        SlowDownEffect.SetActive(true);
 
         while (currentSlowDownTime > 0f)
         {
@@ -117,6 +123,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         playerMovement.CurrentMoveSpeed *= 2;
         SpeedClamp();
         isSlowing = false;
+        SlowDownEffect.SetActive(false);
     }
     #endregion
 
@@ -139,7 +146,8 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     IEnumerator Knocking()
     {
         canKill = true;
-        
+        KnockOutEffect.SetActive(true);
+
         while (currentKnockOutTime > 0f)
         {
             yield return new WaitForSeconds(1f);
@@ -147,6 +155,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         }
 
         canKill = false;
+        KnockOutEffect.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -157,6 +166,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
             collider.GetComponent<PhotonView>().RPC("OnDeath", RpcTarget.AllBuffered);
             currentKnockOutTime = 0;
             canKill = false;
+            KnockOutEffect.SetActive(false);
         }
     }
     #endregion

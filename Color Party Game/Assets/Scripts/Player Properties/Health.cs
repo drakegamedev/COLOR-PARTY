@@ -9,6 +9,7 @@ public class Health : MonoBehaviourPunCallbacks
     public SpriteRenderer[] PlayerSprites;
     public Color DeathColor;
     public Color LifeColor;
+    public GameObject Explosion;
     
     public bool IsAlive { get; private set; }
 
@@ -33,10 +34,12 @@ public class Health : MonoBehaviourPunCallbacks
     // Respawn Timer
     IEnumerator Respawn()
     {
+        Poolable explosion = ObjectPooler.Instance.SpawnFromPool("explosion", transform.position, Quaternion.identity).GetComponent<Poolable>();
         DeathEffect();
 
         yield return new WaitForSeconds(RespawnTime);
 
+        explosion.ReturnToPool();
         LifeEffect();
     }
 
