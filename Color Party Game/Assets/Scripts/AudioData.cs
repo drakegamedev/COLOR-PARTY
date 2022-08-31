@@ -12,7 +12,7 @@ public class AudioData : ScriptableObject
         SFX
     };
 
-    public string Id { get; set; }
+    public string Id;
     public AudioClip Clip;
     public AudioType Type;
 

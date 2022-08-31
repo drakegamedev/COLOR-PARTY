@@ -36,6 +36,7 @@ public class Despawner : PunRaiseEvents
                     // Disable object with designated ID
                     if (objectName == go.name)
                     {
+                        ObjectPooler.Instance.SpawnFromPool("pick-up", go.transform.position, Quaternion.identity);
                         go.GetComponent<Poolable>().ReturnToPool();
                         break;
                     }

@@ -1773,20 +1773,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.data[0].Id
       value: game-bgm
       objectReference: {fileID: 0}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: AudioCollections.Array.data[1].Id
+      value: pick-up-sfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: AudioCollections.Array.data[2].Id
+      value: explosion-sfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.data[0].Audios.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: AudioCollections.Array.data[1].Audios.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: AudioCollections.Array.data[2].Audios.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.data[0].Audios.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: d0e8320b3ca553841bcdaaecad5d3f89, type: 2}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: AudioCollections.Array.data[1].Audios.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d2840f7737b504b439661259d3b7e5bf, type: 2}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: AudioCollections.Array.data[2].Audios.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2831087bea923af49963d0663c21b362, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
 --- !u!1 &1293264356
@@ -1827,6 +1851,8 @@ MonoBehaviour:
     Prefab: {fileID: 9103970555313243543, guid: ae26e6a946294ab4d8398b2833bdb8cc, type: 3}
   - Id: explosion
     Prefab: {fileID: 8424258976193525490, guid: 4b01a1cc8c6ca5246a14a31b0d2993e6, type: 3}
+  - Id: pick-up
+    Prefab: {fileID: 8424258976193525490, guid: 8c98188127bc461478683054b4dae3d8, type: 3}
 --- !u!4 &1293264358
 Transform:
   m_ObjectHideFlags: 0

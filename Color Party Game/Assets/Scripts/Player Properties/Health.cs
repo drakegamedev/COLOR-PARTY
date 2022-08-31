@@ -34,6 +34,7 @@ public class Health : MonoBehaviourPunCallbacks
     // Respawn Timer
     IEnumerator Respawn()
     {
+        AudioManager.Instance.Play("explosion-sfx");
         Poolable explosion = ObjectPooler.Instance.SpawnFromPool("explosion", transform.position, Quaternion.identity).GetComponent<Poolable>();
         DeathEffect();
 

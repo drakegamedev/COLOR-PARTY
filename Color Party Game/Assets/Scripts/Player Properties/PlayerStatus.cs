@@ -158,7 +158,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
             collider.GetComponent<PhotonView>().RPC("OnDeath", RpcTarget.AllBuffered);
             currentKnockOutTime = 0;
             canKill = false;
-            KnockOutEffect.SetActive(false);
+            photonView.RPC("HasKnockedOut", RpcTarget.AllBuffered);
         }
     }
     #endregion
@@ -176,6 +176,13 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         {
             playerMovement.CurrentMoveSpeed = playerMovement.Speed * 2;
         }
+    }
+
+    // Disable KO Effect after hitting another player
+    [PunRPC]
+    void HasKnockedOut()
+    {
+        KnockOutEffect.SetActive(false);
     }
     #endregion
 

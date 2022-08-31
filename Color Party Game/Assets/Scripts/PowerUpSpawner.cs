@@ -58,9 +58,7 @@ public class PowerUpSpawner : PunRaiseEvents
     void Update()
     {
         if (GameManager.Instance.GameState != GameManager.GameStates.PLAYING)
-        {
             return;
-        }
         
         currentTime -= Time.deltaTime;
 
@@ -79,7 +77,7 @@ public class PowerUpSpawner : PunRaiseEvents
         float randomY = Random.Range(MinY, MaxY);
         string randomPowerUp = PowerUpNames[Random.Range(0, PowerUpNames.Length)];
 
-        // event data
+        // Event data
         object[] data = new object[] { randomX, randomY, randomPowerUp };
 
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions

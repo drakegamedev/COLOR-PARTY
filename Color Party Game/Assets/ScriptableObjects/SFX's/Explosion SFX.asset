@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4642715cf770664d915249771ac8cc5, type: 3}
-  m_Name: MainMenuMusic
+  m_Name: Explosion SFX
   m_EditorClassIdentifier: 
-  Id: main-menu-bgm
-  Clip: {fileID: 8300000, guid: 456cfe1f80f59aa45bc1ec406b337cc2, type: 3}
-  Type: 0
+  Id: explosion-sfx
+  Clip: {fileID: 8300000, guid: 8af1acfa2dc886f46be69a7dd099de11, type: 3}
+  Type: 1
   Priority: 0
   Volume: 1
   Pitch: 1
   PlayOnAwake: 0
-  Loop: 1
+  Loop: 0
   SpatialBlend: 0

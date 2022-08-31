@@ -45,6 +45,8 @@ public class PowerUps : MonoBehaviourPunCallbacks
         {
             Despawner despawner = collider.GetComponent<Despawner>();
 
+            AudioManager.Instance.Play("pick-up-sfx");
+
             TakeEffect(collider);
 
             despawner.ObjectName = gameObject.name;

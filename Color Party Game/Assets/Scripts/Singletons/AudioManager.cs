@@ -6,12 +6,12 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-    
-    [System.Serializable]
+
     // Collects AudioData
+    [System.Serializable]
     public struct AudioDataCollection
     {
-        public string Id;
+        //public string Id;
         public AudioData[] Audios;
     }
 
@@ -35,29 +35,26 @@ public class AudioManager : MonoBehaviour
         }
 
         // Initialize Audio Collections
-        for (int i = 0; i < AudioCollections.Length; i++)
+        foreach (AudioDataCollection collectionData in AudioCollections)
         {
-            AudioData audioData = AudioCollections[i].Audios[i];
-
-            // Set Audio Data ID
-            audioData.Id = AudioCollections[i].Id;
-
-            // Check if Audio is BGM or SFX,
-            // then put audio source in designated container
-            switch (audioData.Type)
+            foreach (AudioData audioData in collectionData.Audios)
             {
-                case AudioData.AudioType.BGM:
-                    audioData.Initialize(MusicHolder);
-                    break;
+                switch (audioData.Type)
+                {
+                    case AudioData.AudioType.BGM:
+                        audioData.Initialize(MusicHolder);
+                        break;
 
-                case AudioData.AudioType.SFX:
-                    audioData.Initialize(SoundHolder);
-                    break;
-            };
+                    case AudioData.AudioType.SFX:
+                        audioData.Initialize(SoundHolder);
+                        break;
+                };
+            }
         }
     }
     #endregion
 
+    #region Audio Methods
     // Play Audio
     public void Play(string id)
     {
@@ -71,16 +68,14 @@ public class AudioManager : MonoBehaviour
                 if (id == audioData.Id)
                 {
                     audioData.Source.Play();
-                    break;
-                }
-                // Audio Not Found
-                else
-                {
-                    Debug.LogWarning("Audio " + id + " cannot be found!");
                     return;
                 }
             }
         }
+
+        // Audio Not Found
+        Debug.LogWarning("Audio " + id + " cannot be found!");
+        return;
     }
 
     // Stop Audio
@@ -96,16 +91,14 @@ public class AudioManager : MonoBehaviour
                 if (id == audioData.Id)
                 {
                     audioData.Source.Stop();
-                    break;
-                }
-                // Audio Not Found
-                else
-                {
-                    Debug.LogWarning("Audio " + id + " cannot be found!");
                     return;
                 }
             }
         }
+
+        // Audio Not Found
+        Debug.LogWarning("Audio " + id + " cannot be found!");
+        return;
     }
 
     // Modify Audio Pitch
@@ -121,15 +114,14 @@ public class AudioManager : MonoBehaviour
                 if (id == audioData.Id)
                 {
                     audioData.Source.pitch = amount;
-                    break;
-                }
-                // Audio Not Found
-                else
-                {
-                    Debug.LogWarning("Audio " + id + " cannot be found!");
                     return;
                 }
             }
         }
+
+        // Audio Not Found
+        Debug.LogWarning("Audio " + id + " cannot be found!");
+        return;
     }
+    #endregion
 }

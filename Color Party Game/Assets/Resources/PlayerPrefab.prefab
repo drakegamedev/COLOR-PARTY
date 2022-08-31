@@ -452,11 +452,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea1df649fb02728468b58e3bf0a59899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 10
+  Timer: 5
   SpeedUpEffect: {fileID: 5289845814874087781}
   SlowDownEffect: {fileID: 5302589596812735921}
   KnockOutEffect: {fileID: 5283973795189584893}
-  FrozenEffect: {fileID: 5219161405640834378}
 --- !u!114 &716960620803039446
 MonoBehaviour:
   m_ObjectHideFlags: 0
