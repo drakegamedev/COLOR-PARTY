@@ -26,12 +26,13 @@ public class MainMenu : MonoBehaviour
 
     public void OnCreditsButtonClicked()
     {
-
+        PanelManager.Instance.ActivatePanel("credits-panel");
     }
 
     public void OnQuitGameButtonClicked()
     {
-
+        Application.Quit();
+        Debug.Log("You have quit the game!");
     }
 
     IEnumerator AsyncLoadScene(string name)
