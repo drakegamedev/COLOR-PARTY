@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    // Start is called before the first frame update
     void Start()
     {
         // Execute once player is ready and connected to servers

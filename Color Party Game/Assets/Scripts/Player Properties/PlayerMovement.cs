@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private Animator animator;
     private Vector2 moveVelocity;
 
-    // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
@@ -21,7 +20,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Movement();

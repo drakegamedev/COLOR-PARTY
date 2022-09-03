@@ -7,8 +7,10 @@ using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 
+// Abstract Class for Syncronized Raising of Events 
 public class PunRaiseEvents : MonoBehaviourPunCallbacks
 {
+    // Raise Events Code
     public enum RaiseEvents
     {
         // Time Ststes
@@ -24,11 +26,13 @@ public class PunRaiseEvents : MonoBehaviourPunCallbacks
         PLAYER_WINNER
     }
     
+    // Event that will occur based on SetRaiseEvent()
     public virtual void OnEvent(EventData photonEvent)
     {
 
     }
 
+    // Sets Up RaiseEvent
     public virtual void SetRaiseEvent()
     {
         

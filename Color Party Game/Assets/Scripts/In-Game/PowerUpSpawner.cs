@@ -5,21 +5,23 @@ using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 
+// Takes Charge of Spawning Random Power-Ups in Random Positions
 public class PowerUpSpawner : PunRaiseEvents
 {
     [Header("Power-Up Id's")]
-    public string[] PowerUpNames;
+    public string[] PowerUpNames;                           // Power-Up ID's
 
     [Header("Random Position Range")]
-    public float MinX;
-    public float MaxX;
-    public float MinY;
-    public float MaxY;
+    public float MinX;                                      // Minimum X Position
+    public float MaxX;                                      // Maximum X Position
+    public float MinY;                                      // Minimum Y Position
+    public float MaxY;                                      // Maximum Y Position
 
     [Header("Spawn Timer")]
-    public float Timer;
+    public float Timer;                                     // Timer for Spawning
 
-    private float currentTime;
+    // Private Variables
+    private float currentTime;                              // Current Spwan Time
 
     public override void OnEnable()
     {
@@ -42,6 +44,7 @@ public class PowerUpSpawner : PunRaiseEvents
                 float randomY = (float)data[1];
                 string randomPowerUp = (string)data[2];
 
+                // Spawn Power-Up from Pool
                 ObjectPooler.Instance.SpawnFromPool(randomPowerUp, new Vector2(randomX, randomY), Quaternion.identity);
 
                 break;
@@ -57,6 +60,8 @@ public class PowerUpSpawner : PunRaiseEvents
     // Update is called once per frame
     void Update()
     {
+        // Initiate Timer once game has started,
+        // then terminate once game is over
         if (GameManager.Instance.GameState != GameManager.GameStates.PLAYING)
             return;
         
@@ -71,6 +76,7 @@ public class PowerUpSpawner : PunRaiseEvents
         }
     }
 
+    // Syncronized Spawning of Power-Up
     public override void SetRaiseEvent()
     {
         float randomX = Random.Range(MinX, MaxX);

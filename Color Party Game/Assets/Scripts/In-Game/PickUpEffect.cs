@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PickUpEffect : MonoBehaviour
 {
-    public float DestructorTime;
-    private Poolable poolable;
+    public float DestructorTime;                    // Destructor Timer
+    private Poolable poolable;                      // Poolable Class Reference
 
     void OnEnable()
     {

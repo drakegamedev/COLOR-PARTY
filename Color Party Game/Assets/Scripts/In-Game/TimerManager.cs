@@ -10,18 +10,17 @@ using ExitGames.Client.Photon;
 
 public class TimerManager : PunRaiseEvents
 {
-    // Public Variables
     [Header("Set Timer")]
-    [Range(0, 59)] public int Minutes;      // Set Number of Minutes
-    [Range(0, 59)] public int Seconds;      // Set Number of Seconds
+    [Range(0, 59)] public int Minutes;                      // Set Number of Minutes
+    [Range(0, 59)] public int Seconds;                      // Set Number of Seconds
 
     [Header("References")]
-    public TextMeshProUGUI TimerText;       // UI Timer Text
-    public TextMeshProUGUI CountdownText;   // UI Countdown Text
+    public TextMeshProUGUI TimerText;                       // UI Timer Text
+    public TextMeshProUGUI CountdownText;                   // UI Countdown Text
     
     [Header("Set Countdown and Last Minute Mechanic")]
-    public float CountdownTimer;            // Set Timer for Initial Countdown
-    public float SetLastMinute;             // Set Time Portion where Last Minute will be announced
+    public float CountdownTimer;                            // Set Timer for Initial Countdown
+    public float SetLastMinute;                             // Set Time Portion where Last Minute will be announced
 
     // Private Variables
     private float gameTime;
@@ -59,7 +58,8 @@ public class TimerManager : PunRaiseEvents
         StartCoroutine(InitiateCountdown());
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         // Start Timer when countdown is finished
         if (GameManager.Instance.GameState == GameManager.GameStates.PLAYING)
