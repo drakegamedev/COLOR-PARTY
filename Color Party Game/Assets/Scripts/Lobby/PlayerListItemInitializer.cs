@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
@@ -12,14 +10,17 @@ public class PlayerListItemInitializer : MonoBehaviourPunCallbacks
     public Button PlayerReadyButton;
     public Image PlayerReadyImage;
 
+    // Private Variables
     private bool isPlayerReady = false;
 
+    // Initialize Player List Item Properties
     public void Initialize(int playerId, string playerName)
     {
         PlayerNameText.text = playerName;
 
         if (PhotonNetwork.LocalPlayer.ActorNumber != playerId)
         {
+            // Disable Player Ready Button
             PlayerReadyButton.gameObject.SetActive(false);
         }
         else
@@ -28,11 +29,13 @@ public class PlayerListItemInitializer : MonoBehaviourPunCallbacks
             ExitGames.Client.Photon.Hashtable initializeProperties = new ExitGames.Client.Photon.Hashtable() { { Constants.PLAYER_READY, isPlayerReady } };
             PhotonNetwork.LocalPlayer.SetCustomProperties(initializeProperties);
 
+            // On Player Ready Button Clicked
             PlayerReadyButton.onClick.AddListener(() =>
             {
                 isPlayerReady = !isPlayerReady;
                 SetPlayerReady(isPlayerReady);
 
+                // Update Property to the Server
                 ExitGames.Client.Photon.Hashtable newProperties = new ExitGames.Client.Photon.Hashtable() { { Constants.PLAYER_READY, isPlayerReady } };
 
                 PhotonNetwork.LocalPlayer.SetCustomProperties(newProperties);
@@ -40,6 +43,7 @@ public class PlayerListItemInitializer : MonoBehaviourPunCallbacks
         }
     }
 
+    // Player Ready Setter
     public void SetPlayerReady(bool playerReady)
     {
         PlayerReadyImage.enabled = playerReady;

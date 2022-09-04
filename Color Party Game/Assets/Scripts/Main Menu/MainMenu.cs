@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     public void OnPlayButtonClicked()
     {
         Debug.Log("Play");
-        StartCoroutine(AsyncLoadScene("LobbyScene"));
+        StartCoroutine(SceneLoader.Instance.LoadScene("LobbyScene"));
     }
 
     public void OnTutorialButtonClicked()
@@ -33,25 +33,5 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("You have quit the game!");
-    }
-
-    IEnumerator AsyncLoadScene(string name)
-    {
-        AsyncOperation asyncLoadScene = SceneManager.LoadSceneAsync(name);
-
-        // Activate Loading Panel
-        PanelManager.Instance.ActivatePanel("loading-panel");
-
-        while (!asyncLoadScene.isDone)
-        {
-            // Loading bar
-            float loadProgress = Mathf.Clamp01(asyncLoadScene.progress / .9f);
-
-            Debug.Log("Loading Progress: " + loadProgress);
-
-            yield return null;
-        }
-
-        Debug.Log("Loading Complete");
     }
 }
