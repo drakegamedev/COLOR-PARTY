@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LerpColor : MonoBehaviour
@@ -54,6 +53,8 @@ public class LerpColor : MonoBehaviour
         {
             colorIndex = 0;
         }
+
+        yield return new WaitForSeconds(1f);
 
         // Repeat Lerp Cycle
         StartCoroutine(ColorLerping(MyColors[colorIndex], LerpTime));

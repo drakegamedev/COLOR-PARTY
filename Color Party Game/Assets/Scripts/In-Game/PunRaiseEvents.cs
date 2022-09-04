@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using Photon.Pun;
-using Photon.Realtime;
 using ExitGames.Client.Photon;
 
 // Abstract Class for Syncronized Raising of Events 

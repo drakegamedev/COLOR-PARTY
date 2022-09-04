@@ -1,12 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System;
 using Photon.Pun;
-using Photon.Realtime;
-using ExitGames.Client.Photon;
 
 public class TimerManager : PunRaiseEvents
 {
