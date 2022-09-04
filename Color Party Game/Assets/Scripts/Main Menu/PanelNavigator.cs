@@ -1,14 +1,16 @@
 using UnityEngine;
 
 // Main Menu Panel Navigator
-// Contains behavior similar to a book (Composed of Pages)
+// Contains Behavior Similar to a Book (Composed of Pages)
 public class PanelNavigator : MonoBehaviour
 {
-    public Transform PageHolder;
-    public PageData[] Pages;
+    public Transform PageHolder;                    // Page Container
+    public PageData[] Pages;                        // Page Data Array
 
+    // Private Variables
     private int currentPage;
 
+    // Page Data Struct
     public struct PageData
     {
         public int PageNumber;

@@ -47,35 +47,20 @@ public class ObjectPooler : MonoBehaviour
             return null;
         }
 
-        
-        /*for (int i = 0; i < PoolDictionary[id].Count; i++)
-        {
-            if (!PoolDictionary[id][i].activeInHierarchy)
-            {
-                GameObject spawnObject = PoolDictionary[id][i];
-                spawnObject.SetActive(true);
-
-                spawnObject.transform.SetParent(null);
-                spawnObject.transform.position = position;
-                spawnObject.transform.rotation = rotation;
-
-                return spawnObject;
-            }
-        }*/
-
         // Recycle Object
         foreach (GameObject go in PoolDictionary[id])
         {
             if (!go.activeInHierarchy)
             {
-                GameObject spawnObject = go;
-                spawnObject.SetActive(true);
+                GameObject recycledObject = go;
+                recycledObject.SetActive(true);
 
-                spawnObject.transform.SetParent(null);
-                spawnObject.transform.position = position;
-                spawnObject.transform.rotation = rotation;
+                // Remove from Pool, then Set Position and Rotation
+                recycledObject.transform.SetParent(null);
+                recycledObject.transform.position = position;
+                recycledObject.transform.rotation = rotation;
 
-                return spawnObject;
+                return recycledObject;
             }
         }
 
@@ -85,28 +70,29 @@ public class ObjectPooler : MonoBehaviour
             if (objPool.Id == id)
             {
                 // Spawn object and add poolable component
-                GameObject objectToSpawn = Instantiate(objPool.Prefab);
+                GameObject newObject = Instantiate(objPool.Prefab);
 
-                if (objectToSpawn.GetComponent<PowerUps>() != null)
+                // Set Id if Object is a Power-Up
+                if (newObject.GetComponent<PowerUps>() != null)
                 {
-                    objectToSpawn.GetComponent<PowerUps>().Id = id;
+                    newObject.GetComponent<PowerUps>().Id = id;
                 }
                 
-                objectToSpawn.AddComponent<Poolable>();
+                newObject.AddComponent<Poolable>();
 
                 // Set Position and Rotation
-                objectToSpawn.transform.position = position;
-                objectToSpawn.transform.rotation = rotation;
+                newObject.transform.position = position;
+                newObject.transform.rotation = rotation;
 
                 // Add gameobject to list
-                PoolDictionary[id].Add(objectToSpawn);
+                PoolDictionary[id].Add(newObject);
 
-                objectToSpawn.transform.parent = null;
+                newObject.transform.parent = null;
 
                 // Initialize Name
-                objectToSpawn.transform.name = objectToSpawn.transform.name + PoolDictionary[id].Count.ToString();
+                newObject.transform.name = newObject.transform.name + PoolDictionary[id].Count.ToString();
 
-                return objectToSpawn;
+                return newObject;
             }
         }
 
