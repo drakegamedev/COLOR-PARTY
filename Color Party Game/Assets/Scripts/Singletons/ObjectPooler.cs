@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Generates Pool of Objects for Optimization
 public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler Instance;
@@ -32,6 +33,7 @@ public class ObjectPooler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize Pools
         foreach (Pool pool in Pools)
         {
             List<GameObject> objectPool = new();
@@ -39,6 +41,7 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    // Spawns an Object from the Pool
     public GameObject SpawnFromPool(string id, Vector3 position, Quaternion rotation)
     {
         if (!PoolDictionary.ContainsKey(id))
@@ -84,7 +87,7 @@ public class ObjectPooler : MonoBehaviour
                 newObject.transform.position = position;
                 newObject.transform.rotation = rotation;
 
-                // Add gameobject to list
+                // Add Gameobject to List
                 PoolDictionary[id].Add(newObject);
 
                 newObject.transform.parent = null;

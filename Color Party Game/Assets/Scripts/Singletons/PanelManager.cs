@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Handles UI Navigation through Panel Management
 public class PanelManager : MonoBehaviour
 {
     public static PanelManager Instance;
@@ -23,11 +24,12 @@ public class PanelManager : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
     #endregion
 
+    // Activate Selected Panel
     public void ActivatePanel(string id)
     {
         for (int i = 0; i < Panels.Length; i++)

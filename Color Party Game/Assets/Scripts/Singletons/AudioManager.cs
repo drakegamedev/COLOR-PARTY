@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// Game Audio System
+// Manages Music and Sound Effects
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
@@ -8,7 +10,6 @@ public class AudioManager : MonoBehaviour
     [System.Serializable]
     public struct AudioDataCollection
     {
-        //public string Id;
         public AudioData[] Audios;
     }
 

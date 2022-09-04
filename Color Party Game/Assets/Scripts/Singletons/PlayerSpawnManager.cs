@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Holds All Player Spawn Points
 public class PlayerSpawnManager : MonoBehaviour
 {
     public static PlayerSpawnManager Instance;
@@ -16,7 +17,7 @@ public class PlayerSpawnManager : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         // Get All Spawn Point Child Objects

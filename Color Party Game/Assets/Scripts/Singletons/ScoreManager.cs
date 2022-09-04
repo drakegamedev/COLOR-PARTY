@@ -3,6 +3,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 
+// Takes Charge of Managing Player Scores
 public class ScoreManager : MonoBehaviourPunCallbacks
 {
     public static ScoreManager Instance;
@@ -14,7 +15,7 @@ public class ScoreManager : MonoBehaviourPunCallbacks
     public List<GameObject> ScoreItems { get; private set; } = new();
     public GameObject ScorePanel;
 
-
+    // Private Variables
     private Dictionary<Photon.Realtime.Player, GameObject> scoreBoardItems = new();
     private int playerIndex;
 
@@ -44,7 +45,7 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // Adds the player to the scoreboard
+    // Adds the Player to the Scoreboard
     void AddScoreBoardItem(Photon.Realtime.Player player)
     {
         GameObject item = Instantiate(PlayerScoreItem, Containers[playerIndex]);

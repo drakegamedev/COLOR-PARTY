@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Handles Scene Transition
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance;
@@ -22,6 +23,7 @@ public class SceneLoader : MonoBehaviour
     }
     #endregion
 
+    // Loads Scene Asyncronously
     public IEnumerator LoadScene(string name)
     {
         AsyncOperation asyncLoadScene = SceneManager.LoadSceneAsync(name);
@@ -31,7 +33,7 @@ public class SceneLoader : MonoBehaviour
 
         while (!asyncLoadScene.isDone)
         {
-            // Loading bar
+            // Loading Bar
             float loadProgress = Mathf.Clamp01(asyncLoadScene.progress / .9f);
 
             Debug.Log("Loading Progress: " + loadProgress);

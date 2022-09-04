@@ -1,13 +1,15 @@
 using UnityEngine;
 using Photon.Pun;
 
+// Abstract Power-Up Class
 public class PowerUps : MonoBehaviourPunCallbacks
 {
-    public string Id { get; set; }
-    public float DestructorTime;
+    public string Id { get; set; }                          // Power-Up ID
+    public float DestructorTime;                            // Destructor Timer
 
-    private float currentDestructorTime;
-    private Poolable poolable;
+    // Private Variables
+    private float currentDestructorTime;                    // Current Destructor Time
+    private Poolable poolable;                              // Poolable Class Reference
 
     public override void OnEnable()
     {
@@ -21,6 +23,7 @@ public class PowerUps : MonoBehaviourPunCallbacks
 
     void Update()
     {
+        // Initiate Destructor Timer when Game has Started
         if (currentDestructorTime > 0f && GameManager.Instance.GameState == GameManager.GameStates.PLAYING)
         {
             currentDestructorTime -= Time.deltaTime;
@@ -32,6 +35,7 @@ public class PowerUps : MonoBehaviourPunCallbacks
         }
     }
 
+    // Power-Up Effect
     public virtual void TakeEffect(Collider2D collider)
     {
 

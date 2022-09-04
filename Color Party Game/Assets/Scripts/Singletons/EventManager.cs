@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+// Manages All Event Systems
 public class EventManager : MonoBehaviour
 {
     public static EventManager Instance;

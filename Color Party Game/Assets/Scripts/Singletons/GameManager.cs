@@ -6,6 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    // Game State
     public enum GameStates
     {
         INITIAL,
@@ -31,17 +32,16 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [Header("Aesthetic References")]
     public float LerpTime;
-    public ParticleSystem ArenaAesthetic;   // Arena Particle System (Aesthetic)
+    public ParticleSystem ArenaAesthetic;                                               // Arena Particle System (Aesthetic)
 
     public List<GameObject> PlayerGameObjects { get; set; } = new();
 
     [Header("Player References")]
     public GameObject[] PlayerPrefabs;
 
-    private List<LerpColor> lerpColorList = new();
-
-    // Player's number based on player list
-    private int number;
+    // Private Variables
+    private List<LerpColor> lerpColorList = new();                                      // Lerp Color List
+    private int number;                                                                 // Player's number based on player list
 
     public override void OnDisable()
     {
@@ -65,10 +65,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        // Execute once player is ready and connected to servers
+        // Execute Once Player is Ready and Connected to Servers
         if (PhotonNetwork.IsConnectedAndReady)
         {
-            // Get index reference from Photon Player List
+            // Get Index Reference from Photon Player List
             for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             {
                 if (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[i])
