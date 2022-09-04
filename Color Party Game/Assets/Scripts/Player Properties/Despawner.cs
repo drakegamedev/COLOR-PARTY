@@ -44,7 +44,7 @@ public class Despawner : PunRaiseEvents
 
     public override void SetRaiseEvent()
     {
-        // event data
+        // Event Data
         object[] data = new object[] { ObjectName, ObjectID };
 
         // Assign Receivers

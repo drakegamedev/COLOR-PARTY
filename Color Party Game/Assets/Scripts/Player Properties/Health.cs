@@ -4,14 +4,14 @@ using Photon.Pun;
 
 public class Health : MonoBehaviourPunCallbacks
 {
-    public float RespawnTime;
-    public SpriteRenderer[] PlayerSprites;
-    public Color DeathColor;
-    public Color LifeColor;
-    public GameObject Explosion;
+    public float RespawnTime;                                           // Respawn Timer
+    public SpriteRenderer[] PlayerSprites;                              // Player Graphic Sprite Reference
+    public Color DeathColor;                                            // Player Death Color
+    public Color LifeColor;                                             // Player Life Color
     
     public bool IsAlive { get; private set; }
 
+    // Private Variables
     private PlayerMovement playerMovement;
     private PlayerSetup playerSetup;
 

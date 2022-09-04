@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
+    // Start is called before the first frame update
     void Start()
     {
         // Execute once player is ready and connected to servers
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         InitializeWalls();
     }
 
+    // Update is called once per frame
     void Update()
     {
         // Press Esc Key to leave room

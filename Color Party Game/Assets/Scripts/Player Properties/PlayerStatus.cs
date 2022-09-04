@@ -3,28 +3,29 @@ using UnityEngine;
 using TMPro;
 using Photon.Pun;
 
+// Manages Status Effects, and Indicates Player Standing
 public class PlayerStatus : MonoBehaviourPunCallbacks
 {
     public int Place { get; set; }                              // Indicate Player Rank (e.g. 1,2,3, etc.)
     public string OrdinalPlace { get; private set; }            // Add Suffix to Player Rank (e.g. 1st, 2nd, 3rd)
-    public float Timer;
+    public float Timer;                                         // Status Effect Duration
 
     private PlayerMovement playerMovement;
 
     // Speed Up Variables
+    public GameObject SpeedUpEffect;
     private bool isSpeeding;
     private float currentSpeedUpTime;
-    public GameObject SpeedUpEffect;
 
     // Slow Down Variables
+    public GameObject SlowDownEffect;
     private bool isSlowing;
     private float currentSlowDownTime;
-    public GameObject SlowDownEffect;
 
     // Knock Out Variables
+    public GameObject KnockOutEffect;
     private bool canKill;
     private float currentKnockOutTime;
-    public GameObject KnockOutEffect;
 
     public override void OnDisable()
     {
@@ -63,17 +64,20 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
 
     IEnumerator Speeding()
     {
+        // Double Up Movement Speed
         playerMovement.CurrentMoveSpeed = playerMovement.Speed * 2;
         SpeedClamp();
         isSpeeding = true;
         SpeedUpEffect.SetActive(true);
 
+        // Power-Up Duration
         while (currentSpeedUpTime > 0f)
         {
             yield return new WaitForSeconds(1f);
             currentSpeedUpTime--;
         }
 
+        // Return to Normal
         playerMovement.CurrentMoveSpeed /= 2;
         SpeedClamp();
         isSpeeding = false;
@@ -99,17 +103,20 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
 
     IEnumerator Slowing()
     {
+        // Slow Down Movement
         playerMovement.CurrentMoveSpeed = playerMovement.Speed / 2;
         SpeedClamp();
         isSlowing = true;
         SlowDownEffect.SetActive(true);
 
+        // Power-Up Duration
         while (currentSlowDownTime > 0f)
         {
             yield return new WaitForSeconds(1f);
             currentSlowDownTime--;
         }
 
+        // Return to Normal
         playerMovement.CurrentMoveSpeed *= 2;
         SpeedClamp();
         isSlowing = false;
@@ -135,15 +142,18 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
 
     IEnumerator Knocking()
     {
+        // Player Can Kill while Effect is Active
         canKill = true;
         KnockOutEffect.SetActive(true);
 
+        // Power-Up Duration
         while (currentKnockOutTime > 0f)
         {
             yield return new WaitForSeconds(1f);
             currentKnockOutTime--;
         }
 
+        // Return to Normal
         canKill = false;
         KnockOutEffect.SetActive(false);
     }
@@ -152,7 +162,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     {
         if (collider.CompareTag("Player") && canKill && collider.GetComponent<Health>().IsAlive)
         {
-            Debug.Log("EXECUTE");
+            // Knock Out Enemy Player
             collider.GetComponent<PhotonView>().RPC("OnDeath", RpcTarget.AllBuffered);
             currentKnockOutTime = 0;
             canKill = false;

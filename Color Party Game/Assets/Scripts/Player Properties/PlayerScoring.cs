@@ -4,10 +4,12 @@ using TMPro;
 
 public class PlayerScoring : MonoBehaviourPunCallbacks
 {
-    public int PlayerScore { get; private set; }
-    private PlayerSetup playerSetup;
-    private PlayerUIController playerUIController;
-    private GameObject[] tiles;
+    public int PlayerScore { get; private set; }                            // Player Score
+
+    // Private Variables
+    private PlayerSetup playerSetup;                                        // PlayerSetup Class Reference
+    private PlayerUIController playerUIController;                          // PlayerUIController Class Reference
+    private GameObject[] tiles;                                             // Tile Prefabs Reference
 
     // Start is called before the first frame update
     void Start()

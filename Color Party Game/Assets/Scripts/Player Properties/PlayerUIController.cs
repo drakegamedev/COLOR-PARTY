@@ -6,12 +6,15 @@ public class PlayerUIController : MonoBehaviour
     public GameObject PlayerScoreItem { get; private set; }
     public TextMeshProUGUI PlayerNameText;
     
-    private PlayerSetup playerSetup;
+    // Private Variables
+    private PlayerSetup playerSetup;                                    // PlayerSetup Class Reference
 
     // Start is called before the first frame update
     void Start()
     {
         playerSetup = GetComponent<PlayerSetup>();
+
+        // Get Score Item Based on Player Index
         PlayerScoreItem = ScoreManager.Instance.ScoreItems[playerSetup.PlayerNumber - 1];
     }
 }

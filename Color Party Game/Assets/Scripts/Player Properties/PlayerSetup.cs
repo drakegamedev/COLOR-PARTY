@@ -3,16 +3,17 @@ using Photon.Pun;
 
 public class PlayerSetup : MonoBehaviourPunCallbacks
 {
-    public Camera PlayerCamera;
-    public Color PlayerColor;
-    public int PlayerNumber;
+    public Camera PlayerCamera;                                     // Player Camera
+    public Color PlayerColor;                                       // Player Color
+    public int PlayerNumber;                                        // Player Number
 
-    private PlayerMovement playerMovement;
-    private PlayerUIController playerUIController;
-    private Despawner despawner;
-    private WinLoseIndicator winLoseIndicator;
-    private Rigidbody2D rb;
-    private Animator animator;
+    // Private Variables
+    private PlayerMovement playerMovement;                          // PlayerMovement Class Reference
+    private PlayerUIController playerUIController;                  // PlayerUIController Class Reference
+    private Despawner despawner;                                    // Despawner Class Reference
+    private WinLoseIndicator winLoseIndicator;                      // WinLoseIndicator Class Reference
+    private Rigidbody2D rb;                                         // Rigidbody2D Component Reference
+    private Animator animator;                                      // Animator Component Reference
 
     public override void OnDisable()
     {
@@ -44,7 +45,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         animator.enabled = true;
         playerMovement.enabled = false;
 
-        // Set player name
+        // Set Player Name
         playerUIController.PlayerNameText.text = photonView.Owner.NickName;
 
         EventManager.Instance.InitiateGame += SetPlayerViews;

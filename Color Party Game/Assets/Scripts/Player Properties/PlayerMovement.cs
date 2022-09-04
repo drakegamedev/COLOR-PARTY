@@ -3,13 +3,15 @@ using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviourPunCallbacks
 {
-    public float Speed;
-    public float CurrentMoveSpeed { get; set; }
+    public float Speed;                                             // Default Movement Speed
+    public float CurrentMoveSpeed { get; set; }                     // Current Movement Speed
 
-    private Rigidbody2D rb;
-    private Animator animator;
-    private Vector2 moveVelocity;
+    // Private Variables
+    private Rigidbody2D rb;                                         // Rigidbody2D Component Reference
+    private Animator animator;                                      // Animator Component Reference
+    private Vector2 moveVelocity;                                   // Movement Velocity
 
+    // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         rb = GetComponent<Rigidbody2D>();
     }
 
+    // Update is called once per frame
     void Update()
     {
         Movement();
@@ -27,7 +30,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
 
-    private void Movement()
+    // Player Top Down Movement
+    void Movement()
     {
         // Horizontal and Vertical Movement
         float xMovement = Input.GetAxisRaw("Horizontal");
@@ -35,6 +39,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
         Vector2 move = new Vector2(xMovement, yMovement);
 
+        // Normalize Movement Velocity
         moveVelocity = move.normalized * CurrentMoveSpeed;
 
         // Player Animation

@@ -1,9 +1,9 @@
-using UnityEngine;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 
+// Indicates Whether this Player is the Winner or the Loser
 public class WinLoseIndicator : PunRaiseEvents
 {   
     public override void OnEnable()
@@ -26,12 +26,12 @@ public class WinLoseIndicator : PunRaiseEvents
                 int viewId = (int)data[0];
                 TextMeshProUGUI playerResultText = GameManager.Instance.GameResult;
 
-                // This is you!
+                // This is You
                 if (viewId == photonView.ViewID)
                 {
                     playerResultText.text = "YOU WIN!";
                 }
-                // This is the other players
+                // This is for the Other players
                 else
                 {
                     playerResultText.text = "YOU LOSE!";
@@ -43,19 +43,20 @@ public class WinLoseIndicator : PunRaiseEvents
 
     public override void SetRaiseEvent()
     {
-        Debug.Log(GetComponent<PhotonView>().Owner.NickName + " Event Has Been Called!");
-
+        // Player View ID
         int viewId = photonView.ViewID;
 
-        // event data
+        // Event Data
         object[] data = new object[] { viewId };
 
+        // Assign Receivers
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions
         {
             Receivers = ReceiverGroup.All,
             CachingOption = EventCaching.AddToRoomCache
         };
 
+        // Reliability
         SendOptions sendOption = new SendOptions
         {
             Reliability = false
