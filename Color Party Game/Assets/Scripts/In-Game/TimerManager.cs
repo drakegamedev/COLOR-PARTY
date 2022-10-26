@@ -123,7 +123,7 @@ public class TimerManager : PunRaiseEvents
         GameManager.Instance.TimePanel.SetActive(true);
 
         // Play BGM
-        AudioManager.Instance.Play("game-bgm");
+        // AudioManager.Instance.Play("game-bgm");
 
         CountdownText.text = "";;
     }
@@ -137,13 +137,13 @@ public class TimerManager : PunRaiseEvents
         isLastMinute = true;
 
         // Stop BGM and Change the Pitch
-        AudioManager.Instance.Stop("game-bgm");
-        AudioManager.Instance.ModifyPitch("game-bgm", 1.25f);
+        // AudioManager.Instance.Stop("game-bgm");
+        // AudioManager.Instance.ModifyPitch("game-bgm", 1.25f);
 
         yield return new WaitForSeconds(2f);
 
         // Play BGM with Higher Pitch
-        AudioManager.Instance.Play("game-bgm");
+        // AudioManager.Instance.Play("game-bgm");
 
         CountdownText.text = "";
 

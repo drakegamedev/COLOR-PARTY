@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         PanelManager.Instance.ActivatePanel("main-menu-panel");
-        AudioManager.Instance.Play("main-menu-bgm");
+        // AudioManager.Instance.Play("main-menu-bgm");
     }
 
     // Play Button
