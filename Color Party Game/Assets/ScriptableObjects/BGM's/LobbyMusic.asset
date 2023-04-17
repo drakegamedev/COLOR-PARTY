@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LobbyMusic
   m_EditorClassIdentifier: 
   Id: lobby-bgm
-  Clip: {fileID: 8300000, guid: 3ef66cbd5e4a7c444af63c261ebd4305, type: 3}
+  Clip: {fileID: 8300000, guid: ea96363927096c14292c1bebfeb06100, type: 3}
   Type: 0
   Priority: 0
   Volume: 1
