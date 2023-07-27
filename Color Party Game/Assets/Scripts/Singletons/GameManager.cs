@@ -31,13 +31,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject[] DarkLerpWalls { get; private set; }
 
     [Header("Aesthetic References")]
-    public float LerpTime;
-    public ParticleSystem ArenaAesthetic;                                               // Arena Particle System (Aesthetic)
+    [SerializeField] private float lerpTime;
+    [SerializeField] private ParticleSystem arenaAesthetic;                             // Arena Particle System (Aesthetic)
 
     public List<GameObject> PlayerGameObjects { get; set; } = new();
 
     [Header("Player References")]
-    public GameObject[] PlayerPrefabs;
+    [SerializeField] private GameObject[] playerPrefabs;
 
     // Private Variables
     private List<LerpColor> lerpColorList = new();                                      // Lerp Color List
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
 
             // Spawn Player Prefab
-            PhotonNetwork.Instantiate(PlayerPrefabs[number].name, PlayerSpawnManager.Instance.SpawnPoints[number].position, Quaternion.identity);
+            PhotonNetwork.Instantiate(playerPrefabs[number].name, PlayerSpawnManager.Instance.SpawnPoints[number].position, Quaternion.identity);
         }
 
         PanelManager.Instance.ActivatePanel("time-panel");
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             LerpColor lerpColor = go.AddComponent<LerpColor>();
             lerpColor.MyColors = LightColors;
-            lerpColor.LerpTime = LerpTime;
+            lerpColor.LerpTime = lerpTime;
 
             // Add to List
             lerpColorList.Add(lerpColor);
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             LerpColor lerpColor = go.AddComponent<LerpColor>();
             lerpColor.MyColors = DarkColors;
-            lerpColor.LerpTime = LerpTime;
+            lerpColor.LerpTime = lerpTime;
 
             // Add to List
             lerpColorList.Add(lerpColor);
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void IntensifyAtmosphere()
     {
         // Faster Movement Speed of Arena Aesthetic Particles
-        var main = ArenaAesthetic.main;
+        var main = arenaAesthetic.main;
         main.simulationSpeed = 4f;
     }
 

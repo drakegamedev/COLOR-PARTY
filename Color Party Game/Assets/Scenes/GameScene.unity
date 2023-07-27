@@ -1616,9 +1616,9 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0.74509805, a: 1}
   - {r: 0.74509805, g: 0, b: 0.74509805, a: 1}
   - {r: 0.74509805, g: 0.74509805, b: 0, a: 1}
-  LerpTime: 2
-  ArenaAesthetic: {fileID: 74245260}
-  PlayerPrefabs:
+  lerpTime: 2
+  arenaAesthetic: {fileID: 74245260}
+  playerPrefabs:
   - {fileID: 7243523787050623196, guid: aa652049481cea740a41f241d219d052, type: 3}
   - {fileID: 7652157707442554513, guid: 038e8c3c663bcd945a98a81f6a42b18f, type: 3}
   - {fileID: 8948069971245021470, guid: d45bcdcb00dcce347bfa499ac644aef1, type: 3}
