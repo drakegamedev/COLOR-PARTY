@@ -37,7 +37,7 @@ public class AudioManager : MonoBehaviour
         {
             foreach (AudioData audioData in collectionData.Audios)
             {
-                switch (audioData.Type)
+                switch (audioData.GetAudioType())
                 {
                     case AudioData.AudioType.BGM:
                         audioData.Initialize(MusicHolder);
@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
             foreach (AudioData audioData in collectionData.Audios)
             {
                 // Audio Found
-                if (id == audioData.Id)
+                if (id == audioData.GetId())
                 {
                     audioData.Source.Play();
                     return;
@@ -86,7 +86,7 @@ public class AudioManager : MonoBehaviour
             foreach (AudioData audioData in collectionData.Audios)
             {
                 // Audio Found
-                if (id == audioData.Id)
+                if (id == audioData.GetId())
                 {
                     audioData.Source.Stop();
                     return;
@@ -109,7 +109,7 @@ public class AudioManager : MonoBehaviour
             foreach (AudioData audioData in collectionData.Audios)
             {
                 // Audio Found
-                if (id == audioData.Id)
+                if (id == audioData.GetId())
                 {
                     audioData.Source.pitch = amount;
                     return;
