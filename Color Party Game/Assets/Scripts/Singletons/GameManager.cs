@@ -24,9 +24,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     [field: SerializeField] public TextMeshProUGUI GameResult { get; private set; }
     [field: SerializeField] public TextMeshProUGUI PlayerStanding { get; private set; }
 
-    [Header("Color References")]
-    public Color[] LightColors;
-    public Color[] DarkColors;
+    //[Header("Color References")]
+    [field: SerializeField, Header("Color References")] public Color[] LightColors { get; private set; }
+    [field: SerializeField] public Color[] DarkColors { get; private set; }
     public GameObject[] LightLerpWalls { get; private set; }
     public GameObject[] DarkLerpWalls { get; private set; }
 

@@ -1606,12 +1606,12 @@ MonoBehaviour:
   <TimerText>k__BackingField: {fileID: 1596173883}
   <GameResult>k__BackingField: {fileID: 730846092}
   <PlayerStanding>k__BackingField: {fileID: 1810554147}
-  LightColors:
+  <LightColors>k__BackingField:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 1, g: 0, b: 1, a: 1}
   - {r: 1, g: 1, b: 0, a: 1}
-  DarkColors:
+  <DarkColors>k__BackingField:
   - {r: 0.74509805, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0.74509805, a: 1}
   - {r: 0.74509805, g: 0, b: 0.74509805, a: 1}
