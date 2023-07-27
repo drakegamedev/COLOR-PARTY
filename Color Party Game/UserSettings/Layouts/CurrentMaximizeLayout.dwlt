@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 968
+  controlID: 3859
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 969
+  controlID: 3860
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 970
+  controlID: 3861
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,9 +224,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 2c3d0000
+      m_SelectedIDs: 5abc0000
       m_LastClickedID: 0
-      m_ExpandedIDs: e2a4ffff0aa6ffff
+      m_ExpandedIDs: 328fffff04a3ffff5ca3ffff9aa4ffff0aa6ffff78c4000080c4000098c40000e6c4000034c50000aac50000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -525,9 +525,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1022.9908, y: 540.25525, z: 4.7962418}
+    m_Target: {x: 977.11, y: 539.643, z: 4.2597494}
     speed: 2
-    m_Value: {x: 1022.9908, y: 540.25525, z: 4.7962418}
+    m_Value: {x: 977.11, y: 539.643, z: 4.2597494}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -578,9 +578,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 582.97974
+    m_Target: 636.6284
     speed: 2
-    m_Value: 582.97974
+    m_Value: 636.6284
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -760,7 +760,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: mainmenu
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -772,22 +772,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/In-Game
+    - Assets/Resources
     m_Globs: []
-    m_OriginalText: 
+    m_OriginalText: mainmenu
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/In-Game
+  - Assets/Resources
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: D:\Drake Gamedev Repositories\COLOR-PARTY-GAME\Color Party Game
+  m_LastProjectPath: D:\Drake Gamedev Repositories\COLOR-PARTY\Color Party Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 159}
-    m_SelectedIDs: a0be0000
-    m_LastClickedID: 48800
-    m_ExpandedIDs: 000000001ebc000032bc000000ca9a3b
+    scrollPos: {x: 0, y: 67}
+    m_SelectedIDs: 2cbc0000
+    m_LastClickedID: 48172
+    m_ExpandedIDs: 000000001ebc000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -840,9 +840,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 2c3d0000
-    m_LastClickedInstanceID: 15660
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 5abc0000
+    m_LastClickedInstanceID: 48218
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000f46300009e7a00006e65000032670000b86e0000be86000000000000ca740000a2a40000fe9c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -929,7 +929,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 57914
+  m_LastSelectedObjectID: 50382
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52

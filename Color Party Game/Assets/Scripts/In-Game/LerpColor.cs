@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class LerpColor : MonoBehaviour
 {
-    public Color[] MyColors;                                // Array of Colors to lerp
+    public Color[] MyColors { get; set; }                   // Array of Colors to lerp
     public float LerpTime { get; set; }                     // Time of Lerping
 
     private SpriteRenderer spriteRenderer;                  // Sprite Renderer Reference
     private int colorIndex = 0;                             // Current Color Index
 
-    private void OnEnable()
+    void OnEnable()
     {
         EventManager.Instance.Intensify += StartLerping;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         EventManager.Instance.Intensify -= StartLerping;
     }
@@ -25,13 +25,20 @@ public class LerpColor : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Inititate Lerping
+    /// <summary>
+    /// Inititate Lerping
+    /// </summary>
     public void StartLerping()
     {
         StartCoroutine(ColorLerping(MyColors[colorIndex], LerpTime));
     }
 
-    // Lerping of Colors
+    /// <summary>
+    /// Lerping of Colors
+    /// </summary>
+    /// <param name="endColor"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
     IEnumerator ColorLerping(Color endColor, float duration)
     {
         float time = 0;

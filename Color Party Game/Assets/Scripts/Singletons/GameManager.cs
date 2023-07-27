@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    // Game State
+    // Game States
     public enum GameStates
     {
         INITIAL,
@@ -98,7 +98,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // Initialize Wall Properties
+    /// <summary>
+    /// Initialize Wall Properties
+    /// </summary>
     public void InitializeWalls()
     {
         // Cache In Walls
@@ -128,7 +130,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // Intensifies Game Atmosphere
+    /// <summary>
+    /// Intensifies Game Atmosphere
+    /// </summary>
     public void IntensifyAtmosphere()
     {
         // Faster Movement Speed of Arena Aesthetic Particles
@@ -136,14 +140,17 @@ public class GameManager : MonoBehaviourPunCallbacks
         main.simulationSpeed = 4f;
     }
 
-    // Leave the Room
+    /// <summary>
+    /// Leave the Room
+    /// </summary>
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
     }
 
-    // When player leaves room
-    // Redirect player back to Lobby Scene
+    /// <summary>
+    /// When player leaves room, Redirect player back to Lobby Scene
+    /// </summary>
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("LobbyScene");

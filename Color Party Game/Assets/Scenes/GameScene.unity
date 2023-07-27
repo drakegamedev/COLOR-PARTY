@@ -1563,15 +1563,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c02cab503a81364aa785a5103dd5b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PowerUpNames:
+  powerUpNames:
   - speed-up
   - slow-down
   - knock-out
-  MinX: -0.4
-  MaxX: 19.65
-  MinY: -19.65
-  MaxY: 0.67
-  Timer: 10
+  minX: -0.4
+  maxX: 19.65
+  minY: -19.65
+  maxY: 0.67
+  timer: 10
 --- !u!1 &949919828
 GameObject:
   m_ObjectHideFlags: 0

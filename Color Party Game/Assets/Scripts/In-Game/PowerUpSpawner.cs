@@ -7,19 +7,19 @@ using ExitGames.Client.Photon;
 public class PowerUpSpawner : PunRaiseEvents
 {
     [Header("Power-Up Id's")]
-    public string[] PowerUpNames;                           // Power-Up ID's
+    [SerializeField] private string[] powerUpNames;                           // Power-Up ID's
 
     [Header("Random Position Range")]
-    public float MinX;                                      // Minimum X Position
-    public float MaxX;                                      // Maximum X Position
-    public float MinY;                                      // Minimum Y Position
-    public float MaxY;                                      // Maximum Y Position
+    [SerializeField] private float minX;                                      // Minimum X Position
+    [SerializeField] private float maxX;                                      // Maximum X Position
+    [SerializeField] private float minY;                                      // Minimum Y Position
+    [SerializeField] private float maxY;                                      // Maximum Y Position
 
     [Header("Spawn Timer")]
-    public float Timer;                                     // Timer for Spawning
+    [SerializeField] private float timer;                                     // Timer for Spawning
 
     // Private Variables
-    private float currentTime;                              // Current Spwan Time
+    private float currentTime;                                                // Current Spwan Time
 
     public override void OnEnable()
     {
@@ -52,7 +52,7 @@ public class PowerUpSpawner : PunRaiseEvents
     // Start is called before the first frame update
     void Start()
     {
-        currentTime = Timer;
+        currentTime = timer;
     }
 
     // Update is called once per frame
@@ -70,16 +70,18 @@ public class PowerUpSpawner : PunRaiseEvents
             SetRaiseEvent();
 
             // Reset Timer
-            currentTime = Timer;
+            currentTime = timer;
         }
     }
 
-    // Syncronized Spawning of Power-Up
+    /// <summary>
+    /// Syncronized Spawning of Power-Up
+    /// </summary>
     public override void SetRaiseEvent()
     {
-        float randomX = Random.Range(MinX, MaxX);
-        float randomY = Random.Range(MinY, MaxY);
-        string randomPowerUp = PowerUpNames[Random.Range(0, PowerUpNames.Length)];
+        float randomX = Random.Range(minX, maxX);
+        float randomY = Random.Range(minY, maxY);
+        string randomPowerUp = powerUpNames[Random.Range(0, powerUpNames.Length)];
 
         // Event data
         object[] data = new object[] { randomX, randomY, randomPowerUp };

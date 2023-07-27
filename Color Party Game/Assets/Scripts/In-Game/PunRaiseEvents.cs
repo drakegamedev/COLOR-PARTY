@@ -19,14 +19,19 @@ public class PunRaiseEvents : MonoBehaviourPunCallbacks
         // Results
         PLAYER_WINNER
     }
-    
-    // Event that will occur based on SetRaiseEvent()
+
+    /// <summary>
+    /// Event that will occur based on SetRaiseEvent()
+    /// </summary>
+    /// <param name="photonEvent"></param>
     public virtual void OnEvent(EventData photonEvent)
     {
 
     }
 
-    // Sets Up RaiseEvent
+    /// <summary>
+    /// Sets Up RaiseEvent
+    /// </summary>
     public virtual void SetRaiseEvent()
     {
         

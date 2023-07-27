@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PickUpEffect : MonoBehaviour
 {
-    public float DestructorTime;                    // Destructor Timer
-    private Poolable poolable;                      // Poolable Class Reference
+    [SerializeField] private float destructorTime;                    // Destructor Timer
+    private Poolable poolable;                                        // Poolable Class Reference
 
     void OnEnable()
     {
@@ -19,7 +19,7 @@ public class PickUpEffect : MonoBehaviour
 
     IEnumerator Destructor()
     {
-        yield return new WaitForSeconds(DestructorTime);
+        yield return new WaitForSeconds(destructorTime);
         poolable.ReturnToPool();
     }
 }
