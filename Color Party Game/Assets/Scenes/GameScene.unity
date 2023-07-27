@@ -1601,11 +1601,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddc9e4967795ff4d987f89ee450e3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimePanel: {fileID: 556863118}
-  CountdownText: {fileID: 1986171651}
-  TimerText: {fileID: 1596173883}
-  GameResult: {fileID: 730846092}
-  PlayerStanding: {fileID: 1810554147}
+  <TimePanel>k__BackingField: {fileID: 556863118}
+  <CountdownText>k__BackingField: {fileID: 1986171651}
+  <TimerText>k__BackingField: {fileID: 1596173883}
+  <GameResult>k__BackingField: {fileID: 730846092}
+  <PlayerStanding>k__BackingField: {fileID: 1810554147}
   LightColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
@@ -1990,10 +1990,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e3f2209a2c81b42aef9f19bec8edc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TilePrefab: {fileID: 5043901520539652553, guid: a917932e6b2478943975f7310f528d35, type: 3}
-  Rows: 20
-  Columns: 20
-  Spacing: 1
+  tilePrefab: {fileID: 5043901520539652553, guid: a917932e6b2478943975f7310f528d35, type: 3}
+  rows: 20
+  columns: 20
+  spacing: 1
 --- !u!4 &1440316581
 Transform:
   m_ObjectHideFlags: 0

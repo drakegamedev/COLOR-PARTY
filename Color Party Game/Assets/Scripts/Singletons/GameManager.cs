@@ -18,11 +18,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public GameStates GameState { get; set; }
 
-    public GameObject TimePanel;
-    public TextMeshProUGUI CountdownText;
-    public TextMeshProUGUI TimerText;
-    public TextMeshProUGUI GameResult;
-    public TextMeshProUGUI PlayerStanding;
+    [field : SerializeField] public GameObject TimePanel { get; private set; }
+    [field : SerializeField] public TextMeshProUGUI CountdownText { get; private set; }
+    [field : SerializeField] public TextMeshProUGUI TimerText { get; private set; }
+    [field: SerializeField] public TextMeshProUGUI GameResult { get; private set; }
+    [field: SerializeField] public TextMeshProUGUI PlayerStanding { get; private set; }
 
     [Header("Color References")]
     public Color[] LightColors;
