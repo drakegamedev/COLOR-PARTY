@@ -6747,6 +6747,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.data[0].Id
       value: main-menu-bgm
       objectReference: {fileID: 0}
@@ -6755,7 +6759,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.data[0].Audios.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.data[0].Audios.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0febaf08a39c5de42a745c61cbe927c9, type: 2}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.data[0].Audios.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 0febaf08a39c5de42a745c61cbe927c9, type: 2}
     m_RemovedComponents: []
