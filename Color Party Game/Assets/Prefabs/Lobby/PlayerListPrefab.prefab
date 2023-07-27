@@ -687,6 +687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c997024329e431745b21f73be0cc1f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerNameText: {fileID: 1439411880558115697}
-  PlayerReadyButton: {fileID: 1439411881559398096}
-  PlayerReadyImage: {fileID: 3709355493942337824}
+  playerNameText: {fileID: 1439411880558115697}
+  playerReadyButton: {fileID: 1439411881559398096}
+  playerReadyImage: {fileID: 3709355493942337824}

@@ -6,22 +6,26 @@ using TMPro;
 public class PlayerListItemInitializer : MonoBehaviourPunCallbacks
 {
     [Header("UI References")]
-    public TextMeshProUGUI PlayerNameText;
-    public Button PlayerReadyButton;
-    public Image PlayerReadyImage;
+    [SerializeField] private TextMeshProUGUI playerNameText;                    // Player Name Text Reference
+    [SerializeField] private Button playerReadyButton;                          // Player Ready Button Reference
+    [SerializeField] private Image playerReadyImage;                            // Player Ready Image Reference
 
     // Private Variables
-    private bool isPlayerReady = false;
+    private bool isPlayerReady = false;                                         // Indicates in Player is Ready or Not
 
-    // Initialize Player List Item Properties
+    /// <summary>
+    /// Initialize Player List Item Properties
+    /// </summary>
+    /// <param name="playerId"></param>
+    /// <param name="playerName"></param>
     public void Initialize(int playerId, string playerName)
     {
-        PlayerNameText.text = playerName;
+        playerNameText.text = playerName;
 
         if (PhotonNetwork.LocalPlayer.ActorNumber != playerId)
         {
             // Disable Player Ready Button
-            PlayerReadyButton.gameObject.SetActive(false);
+            playerReadyButton.gameObject.SetActive(false);
         }
         else
         {
@@ -30,7 +34,7 @@ public class PlayerListItemInitializer : MonoBehaviourPunCallbacks
             PhotonNetwork.LocalPlayer.SetCustomProperties(initializeProperties);
 
             // On Player Ready Button Clicked
-            PlayerReadyButton.onClick.AddListener(() =>
+            playerReadyButton.onClick.AddListener(() =>
             {
                 isPlayerReady = !isPlayerReady;
                 SetPlayerReady(isPlayerReady);
@@ -43,18 +47,21 @@ public class PlayerListItemInitializer : MonoBehaviourPunCallbacks
         }
     }
 
-    // Player Ready Setter
+    /// <summary>
+    /// Player Ready Setter
+    /// </summary>
+    /// <param name="playerReady"></param>
     public void SetPlayerReady(bool playerReady)
     {
-        PlayerReadyImage.enabled = playerReady;
+        playerReadyImage.enabled = playerReady;
 
         if (playerReady)
         {
-            PlayerReadyButton.GetComponentInChildren<TextMeshProUGUI>().text = "CANCEL";
+            playerReadyButton.GetComponentInChildren<TextMeshProUGUI>().text = "CANCEL";
         }
         else
         {
-            PlayerReadyButton.GetComponentInChildren<TextMeshProUGUI>().text = "READY";
+            playerReadyButton.GetComponentInChildren<TextMeshProUGUI>().text = "READY";
         }
     }
 }
