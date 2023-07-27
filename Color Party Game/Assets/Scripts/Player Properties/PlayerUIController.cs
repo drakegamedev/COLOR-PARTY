@@ -3,11 +3,11 @@ using TMPro;
 
 public class PlayerUIController : MonoBehaviour
 {
-    public GameObject PlayerScoreItem { get; private set; }
-    public TextMeshProUGUI PlayerNameText;
+    public GameObject PlayerScoreItem { get; private set; }                                                 // Player Score Item Reference
+    [field : SerializeField] public TextMeshProUGUI PlayerNameText { get; private set; }                    // PlayerName Text Reference
     
     // Private Variables
-    private PlayerSetup playerSetup;                                    // PlayerSetup Class Reference
+    private PlayerSetup playerSetup;                                                                        // PlayerSetup Class Reference
 
     // Start is called before the first frame update
     void Start()

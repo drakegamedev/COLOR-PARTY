@@ -4,16 +4,16 @@ using Photon.Pun;
 
 public class Health : MonoBehaviourPunCallbacks
 {
-    public float RespawnTime;                                           // Respawn Timer
-    public SpriteRenderer[] PlayerSprites;                              // Player Graphic Sprite Reference
-    public Color DeathColor;                                            // Player Death Color
-    public Color LifeColor;                                             // Player Life Color
+    [SerializeField] private float respawnTime;                                           // Respawn Timer
+    [SerializeField] private SpriteRenderer[] playerSprites;                              // Player Graphic Sprite Reference
+    [SerializeField] private Color deathColor;                                            // Player Death Color
+    [SerializeField] private Color lifeColor;                                             // Player Life Color
     
-    public bool IsAlive { get; private set; }
+    public bool IsAlive { get; private set; }                                             // Indicator if Player is Alive
 
     // Private Variables
-    private PlayerMovement playerMovement;
-    private PlayerSetup playerSetup;
+    private PlayerMovement playerMovement;                                                // PlayerMovement Class Reference
+    private PlayerSetup playerSetup;                                                      // PlayerSetup Class Reference
 
     // Start is called before the first frame update
     void Start()
@@ -23,21 +23,26 @@ public class Health : MonoBehaviourPunCallbacks
         playerSetup = GetComponent<PlayerSetup>();
     }
 
-    // Player Death
+    /// <summary>
+    /// Player Death
+    /// </summary>
     [PunRPC]
     public void OnDeath()
     {
         StartCoroutine(Respawn());
     }
 
-    // Respawn Timer
+    /// <summary>
+    /// Respawn Timer
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Respawn()
     {
         AudioManager.Instance.Play("explosion-sfx");
         Poolable explosion = ObjectPooler.Instance.SpawnFromPool("explosion", transform.position, Quaternion.identity).GetComponent<Poolable>();
         DeathEffect();
 
-        yield return new WaitForSeconds(RespawnTime);
+        yield return new WaitForSeconds(respawnTime);
 
         explosion.ReturnToPool();
         LifeEffect();
@@ -50,9 +55,9 @@ public class Health : MonoBehaviourPunCallbacks
         IsAlive = false;
         playerMovement.enabled = false;
 
-        foreach (SpriteRenderer sr in PlayerSprites)
+        foreach (SpriteRenderer sr in playerSprites)
         {
-            sr.color = DeathColor;
+            sr.color = deathColor;
         }
     }
 
@@ -63,9 +68,9 @@ public class Health : MonoBehaviourPunCallbacks
         transform.position = PlayerSpawnManager.Instance.SpawnPoints[playerSetup.PlayerNumber - 1].position;
         playerMovement.enabled = photonView.IsMine;
 
-        foreach (SpriteRenderer sr in PlayerSprites)
+        foreach (SpriteRenderer sr in playerSprites)
         {
-            sr.color = LifeColor;
+            sr.color = lifeColor;
         }
     }
     #endregion

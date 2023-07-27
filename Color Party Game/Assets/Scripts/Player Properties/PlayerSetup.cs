@@ -3,17 +3,17 @@ using Photon.Pun;
 
 public class PlayerSetup : MonoBehaviourPunCallbacks
 {
-    public Camera PlayerCamera;                                     // Player Camera
-    public Color PlayerColor;                                       // Player Color
-    public int PlayerNumber;                                        // Player Number
+    [SerializeField] private Camera playerCamera;                                     // Player Camera
+    [field : SerializeField] public Color PlayerColor { get; private set; }           // Player Color
+    [field: SerializeField] public int PlayerNumber { get; private set; }             // Player Number
 
     // Private Variables
-    private PlayerMovement playerMovement;                          // PlayerMovement Class Reference
-    private PlayerUIController playerUIController;                  // PlayerUIController Class Reference
-    private Despawner despawner;                                    // Despawner Class Reference
-    private WinLoseIndicator winLoseIndicator;                      // WinLoseIndicator Class Reference
-    private Rigidbody2D rb;                                         // Rigidbody2D Component Reference
-    private Animator animator;                                      // Animator Component Reference
+    private PlayerMovement playerMovement;                                            // PlayerMovement Class Reference
+    private PlayerUIController playerUIController;                                    // PlayerUIController Class Reference
+    private Despawner despawner;                                                      // Despawner Class Reference
+    private WinLoseIndicator winLoseIndicator;                                        // WinLoseIndicator Class Reference
+    private Rigidbody2D rb;                                                           // Rigidbody2D Component Reference
+    private Animator animator;                                                        // Animator Component Reference
 
     public override void OnDisable()
     {
@@ -35,8 +35,8 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
         GameManager.Instance.PlayerGameObjects.Add(gameObject);
 
         // Set Camera
-        PlayerCamera.GetComponent<Camera>().enabled = photonView.IsMine;
-        PlayerCamera.GetComponent<AudioListener>().enabled = photonView.IsMine;
+        playerCamera.GetComponent<Camera>().enabled = photonView.IsMine;
+        playerCamera.GetComponent<AudioListener>().enabled = photonView.IsMine;
 
         // Set Animator Controller
         animator.SetBool("isLocalPlayer", photonView.IsMine);

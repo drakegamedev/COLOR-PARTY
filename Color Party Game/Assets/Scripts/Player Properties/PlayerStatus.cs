@@ -6,24 +6,24 @@ using Photon.Pun;
 // Manages Status Effects, and Indicates Player Standing
 public class PlayerStatus : MonoBehaviourPunCallbacks
 {
-    public int Place { get; set; }                              // Indicate Player Rank (e.g. 1,2,3, etc.)
-    public string OrdinalPlace { get; private set; }            // Add Suffix to Player Rank (e.g. 1st, 2nd, 3rd)
-    public float Timer;                                         // Status Effect Duration
+    public int Place { get; set; }                                  // Indicate Player Rank (e.g. 1,2,3, etc.)
+    public string OrdinalPlace { get; private set; }                // Add Suffix to Player Rank (e.g. 1st, 2nd, 3rd)
+    [SerializeField] private float timer;                           // Status Effect Duration
 
-    private PlayerMovement playerMovement;
+    private PlayerMovement playerMovement;                          // PlayerMovement Class Reference
 
     // Speed Up Variables
-    public GameObject SpeedUpEffect;
+    [SerializeField] private GameObject speedUpEffect;              // Speed-Up Effect Reference
     private bool isSpeeding;
     private float currentSpeedUpTime;
 
     // Slow Down Variables
-    public GameObject SlowDownEffect;
+    [SerializeField] private GameObject slowDownEffect;             // Slow-Down Effect Reference
     private bool isSlowing;
     private float currentSlowDownTime;
 
     // Knock Out Variables
-    public GameObject KnockOutEffect;
+    [SerializeField] private GameObject knockOutEffect;             // Knock-Out Effect Reference
     private bool canKill;
     private float currentKnockOutTime;
 
@@ -40,25 +40,27 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         isSpeeding = false;
         isSlowing = false;
         canKill = false;
-        currentSpeedUpTime = Timer;
-        currentSlowDownTime = Timer;
-        currentKnockOutTime = Timer;
+        currentSpeedUpTime = timer;
+        currentSlowDownTime = timer;
+        currentKnockOutTime = timer;
     }
 
     #region StatusEffects
     #region SpeedUp
+    /// <summary>
+    /// Speed Up Functions
+    /// </summary>
     [PunRPC]
-    // Speed Up Functions
     public void SpeedUp()
     {
         if (!isSpeeding)
         {
-            currentSpeedUpTime = Timer;
+            currentSpeedUpTime = timer;
             StartCoroutine(Speeding());
         }
         else
         {
-            currentSpeedUpTime = Timer;
+            currentSpeedUpTime = timer;
         }
     }
 
@@ -68,7 +70,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         playerMovement.CurrentMoveSpeed = playerMovement.Speed * 2;
         SpeedClamp();
         isSpeeding = true;
-        SpeedUpEffect.SetActive(true);
+        speedUpEffect.SetActive(true);
 
         // Power-Up Duration
         while (currentSpeedUpTime > 0f)
@@ -81,23 +83,25 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         playerMovement.CurrentMoveSpeed /= 2;
         SpeedClamp();
         isSpeeding = false;
-        SpeedUpEffect.SetActive(false);
+        speedUpEffect.SetActive(false);
     }
     #endregion
 
     #region SlowDown
-    // Slow Down Functions
+    /// <summary>
+    /// Slow Down Functions
+    /// </summary>
     [PunRPC]
     public void SlowDown()
     {
         if (!isSlowing)
         {
-            currentSlowDownTime = Timer;
+            currentSlowDownTime = timer;
             StartCoroutine(Slowing());
         }
         else
         {
-            currentSlowDownTime = Timer;
+            currentSlowDownTime = timer;
         }
     }
 
@@ -107,7 +111,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         playerMovement.CurrentMoveSpeed = playerMovement.Speed / 2;
         SpeedClamp();
         isSlowing = true;
-        SlowDownEffect.SetActive(true);
+        slowDownEffect.SetActive(true);
 
         // Power-Up Duration
         while (currentSlowDownTime > 0f)
@@ -120,23 +124,25 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         playerMovement.CurrentMoveSpeed *= 2;
         SpeedClamp();
         isSlowing = false;
-        SlowDownEffect.SetActive(false);
+        slowDownEffect.SetActive(false);
     }
     #endregion
 
     #region KnockOut
-    // Knock Out Functions
+    /// <summary>
+    /// Knock Out Functions
+    /// </summary>
     [PunRPC]
     public void KnockOut()
     {
         if (!canKill)
         {
-            currentKnockOutTime = Timer;
+            currentKnockOutTime = timer;
             StartCoroutine(Knocking());
         }
         else
         {
-            currentKnockOutTime = Timer;
+            currentKnockOutTime = timer;
         }
     }
 
@@ -144,7 +150,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     {
         // Player Can Kill while Effect is Active
         canKill = true;
-        KnockOutEffect.SetActive(true);
+        knockOutEffect.SetActive(true);
 
         // Power-Up Duration
         while (currentKnockOutTime > 0f)
@@ -155,7 +161,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
 
         // Return to Normal
         canKill = false;
-        KnockOutEffect.SetActive(false);
+        knockOutEffect.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -171,7 +177,9 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    // Player Movement Speed Clamp
+    /// <summary>
+    /// Player Movement Speed Clamp
+    /// </summary>
     void SpeedClamp()
     {
         // Minimum
@@ -186,16 +194,21 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         }
     }
 
-    // Disable KO Effect after hitting another player
+    /// <summary>
+    /// Disable KO Effect after hitting another player
+    /// </summary>
     [PunRPC]
     void HasKnockedOut()
     {
-        KnockOutEffect.SetActive(false);
+        knockOutEffect.SetActive(false);
     }
     #endregion
 
     #region PlayerStanding
-    // Converts Integer to Ordinal Number
+    /// <summary>
+    /// Converts Integer to Ordinal Number
+    /// </summary>
+    /// <param name="number"></param>
     public void Ordinalize(int number)
     {
         // Default suffix
@@ -231,7 +244,9 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         OrdinalPlace = number + numberSuffix;
     }
 
-    // Shows Ranking of the Player
+    /// <summary>
+    /// Shows Ranking of the Player
+    /// </summary>
     public void ShowPlayerRank()
     {
         TextMeshProUGUI playerStandingText = GameManager.Instance.PlayerStanding;
@@ -242,7 +257,9 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
         }
     }
 
-    // Add Player To Score List
+    /// <summary>
+    /// Add Player To Score List
+    /// </summary>
     public void AddToScoreList()
     {
         ScoreManager.Instance.Players.Add(gameObject);

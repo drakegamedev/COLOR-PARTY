@@ -21,7 +21,9 @@ public class PlayerScoring : MonoBehaviourPunCallbacks
     }
 
 
-    // Increase Player Score
+    /// <summary>
+    /// Increase Player Score
+    /// </summary>
     [PunRPC]
     public void IncreaseScore()
     {
@@ -29,7 +31,9 @@ public class PlayerScoring : MonoBehaviourPunCallbacks
         photonView.RPC("UpdateToScoreItem", RpcTarget.AllBuffered);
     }
 
-    // Decrease Player Score
+    /// <summary>
+    /// Decrease Player Score
+    /// </summary>
     [PunRPC]
     public void DecreaseScore()
     {
@@ -44,16 +48,21 @@ public class PlayerScoring : MonoBehaviourPunCallbacks
         photonView.RPC("UpdateToScoreItem", RpcTarget.AllBuffered);
     }
 
-    // Update player score to Score UI
+    /// <summary>
+    /// Update player score to Score UI
+    /// </summary>
     [PunRPC]
     public void UpdateToScoreItem()
     {
         playerUIController.PlayerScoreItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = PlayerScore.ToString();
     }
 
-    [PunRPC]
-    // Visual Indication that the player has colored a tile
-    // Input player gameobject data to tile
+    /// <summary>
+    /// Visual Indication that the player has colored a tile
+    /// Input player gameobject data to tile
+    /// </summary>
+    /// <param name="tileName"></param>
+    [PunRPC] 
     public void ColorTile(string tileName)
     {
         foreach (GameObject tile in tiles)

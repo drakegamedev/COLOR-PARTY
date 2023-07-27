@@ -23,6 +23,18 @@ PrefabInstance:
       propertyPath: PlayerColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1769413209929449379, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
+      propertyPath: <PlayerNumber>k__BackingField
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769413209929449379, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
+      propertyPath: <PlayerColor>k__BackingField.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769413209929449379, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
+      propertyPath: <PlayerColor>k__BackingField.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1769413209929449387, guid: b17b9ce979fbe1943b085c0b538e1ba5, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab Variant 3

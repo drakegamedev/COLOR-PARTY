@@ -3,13 +3,13 @@ using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviourPunCallbacks
 {
-    public float Speed;                                             // Default Movement Speed
-    public float CurrentMoveSpeed { get; set; }                     // Current Movement Speed
+    [field : SerializeField] public float Speed { get; set; }                                // Default Movement Speed
+    public float CurrentMoveSpeed { get; set; }                                              // Current Movement Speed
 
     // Private Variables
-    private Rigidbody2D rb;                                         // Rigidbody2D Component Reference
-    private Animator animator;                                      // Animator Component Reference
-    private Vector2 moveVelocity;                                   // Movement Velocity
+    private Rigidbody2D rb;                                                                  // Rigidbody2D Component Reference
+    private Animator animator;                                                               // Animator Component Reference
+    private Vector2 moveVelocity;                                                            // Movement Velocity
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,9 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
 
-    // Player Top Down Movement
+    /// <summary>
+    /// Player Top Down Movement
+    /// </summary>
     void Movement()
     {
         // Horizontal and Vertical Movement
