@@ -8,16 +8,18 @@ public class ScoreManager : MonoBehaviourPunCallbacks
 {
     public static ScoreManager Instance;
 
-    public TextMeshProUGUI[] PlayerRankTexts;
-    public List<GameObject> Players { get; private set; } = new();
-    public Transform[] Containers;
-    public GameObject PlayerScoreItem;
-    public List<GameObject> ScoreItems { get; private set; } = new();
-    public GameObject ScorePanel;
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI[] playerRankTexts;                                         // PlayerRank Texts Array
+    [SerializeField] private Transform[] containers;                                                    // Container Array
+    [SerializeField] private GameObject playerScoreItem;                                                // PlayerScoreItem Reference
+    [SerializeField] private GameObject scorePanel;                                                     // ScorePanel Reference
 
+    public List<GameObject> Players { get; private set; } = new();                                      // Player List
+    public List<GameObject> ScoreItems { get; private set; } = new();                                   // Score Item List
+    
     // Private Variables
-    private Dictionary<Photon.Realtime.Player, GameObject> scoreBoardItems = new();
-    private int playerIndex;
+    private Dictionary<Photon.Realtime.Player, GameObject> scoreBoardItems = new();                     // ScoreBoard Item Dictionary
+    private int playerIndex;                                                                            // Player Number Index
 
     #region Singleton
     void Awake()
@@ -45,10 +47,13 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // Adds the Player to the Scoreboard
+    /// <summary>
+    /// Adds the Player to the Scoreboard
+    /// </summary>
+    /// <param name="player"></param>
     void AddScoreBoardItem(Photon.Realtime.Player player)
     {
-        GameObject item = Instantiate(PlayerScoreItem, Containers[playerIndex]);
+        GameObject item = Instantiate(playerScoreItem, containers[playerIndex]);
         item.transform.localScale = Vector3.one;
 
         TextMeshProUGUI scoreText = item.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -60,7 +65,9 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         playerIndex++;
     }
 
-    // Sort Score in Descending Order
+    /// <summary>
+    /// Sort Score in Descending Order
+    /// </summary>
     public void SortScore()
     {
         for (int lastSortedIndex = Players.Count - 1; lastSortedIndex > 0; lastSortedIndex--)
@@ -82,7 +89,9 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         PresentResults();
     }
 
-     // Present the Results of the Game
+    /// <summary>
+    /// Present the Results of the Game
+    /// </summary>
     void PresentResults()
     {
         int order = 0;
@@ -103,10 +112,10 @@ public class ScoreManager : MonoBehaviourPunCallbacks
             Debug.Log(playerName + " | " + playerScore);
 
             // Print place, name of player, then score
-            PlayerRankTexts[order].text = "#" + place + " | " + playerName + " | Score: " + playerScore;
+            playerRankTexts[order].text = "#" + place + " | " + playerName + " | Score: " + playerScore;
 
             // Modify text color to indicate player color
-            PlayerRankTexts[order].color = new Color(red, green, blue);
+            playerRankTexts[order].color = new Color(red, green, blue);
 
             PlayerStatus playerStatus = go.GetComponent<PlayerStatus>();
 
@@ -124,19 +133,28 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         Players[0].GetComponent<WinLoseIndicator>().SetRaiseEvent();
     }
 
-    // Add Score Board Item of the Player that entered the Room
+    /// <summary>
+    /// Add Score Board Item of the Player that entered the Room
+    /// </summary>
+    /// <param name="newPlayer"></param>
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         AddScoreBoardItem(newPlayer);
     }
 
-    // Remove Score Board Item of the Player that left the Room
+    /// <summary>
+    /// Remove Score Board Item of the Player that left the Room
+    /// </summary>
+    /// <param name="otherPlayer"></param>
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         RemoveScoreBoardItem(otherPlayer);
     }
 
-    // Remove Scoreboard Item Function
+    /// <summary>
+    /// Remove Scoreboard Item Function
+    /// </summary>
+    /// <param name="player"></param>
     void RemoveScoreBoardItem(Photon.Realtime.Player player)
     {
         Destroy(scoreBoardItems[player]);

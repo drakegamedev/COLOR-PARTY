@@ -1334,18 +1334,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae11177dfa061349ba391b703faf6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerRankTexts:
+  playerRankTexts:
   - {fileID: 734548892}
   - {fileID: 274994294}
   - {fileID: 563701429}
   - {fileID: 892600255}
-  Containers:
+  containers:
   - {fileID: 241226212}
   - {fileID: 8206166883294766595}
   - {fileID: 8206166882407230106}
   - {fileID: 8206166882390427626}
-  PlayerScoreItem: {fileID: 8206166882010110063, guid: acb6fdee7f97ed648817f57fb7a666cf, type: 3}
-  ScorePanel: {fileID: 1990214156}
+  playerScoreItem: {fileID: 8206166882010110063, guid: acb6fdee7f97ed648817f57fb7a666cf, type: 3}
+  scorePanel: {fileID: 1990214156}
 --- !u!4 &847348609
 Transform:
   m_ObjectHideFlags: 0
