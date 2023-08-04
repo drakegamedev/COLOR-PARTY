@@ -23,7 +23,11 @@ public class SceneLoader : MonoBehaviour
     }
     #endregion
 
-    // Loads Scene Asyncronously
+    /// <summary>
+    /// Loads Scene Asyncronously
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public IEnumerator LoadScene(string name)
     {
         AsyncOperation asyncLoadScene = SceneManager.LoadSceneAsync(name);

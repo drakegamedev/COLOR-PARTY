@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSpawnManager : MonoBehaviour
 {
     public static PlayerSpawnManager Instance;
-    public List<Transform> SpawnPoints { get; private set; } = new();
+    public List<Transform> SpawnPoints { get; private set; } = new();                   // Spawn Points List
 
     #region Singleton
     void Awake()
@@ -18,6 +18,7 @@ public class PlayerSpawnManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
 
         // Get All Spawn Point Child Objects
