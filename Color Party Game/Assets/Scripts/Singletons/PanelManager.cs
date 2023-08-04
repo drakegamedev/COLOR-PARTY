@@ -13,7 +13,7 @@ public class PanelManager : MonoBehaviour
     }
 
     [Header("References")]
-    public PanelData[] Panels;
+    [SerializeField] private PanelData[] panels;
 
     #region Singleton
     void Awake()
@@ -32,9 +32,9 @@ public class PanelManager : MonoBehaviour
     // Activate Selected Panel
     public void ActivatePanel(string id)
     {
-        for (int i = 0; i < Panels.Length; i++)
+        for (int i = 0; i < panels.Length; i++)
         {
-            Panels[i].PanelObject.SetActive(Panels[i].Id == id);
+            panels[i].PanelObject.SetActive(panels[i].Id == id);
         }
     }
 }

@@ -1013,13 +1013,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d729eb490898a45a72bc07c9537840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panels:
+  panels:
+  - Id: time-panel
+    PanelObject: {fileID: 556863118}
   - Id: score-panel
     PanelObject: {fileID: 1990214156}
   - Id: results-panel
     PanelObject: {fileID: 413775702}
-  - Id: time-panel
-    PanelObject: {fileID: 556863118}
 --- !u!4 &720416097
 Transform:
   m_ObjectHideFlags: 0
@@ -1866,7 +1866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca28b5343c861c4abdadb6bf5661248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pools:
+  pools:
   - Id: speed-up
     Prefab: {fileID: 8734300649615677156, guid: 6745f9b1a81b8b7488ee339448ff0aa5, type: 3}
   - Id: slow-down

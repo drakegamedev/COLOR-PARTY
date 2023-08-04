@@ -6531,7 +6531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d729eb490898a45a72bc07c9537840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panels:
+  panels:
   - Id: main-menu-panel
     PanelObject: {fileID: 1930487221}
   - Id: loading-panel
