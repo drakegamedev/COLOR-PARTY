@@ -4,11 +4,11 @@ using UnityEngine;
 // Contains Behavior Similar to a Book (Composed of Pages)
 public class PanelNavigator : MonoBehaviour
 {
-    public Transform PageHolder;                    // Page Container
-    public PageData[] Pages;                        // Page Data Array
+    [SerializeField] private Transform pageHolder;                    // Page Container
+    private PageData[] pages;                                         // Page Data Array
 
     // Private Variables
-    private int currentPage;
+    private int currentPage;                                          // Current Page Number Indicator
 
     // Page Data Struct
     public struct PageData
@@ -27,22 +27,27 @@ public class PanelNavigator : MonoBehaviour
     void Awake()
     {
         // Initialize Page Holder
-        Pages = new PageData[PageHolder.childCount];
+        pages = new PageData[pageHolder.childCount];
 
-        for (int i = 0; i < PageHolder.childCount; i++)
+        for (int i = 0; i < pageHolder.childCount; i++)
         {
-            Pages[i].PageNumber = i;
-            Pages[i].PageObject = PageHolder.GetChild(i).gameObject;
+            pages[i].PageNumber = i;
+            pages[i].PageObject = pageHolder.GetChild(i).gameObject;
         }
     }
 
-    // Return Button
+    #region UI Button Functions
+    /// <summary>
+    /// Return Button
+    /// </summary>
     public void OnReturnButtonClicked()
     {
         PanelManager.Instance.ActivatePanel("main-menu-panel");
     }
 
-    // Previous Button
+    /// <summary>
+    /// Previous Button
+    /// </summary>
     public void OnPreviousButtonClicked()
     {
         currentPage--;
@@ -55,25 +60,31 @@ public class PanelNavigator : MonoBehaviour
         ActivatePage(currentPage);
     }
 
-    // Next Button
+    /// <summary>
+    /// Next Button
+    /// </summary>
     public void OnNextButtonClicked()
     {
         currentPage++;
 
-        if (currentPage >= Pages.Length)
+        if (currentPage >= pages.Length)
         {
-            currentPage = Pages.Length - 1;
+            currentPage = pages.Length - 1;
         }
 
         ActivatePage(currentPage);
     }
+    #endregion
 
-    // Activate Page Index
+    /// <summary>
+    /// Activate Page Index
+    /// </summary>
+    /// <param name="pageNumber"></param>
     public void ActivatePage(int pageNumber)
     {
-        for (int i = 0; i < Pages.Length; i++)
+        for (int i = 0; i < pages.Length; i++)
         {
-            Pages[i].PageObject.SetActive(Pages[i].PageNumber == pageNumber);
+            pages[i].PageObject.SetActive(pages[i].PageNumber == pageNumber);
         }
     }
 }

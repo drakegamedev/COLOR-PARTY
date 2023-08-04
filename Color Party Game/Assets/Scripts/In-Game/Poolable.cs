@@ -3,7 +3,9 @@ using UnityEngine;
 // For objects that will be put in the Object Pooler
 public class Poolable : MonoBehaviour
 {
-    // Returns object back to the Object Pooler
+    /// <summary>
+    /// Returns object back to the Object Pooler
+    /// </summary>
     public void ReturnToPool()
     {
         transform.SetParent(ObjectPooler.Instance.transform);

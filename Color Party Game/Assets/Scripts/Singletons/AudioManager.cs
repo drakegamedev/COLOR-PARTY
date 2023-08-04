@@ -14,11 +14,11 @@ public class AudioManager : MonoBehaviour
     }
 
     [Header("References")]
-    public AudioDataCollection[] AudioCollections;
+    [SerializeField] private AudioDataCollection[] audioCollections;                            // Audio Collection Array
 
     [Space]
-    public GameObject MusicHolder;
-    public GameObject SoundHolder;
+    [SerializeField] private GameObject musicHolder;                                            // BGM Holder Reference
+    [SerializeField] private GameObject soundHolder;                                            // SFX Holder Reference
 
     #region Singleton
     void Awake()
@@ -30,21 +30,22 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+            return;
         }
 
         // Initialize Audio Collections
-        foreach (AudioDataCollection collectionData in AudioCollections)
+        foreach (AudioDataCollection collectionData in audioCollections)
         {
             foreach (AudioData audioData in collectionData.Audios)
             {
-                switch (audioData.Type)
+                switch (audioData.GetAudioType())
                 {
                     case AudioData.AudioType.BGM:
-                        audioData.Initialize(MusicHolder);
+                        audioData.Initialize(musicHolder);
                         break;
 
                     case AudioData.AudioType.SFX:
-                        audioData.Initialize(SoundHolder);
+                        audioData.Initialize(soundHolder);
                         break;
                 };
             }
@@ -53,17 +54,20 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region Audio Methods
-    // Play Audio
+    /// <summary>
+    /// Play Audio
+    /// </summary>
+    /// <param name="id"></param>
     public void Play(string id)
     {
         // Find Audio in Audio Collections
-        foreach (AudioDataCollection collectionData in AudioCollections)
+        foreach (AudioDataCollection collectionData in audioCollections)
         {
             // Check within AudioData Types
             foreach (AudioData audioData in collectionData.Audios)
             {
                 // Audio Found
-                if (id == audioData.Id)
+                if (id == audioData.GetId())
                 {
                     audioData.Source.Play();
                     return;
@@ -76,17 +80,20 @@ public class AudioManager : MonoBehaviour
         return;
     }
 
-    // Stop Audio
+    /// <summary>
+    /// Stop Audio
+    /// </summary>
+    /// <param name="id"></param>
     public void Stop(string id)
     {
         // Find Audio in Audio Collections
-        foreach (AudioDataCollection collectionData in AudioCollections)
+        foreach (AudioDataCollection collectionData in audioCollections)
         {
             // Check within AudioData Types
             foreach (AudioData audioData in collectionData.Audios)
             {
                 // Audio Found
-                if (id == audioData.Id)
+                if (id == audioData.GetId())
                 {
                     audioData.Source.Stop();
                     return;
@@ -99,17 +106,21 @@ public class AudioManager : MonoBehaviour
         return;
     }
 
-    // Modify Audio Pitch
+    /// <summary>
+    /// Modify Audio Pitch
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="amount"></param>
     public void ModifyPitch(string id, float amount)
     {
         // Find Audio in Audio Collections
-        foreach (AudioDataCollection collectionData in AudioCollections)
+        foreach (AudioDataCollection collectionData in audioCollections)
         {
             // Check within AudioData Types
             foreach (AudioData audioData in collectionData.Audios)
             {
                 // Audio Found
-                if (id == audioData.Id)
+                if (id == audioData.GetId())
                 {
                     audioData.Source.pitch = amount;
                     return;

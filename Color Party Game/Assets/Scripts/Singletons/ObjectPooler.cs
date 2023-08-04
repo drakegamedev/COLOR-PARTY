@@ -27,14 +27,15 @@ public class ObjectPooler : MonoBehaviour
     }
     #endregion
 
-    public List<Pool> Pools;
-    public Dictionary<string, List<GameObject>> PoolDictionary { get; } = new();
+    [Header("Properties")]
+    [SerializeField] private List<Pool> pools = new();                                                  // List of Pools
+    public Dictionary<string, List<GameObject>> PoolDictionary { get; private set; } = new();           // Pool Dictionary
 
     // Start is called before the first frame update
     void Start()
     {
         // Initialize Pools
-        foreach (Pool pool in Pools)
+        foreach (Pool pool in pools)
         {
             List<GameObject> objectPool = new();
             PoolDictionary.Add(pool.Id, objectPool);
@@ -68,7 +69,7 @@ public class ObjectPooler : MonoBehaviour
         }
 
         // Spawn New Object
-        foreach (Pool objPool in Pools)
+        foreach (Pool objPool in pools)
         {
             if (objPool.Id == id)
             {

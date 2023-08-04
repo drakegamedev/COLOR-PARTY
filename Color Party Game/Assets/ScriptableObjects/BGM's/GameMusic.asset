@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4642715cf770664d915249771ac8cc5, type: 3}
   m_Name: GameMusic
   m_EditorClassIdentifier: 
-  Id: game-bgm
-  Clip: {fileID: 8300000, guid: 5825ec052cff6214c95f69314525169b, type: 3}
-  Type: 0
-  Priority: 0
-  Volume: 1
-  Pitch: 1
-  PlayOnAwake: 0
-  Loop: 1
-  SpatialBlend: 0
+  id: game-bgm
+  clip: {fileID: 8300000, guid: 5825ec052cff6214c95f69314525169b, type: 3}
+  type: 0
+  priority: 0
+  volume: 1
+  pitch: 1
+  playOnAwake: 0
+  loop: 1
+  spatialBlend: 0

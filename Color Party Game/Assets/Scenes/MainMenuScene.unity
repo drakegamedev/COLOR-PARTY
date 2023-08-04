@@ -3868,7 +3868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4681a5ff482a114d82425c75a8faa39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PageHolder: {fileID: 643554363}
+  pageHolder: {fileID: 643554363}
 --- !u!114 &1016365049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6322,7 +6322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4681a5ff482a114d82425c75a8faa39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PageHolder: {fileID: 1960509031}
+  pageHolder: {fileID: 1960509031}
 --- !u!114 &1894428515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6531,7 +6531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d729eb490898a45a72bc07c9537840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panels:
+  panels:
   - Id: main-menu-panel
     PanelObject: {fileID: 1930487221}
   - Id: loading-panel
@@ -6747,6 +6747,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.data[0].Id
       value: main-menu-bgm
       objectReference: {fileID: 0}
@@ -6755,7 +6759,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.data[0].Audios.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.data[0].Audios.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0febaf08a39c5de42a745c61cbe927c9, type: 2}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.data[0].Audios.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 0febaf08a39c5de42a745c61cbe927c9, type: 2}
     m_RemovedComponents: []

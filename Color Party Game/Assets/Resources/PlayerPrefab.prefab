@@ -348,9 +348,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe1caa0680a7ab4a8a4e49b4808b863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCamera: {fileID: 1769413209931504260}
-  PlayerColor: {r: 0, g: 0, b: 0, a: 1}
-  PlayerNumber: 0
+  playerCamera: {fileID: 1769413209931504260}
+  <PlayerColor>k__BackingField: {r: 0, g: 0, b: 0, a: 1}
+  <PlayerNumber>k__BackingField: 0
 --- !u!114 &1769413209929449390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e135cffcadb51f74daf965465a1a8af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  <Speed>k__BackingField: 5
 --- !u!114 &1769413209929449376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec378c75547354748874aca704b35c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerNameText: {fileID: 1769413209807843716}
+  <PlayerNameText>k__BackingField: {fileID: 1769413209807843716}
 --- !u!114 &8403116973725907715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,10 +452,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea1df649fb02728468b58e3bf0a59899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 5
-  SpeedUpEffect: {fileID: 5289845814874087781}
-  SlowDownEffect: {fileID: 5302589596812735921}
-  KnockOutEffect: {fileID: 5283973795189584893}
+  timer: 5
+  speedUpEffect: {fileID: 5289845814874087781}
+  slowDownEffect: {fileID: 5302589596812735921}
+  knockOutEffect: {fileID: 5283973795189584893}
 --- !u!114 &716960620803039446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,15 +480,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f14cea19af84e4884ecd9dd557ae6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnTime: 3
-  PlayerSprites:
+  respawnTime: 3
+  playerSprites:
   - {fileID: 1769413210769222957}
   - {fileID: 1769413211604098563}
   - {fileID: 1769413210594212815}
   - {fileID: 1769413210621205590}
-  DeathColor: {r: 0, g: 0, b: 0, a: 1}
-  LifeColor: {r: 1, g: 1, b: 1, a: 1}
-  Explosion: {fileID: 8424258976193525490, guid: 4b01a1cc8c6ca5246a14a31b0d2993e6, type: 3}
+  deathColor: {r: 0, g: 0, b: 0, a: 1}
+  lifeColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1769413209931504259
 GameObject:
   m_ObjectHideFlags: 0

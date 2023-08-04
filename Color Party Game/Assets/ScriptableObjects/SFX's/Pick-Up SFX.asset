@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4642715cf770664d915249771ac8cc5, type: 3}
   m_Name: Pick-Up SFX
   m_EditorClassIdentifier: 
-  Id: pick-up-sfx
-  Clip: {fileID: 8300000, guid: eda73003b3615c949a0fa3cefae48943, type: 3}
-  Type: 1
-  Priority: 0
-  Volume: 1
-  Pitch: 1
-  PlayOnAwake: 0
-  Loop: 0
-  SpatialBlend: 0
+  id: pick-up-sfx
+  clip: {fileID: 8300000, guid: eda73003b3615c949a0fa3cefae48943, type: 3}
+  type: 0
+  priority: 0
+  volume: 1
+  pitch: 1
+  playOnAwake: 0
+  loop: 0
+  spatialBlend: 0

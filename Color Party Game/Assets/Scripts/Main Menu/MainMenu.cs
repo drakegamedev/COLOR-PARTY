@@ -10,29 +10,39 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.Play("main-menu-bgm");
     }
 
-    // Play Button
+    #region UI Button Functions
+    /// <summary>
+    /// Play Button
+    /// </summary>
     public void OnPlayButtonClicked()
     {
         Debug.Log("Play");
         StartCoroutine(SceneLoader.Instance.LoadScene("LobbyScene"));
     }
 
-    // Tutorial Button
+    /// <summary>
+    /// Tutorial Button
+    /// </summary>
     public void OnTutorialButtonClicked()
     {
         PanelManager.Instance.ActivatePanel("tutorial-panel");
     }
 
-    // Credits Button
+    /// <summary>
+    /// Credits Button
+    /// </summary>
     public void OnCreditsButtonClicked()
     {
         PanelManager.Instance.ActivatePanel("credits-panel");
     }
 
-    // Quit Game Button
+    /// <summary>
+    /// Quit Game Button
+    /// </summary>
     public void OnQuitGameButtonClicked()
     {
         Application.Quit();
         Debug.Log("You have quit the game!");
     }
+    #endregion
 }

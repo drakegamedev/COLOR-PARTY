@@ -35,7 +35,10 @@ public class PowerUps : MonoBehaviourPunCallbacks
         }
     }
 
-    // Power-Up Effect
+    /// <summary>
+    /// Power-Up Effect
+    /// </summary>
+    /// <param name="collider"></param>
     public virtual void TakeEffect(Collider2D collider)
     {
 

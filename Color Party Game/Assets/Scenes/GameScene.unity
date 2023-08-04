@@ -1013,13 +1013,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d729eb490898a45a72bc07c9537840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panels:
+  panels:
+  - Id: time-panel
+    PanelObject: {fileID: 556863118}
   - Id: score-panel
     PanelObject: {fileID: 1990214156}
   - Id: results-panel
     PanelObject: {fileID: 413775702}
-  - Id: time-panel
-    PanelObject: {fileID: 556863118}
 --- !u!4 &720416097
 Transform:
   m_ObjectHideFlags: 0
@@ -1334,18 +1334,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae11177dfa061349ba391b703faf6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerRankTexts:
+  playerRankTexts:
   - {fileID: 734548892}
   - {fileID: 274994294}
   - {fileID: 563701429}
   - {fileID: 892600255}
-  Containers:
+  containers:
   - {fileID: 241226212}
   - {fileID: 8206166883294766595}
   - {fileID: 8206166882407230106}
   - {fileID: 8206166882390427626}
-  PlayerScoreItem: {fileID: 8206166882010110063, guid: acb6fdee7f97ed648817f57fb7a666cf, type: 3}
-  ScorePanel: {fileID: 1990214156}
+  playerScoreItem: {fileID: 8206166882010110063, guid: acb6fdee7f97ed648817f57fb7a666cf, type: 3}
+  scorePanel: {fileID: 1990214156}
 --- !u!4 &847348609
 Transform:
   m_ObjectHideFlags: 0
@@ -1563,15 +1563,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c02cab503a81364aa785a5103dd5b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PowerUpNames:
+  powerUpNames:
   - speed-up
   - slow-down
   - knock-out
-  MinX: -0.4
-  MaxX: 19.65
-  MinY: -19.65
-  MaxY: 0.67
-  Timer: 10
+  minX: -0.4
+  maxX: 19.65
+  minY: -19.65
+  maxY: 0.67
+  timer: 10
 --- !u!1 &949919828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,24 +1601,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddc9e4967795ff4d987f89ee450e3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimePanel: {fileID: 556863118}
-  CountdownText: {fileID: 1986171651}
-  TimerText: {fileID: 1596173883}
-  GameResult: {fileID: 730846092}
-  PlayerStanding: {fileID: 1810554147}
-  LightColors:
+  <TimePanel>k__BackingField: {fileID: 556863118}
+  <CountdownText>k__BackingField: {fileID: 1986171651}
+  <TimerText>k__BackingField: {fileID: 1596173883}
+  <GameResult>k__BackingField: {fileID: 730846092}
+  <PlayerStanding>k__BackingField: {fileID: 1810554147}
+  <LightColors>k__BackingField:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 1, g: 0, b: 1, a: 1}
   - {r: 1, g: 1, b: 0, a: 1}
-  DarkColors:
+  <DarkColors>k__BackingField:
   - {r: 0.74509805, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0.74509805, a: 1}
   - {r: 0.74509805, g: 0, b: 0.74509805, a: 1}
   - {r: 0.74509805, g: 0.74509805, b: 0, a: 1}
-  LerpTime: 2
-  ArenaAesthetic: {fileID: 74245260}
-  PlayerPrefabs:
+  lerpTime: 2
+  arenaAesthetic: {fileID: 74245260}
+  playerPrefabs:
   - {fileID: 7243523787050623196, guid: aa652049481cea740a41f241d219d052, type: 3}
   - {fileID: 7652157707442554513, guid: 038e8c3c663bcd945a98a81f6a42b18f, type: 3}
   - {fileID: 8948069971245021470, guid: d45bcdcb00dcce347bfa499ac644aef1, type: 3}
@@ -1688,12 +1688,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8050a711d9cda594c8ad469921a22b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Minutes: 5
-  Seconds: 0
-  TimerText: {fileID: 1596173883}
-  CountdownText: {fileID: 1986171651}
-  CountdownTimer: 3
-  SetLastMinute: 120
+  minutes: 5
+  seconds: 0
+  timerText: {fileID: 1596173883}
+  countdownText: {fileID: 1986171651}
+  countdownTimer: 3
+  setLastMinute: 120
 --- !u!114 &1003165263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1776,6 +1776,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.data[0].Id
       value: game-bgm
       objectReference: {fileID: 0}
@@ -1800,6 +1804,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.data[0].Audios.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.data[1].Audios.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.data[0].Audios.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: d0e8320b3ca553841bcdaaecad5d3f89, type: 2}
@@ -1809,6 +1821,18 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d2840f7737b504b439661259d3b7e5bf, type: 2}
     - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
       propertyPath: AudioCollections.Array.data[2].Audios.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2831087bea923af49963d0663c21b362, type: 2}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.data[0].Audios.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d0e8320b3ca553841bcdaaecad5d3f89, type: 2}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.data[1].Audios.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d2840f7737b504b439661259d3b7e5bf, type: 2}
+    - target: {fileID: 1097120166260067117, guid: e3c9d5a4b4b379f44b9aa52a74c725f8, type: 3}
+      propertyPath: audioCollections.Array.data[1].Audios.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 2831087bea923af49963d0663c21b362, type: 2}
     m_RemovedComponents: []
@@ -1842,7 +1866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca28b5343c861c4abdadb6bf5661248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pools:
+  pools:
   - Id: speed-up
     Prefab: {fileID: 8734300649615677156, guid: 6745f9b1a81b8b7488ee339448ff0aa5, type: 3}
   - Id: slow-down
@@ -1990,10 +2014,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e3f2209a2c81b42aef9f19bec8edc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TilePrefab: {fileID: 5043901520539652553, guid: a917932e6b2478943975f7310f528d35, type: 3}
-  Rows: 20
-  Columns: 20
-  Spacing: 1
+  tilePrefab: {fileID: 5043901520539652553, guid: a917932e6b2478943975f7310f528d35, type: 3}
+  rows: 20
+  columns: 20
+  spacing: 1
 --- !u!4 &1440316581
 Transform:
   m_ObjectHideFlags: 0

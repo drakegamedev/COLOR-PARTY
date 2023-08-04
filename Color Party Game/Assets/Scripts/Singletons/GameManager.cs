@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    // Game State
+    // Game States
     public enum GameStates
     {
         INITIAL,
@@ -18,26 +18,26 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public GameStates GameState { get; set; }
 
-    public GameObject TimePanel;
-    public TextMeshProUGUI CountdownText;
-    public TextMeshProUGUI TimerText;
-    public TextMeshProUGUI GameResult;
-    public TextMeshProUGUI PlayerStanding;
+    [field : SerializeField] public GameObject TimePanel { get; private set; }
+    [field : SerializeField] public TextMeshProUGUI CountdownText { get; private set; }
+    [field : SerializeField] public TextMeshProUGUI TimerText { get; private set; }
+    [field: SerializeField] public TextMeshProUGUI GameResult { get; private set; }
+    [field: SerializeField] public TextMeshProUGUI PlayerStanding { get; private set; }
 
-    [Header("Color References")]
-    public Color[] LightColors;
-    public Color[] DarkColors;
+    //[Header("Color References")]
+    [field: SerializeField, Header("Color References")] public Color[] LightColors { get; private set; }
+    [field: SerializeField] public Color[] DarkColors { get; private set; }
     public GameObject[] LightLerpWalls { get; private set; }
     public GameObject[] DarkLerpWalls { get; private set; }
 
     [Header("Aesthetic References")]
-    public float LerpTime;
-    public ParticleSystem ArenaAesthetic;                                               // Arena Particle System (Aesthetic)
+    [SerializeField] private float lerpTime;
+    [SerializeField] private ParticleSystem arenaAesthetic;                             // Arena Particle System (Aesthetic)
 
     public List<GameObject> PlayerGameObjects { get; set; } = new();
 
     [Header("Player References")]
-    public GameObject[] PlayerPrefabs;
+    [SerializeField] private GameObject[] playerPrefabs;
 
     // Private Variables
     private List<LerpColor> lerpColorList = new();                                      // Lerp Color List
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
 
             // Spawn Player Prefab
-            PhotonNetwork.Instantiate(PlayerPrefabs[number].name, PlayerSpawnManager.Instance.SpawnPoints[number].position, Quaternion.identity);
+            PhotonNetwork.Instantiate(playerPrefabs[number].name, PlayerSpawnManager.Instance.SpawnPoints[number].position, Quaternion.identity);
         }
 
         PanelManager.Instance.ActivatePanel("time-panel");
@@ -98,7 +98,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // Initialize Wall Properties
+    /// <summary>
+    /// Initialize Wall Properties
+    /// </summary>
     public void InitializeWalls()
     {
         // Cache In Walls
@@ -110,7 +112,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             LerpColor lerpColor = go.AddComponent<LerpColor>();
             lerpColor.MyColors = LightColors;
-            lerpColor.LerpTime = LerpTime;
+            lerpColor.LerpTime = lerpTime;
 
             // Add to List
             lerpColorList.Add(lerpColor);
@@ -121,29 +123,34 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             LerpColor lerpColor = go.AddComponent<LerpColor>();
             lerpColor.MyColors = DarkColors;
-            lerpColor.LerpTime = LerpTime;
+            lerpColor.LerpTime = lerpTime;
 
             // Add to List
             lerpColorList.Add(lerpColor);
         }
     }
 
-    // Intensifies Game Atmosphere
+    /// <summary>
+    /// Intensifies Game Atmosphere
+    /// </summary>
     public void IntensifyAtmosphere()
     {
         // Faster Movement Speed of Arena Aesthetic Particles
-        var main = ArenaAesthetic.main;
+        var main = arenaAesthetic.main;
         main.simulationSpeed = 4f;
     }
 
-    // Leave the Room
+    /// <summary>
+    /// Leave the Room
+    /// </summary>
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
     }
 
-    // When player leaves room
-    // Redirect player back to Lobby Scene
+    /// <summary>
+    /// When player leaves room, Redirect player back to Lobby Scene
+    /// </summary>
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("LobbyScene");
