@@ -1,2 +1,2 @@
 # COLOR-PARTY-GAME
-GAMENET Finals Project
+https://gamdax.itch.io/color-party
